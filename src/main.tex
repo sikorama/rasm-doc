@@ -1,0 +1,70 @@
+\usepackage[space]{grffile}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage[margin=3cm]{geometry}
+
+\usepackage{makeidx}
+\usepackage[table]{xcolor}
+\usepackage{framed}
+\usepackage{multicol}
+
+%Redefinition leftbar pour controler la largeur, on pourrait directement utiliser ou faire une autre commande
+\renewenvironment{leftbar}{\def\FrameCommand{\vrule width 0.5pt \hspace{8pt}}\MakeFramed {\advance\hsize-\width \FrameRestore}}{\endMakeFramed}
+
+%leftbar Pose un probleme avec htlatex, surtout qu'avec du css, on le fait tres bien
+\newenvironment{code}
+{
+\begin{leftbar}
+\begin{ttfamily}
+\bgroup\obeylines
+}
+{
+\egroup
+\end{ttfamily}
+\end{leftbar}
+}
+
+%\usepackage[printwatermark]{xwatermark}
+%\newsavebox\mybox
+%\savebox\mybox{\tikz[color=gray,opacity=0.1]\node{Confidentiel};}
+%\newwatermark*[allpages,angle=45,scale=10,xpos=-50,ypos=20]{\usebox\mybox}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyhead[L]{}
+\fancyhead[R]{}
+\fancyhead[C]{RASM}
+\setlength{\parindent}{0pt}
+
+\title{RASM: Roudoudou's Z80 Assembler V0.115}
+
+%\author{\'Edouard BERG\'E (Roudoudou) , St\'ephane SIKORA}
+\author{\'Edouard BERG\'E (Roudoudou)}
+\makeindex
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\include{introduction}
+\include{usage}
+\include{syntax}
+\include{expressions}
+\include{ext_syntaxe}
+\include{crunched}
+\include{cpc}
+\include{zx}
+\include{compilation}
+
+\appendix
+
+\include{colors}
+\include{opcodes}
+\include{cycles}
+\include{license}
+\include{index}
+
+\end{document}

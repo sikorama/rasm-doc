@@ -1,0 +1,548 @@
+\section{\xlang{Syntaxe Générale}{Source code format}}
+
+\begin{xfr}
+  La syntaxe supportée par RASM se veut souple, laissant de nombreuses libertés au développeur.
+
+  Par exemple, il n'est pas nécessaire d'indenter vos sources avec Rasm, si ce n'est pour des raisons esthétiques.
+  Il n'est pas nécessaire non plus d'utiliser le caractere ':' pour définir un label, bien qu'il soit possible de le faire.
+  Les deux points sont simplement ignorés.
+
+  De même, les fichiers peuvent être au format windows ou linux, une conversion interne et transparente est réalisée.
+  Enfin, Rasm n'est pas sensible à la casse, toutes les lettres sont converties en majuscules en interne.
+  Aussi, ne soyez pas surpris de ne voir que des majuscules dans les messages d'erreur.
+
+  Nous verrons que cette liberté implique certaines ambiguités qui seront précisées dans la suite.
+  La seule contrainte forte imposée par RASM est qu'il est interdit de créer un label qui ait le meme nom qu'une directive ou instruction Z80.
+
+  Dans cette partie nous verrons la syntaxe générale d'un code en z80 comme on en le retrouve avec les assembleurs classiques. Dans les parties suivantes, nous verrons les aspects spécifiques de RASM.
+\end{xfr}
+
+\begin{xen}
+RASM is meant to be easy to use, it offers some flexibility, concerning the syntax.  For example:
+\begin{itemize}
+\item It's useless to use indentation with Rasm, except for aesthetics purpose.
+\item There is no need for ':' suffix for identifying labels, but it is allowed, it will simply be ignored.
+\item Windows and Unix file format are both supported.
+\item RASM is not case sensitive, the whole source code is converted into upper case, so don't be surprised if you see your code in upper cases in error messages.
+\end{itemize}
+
+Simply keep in mind you cannot use a reserved word (directive, register, Z80 instruction) as a label.
+
+In this part,we'll see general syntax of a z80 assembly file, as it can be commonly found in other assemblers.
+In the next parts, we'll see some specific aspects of RASM.
+
+%A label is NOT an alias, and NOT a variable. Rasm makes the difference!
+%- a label refer to a memory address (an address and sometimes a memory page if the workspace is in cartridge/snapshot space)
+%- an alias (EQU) is a text, which encountered, is replaced by another one. Known variables are translated during first declaration
+%- a variable is global to the whole source, his value must be initialised and may be modified anytime
+\end{xen}
+
+\begin{xfr}
+  \subsection{Commentaires}
+  La saisie de commentaire sous Rasm est classique et précédée du caractère point-virgule.
+  Tous les caractères suivants sont ignorés jusqu'au prochain retour chariot.
+  Il est aussi possible d'utiliser la syntaxe du C, à savoir le double slash (\texttt{//}) pour débuter un commentaire, ainsi que les symboles \texttt{/*} et \texttt{*/} pour délimiter des commentaires sur plusieurs lignes .
+\end{xfr}
+
+\begin{xen}
+  \subsection{Comments}
+  Rasm uses semicolons to start a comment: Any character after a semicolon (until then end of the line) will be ignored. It also works possible to use C syntax, single line comments starting with a double slash (\texttt{//}), and multi lines comments delimited by \texttt{/*} and \texttt{*/}.
+\end{xen}
+
+
+\subsection{Labels}
+\begin{xfr}
+Les labels permettent de nommer une adresse mémoire liée à du code ou des données.
+Dans certains assembleurs, ils sont suivis de deux points, dans d'autres, non. RASM supporte les deux syntaxes.
+
+Il existe des labels speciaux. Par exemple tout label qui commence par le préfixe \texttt{BRK} ou \texttt{\at BRK} génère en outre un point d'arrêt (cf section \ref{BREAKPOINT}). Nous verrons aussi par la suite qu'il est possible de définir des labels locaux à des boucles ou macros.
+\end{xfr}
+
+\begin{xen}
+Labels are used for naming a specific memory adress.
+%Some asemblers
+\end{xen}
+
+%TODO: exemple de label:
+\begin{code}
+ ld HL,monlabel
+ call aFunction
+aFunction:
+; ...
+ ret
+monlabel db 0
+\end{code}
+
+\begin{xen}
+We'll see special labels later in this document: Some labels can be defined as locals to a Loop or macro (see local and proximity labels, \ref{LOCALLABELS}).
+Also any label beginning with \texttt{BRK} or \texttt{\at BRK} will generate a \texttt{BREAKPOINT}.\index{BREAKPOINT} (see section \ref{BREAKPOINT}).
+\end{xen}
+
+
+\subsection{\xlang{Mnémoniques Z80}{Z80 Instructions}}
+
+\begin{xfr}
+Toutes les instructions du Z80 - documentées et non documentées - sont supportées.
+\end{xfr}
+
+\begin{xen}
+The complete Z80 instruction set is supported, including undocumented ones.
+See Appendix B for the full opcode list.
+\end{xen}
+
+\subsubsection{\xlang{Registres IX,IY}{IX, IY registers}}
+
+\begin{xfr}
+L'adressage 8 bits des registres d'index IX et IY se fait indifféremment avec LX, IXL ou XL, etc.
+\end{xfr}
+
+
+\begin{xen}
+IX and IY registers can be addressed as two 8 bit registers. For example, IX lower part
+can be addressed indifferently with LX, IXL or XL, and higher part with HX, IXH or XH:
+\end{xen}
+
+\begin{code}
+ld A,IXL
+\end{code}
+
+\begin{xfr}
+Par ailleur, les instructions complexes avec IX et IY s'écrivent de la façon suivante:
+\end{xfr}
+
+\begin{xen}
+Also, complex instructions with IX and IY are written with this syntax:
+\end{xen}
+
+\begin{code}
+  res 0,(IX+d),A
+  bit 0,(IX+d),A
+  sll 0,(IX+d),A
+  rl  0,(IX+d),A
+  rr  0,(IX+d),A
+\end{code}
+
+\subsubsection{\xlang{Syntaxes des instructions non documentées}{Undocumented opcodes syntax}}
+\begin{code}
+  out (<byte>),a
+  in a,(<byte>)
+  in 0,(c)
+  in f,(c)
+  sll <register>
+  sl1 <registre>
+\end{code}
+
+\subsubsection{\xlang{Syntaxes spéciales}{Shorcuts}}
+
+\begin{xfr}
+Il existe des raccourcis qui permettent de rendre le code plus compact et plus lisible.
+\end{xfr}
+
+\begin{xen}
+Rasm allows some shortcuts. These are not real instrctions,
+but a convenient way to write shorter assembly code.
+\end{xen}
+
+\begin{itemize}
+
+\begin{xfr}
+\item PUSH/POP multi-arguments
+\end{xfr}
+\begin{xen}
+\item Multi-arg PUSH and POP
+\end{xen}
+
+\begin{tabular}{lll}
+PUSH BC,DE,HL & $\rightarrow$ & PUSH BC : PUSH DE : PUSH HL \\
+POP HL,DE,BC & $\rightarrow$ & POP HL : POP DE : POP BC
+\end{tabular}
+
+\begin{xfr}
+\item NOP répétitif
+\end{xfr}
+\begin{xen}
+\item NOP repetition
+\end{xen}
+
+\begin{tabular}{lll}
+nop 4 & $\rightarrow$ & nop : nop : nop : nop \\
+\end{tabular}
+
+\item \xlang{LD Complexe}{Complex LD}
+
+\begin{tabular}{lll}
+LD BC,BC & $\rightarrow$ & LD B,B : LD C,C \\
+LD BC,DE & $\rightarrow$ & LD B,D : LD C,E \\
+LD BC,HL & $\rightarrow$ & LD B,H : LD C,L \\
+LD DE,BC & $\rightarrow$ & LD D,B : LD E,C \\
+LD DE,DE & $\rightarrow$ & LD D,D : LD E,E \\
+LD DE,HL & $\rightarrow$ & LD D,H : LD E,L \\
+LD HL,BC & $\rightarrow$ & LD H,B : LD L,C \\
+LD HL,DE & $\rightarrow$ & LD H,D : LD L,E \\
+LD HL,HL & $\rightarrow$ & LD H,H : LD L,L \\
+\end{tabular}
+
+\item \xlang{LD Complexe avec IX,IY}{Complex LD with IX,IY}
+
+\begin{tabular}{lll}
+LD HL,(IX+n) & $\rightarrow$ & LD H,(IX+n+1) : LD L,(IX+n) \\
+LD HL,(IY+n) & $\rightarrow$ & LD H,(IY+n+1) : LD L,(IY+n) \\
+LD DE,(IX+n) & $\rightarrow$ & LD D,(IX+n+1) : LD E,(IX+n) \\
+LD DE,(IY+n) & $\rightarrow$ & LD D,(IY+n+1) : LD E,(IY+n) \\
+LD BC,(IX+n) & $\rightarrow$ & LD B,(IX+n+1) : LD C,(IX+n) \\
+LD BC,(IY+n) & $\rightarrow$ & LD B,(IY+n+1) : LD C,(IY+n) \\
+\end{tabular}
+
+\begin{tabular}{lll}
+LD (IX+n),HL & $\rightarrow$ & LD (IX+n+1),H : LD (IX+n),L \\
+LD (IY+n),HL & $\rightarrow$ & LD (IY+n+1),H : LD (IY+n),L \\
+LD (IX+n),DE & $\rightarrow$ & LD (IX+n+1),D : LD (IX+n),E \\
+LD (IY+n),DE & $\rightarrow$ & LD (IY+n+1),D : LD (IY+n),E \\
+LD (IX+n),BC & $\rightarrow$ & LD (IX+n+1),B : LD (IX+n),C \\
+LD (IY+n),BC & $\rightarrow$ & LD (IY+n+1),B : LD (IY+n),C \\
+\end{tabular}
+
+\item \xlang{Syntaxes alternatives}{Alternative syntax}
+
+\begin{tabular}{lll}
+EXA & $\rightarrow$ & EX AF,AF' \\
+\end{tabular}
+
+\end{itemize}
+
+
+
+\subsection{\xlang{Directives mémoires}{Memory related directives}}
+
+\subsubsection{\xlang{Directive ORG}{ORG Directive}}\index{ORG}
+
+\begin{verbatim}
+ORG <logical address>[,<physical address>]
+\end{verbatim}
+
+\begin{xfr}
+La directive ORG permet d'indiquer l'adresse de départ du code et des données à assembler.
+  Rasm permet l'utilisation de plusieurs ORG au sein d'un même espace mémoire, mais il contrôle qu'aucune zone de code écrite ne se chevauche: il n'autorise pas de ré-écrire sur les mêmes adresses mémoire.
+\end{xfr}
+
+\begin{xen}
+ORG is used for locating assembled code to a specific address.
+This directive can be used multiple times in the same memory space, but assembled memory blocs may not overlap.
+In that case, RASM will produce an error message.
+\end{xen}
+
+\begin{code}
+ORG \#8000
+RET
+; bytecode output:
+; \#8000: \#C9
+\end{code}
+
+\begin{xfr}
+  Si vous avez besoin de générer plusieurs morceaux de code à la même adresse, vous avez deux possibilités. Soit vous utilisez le deuxième paramètre de la directive ORG pour écrire ce code ailleurs, soit vous pouvez créer à tout moment un nouvel espace mémoire avec la directive BANK \ref{BANK}
+\end{xfr}
+
+\begin{xen}
+Still, if you need to generate two or more pieces of code targetted for the same address, but physically stored in a different place, you can use the second parameter.
+For example, in order to generate code targetted for address \#8000, but stored in \#1000:
+\end{xen}
+
+%\begin{xfr}
+%Il est possible d'assembler le meme code, mais le loger à une autre adresse:
+%\end{xfr}
+
+%\begin{xen}
+%Assembling to another address than where the code will be written:
+%\end{xen}
+
+\begin{code}
+ORG \#8000,\#1000
+label: JP label
+; bytecode output:
+; \#1000: \#C3,\#00,\#80
+\end{code}
+
+\begin{xen}
+On Amstrad CPC, you also can write tagetted to the same adress, by defining a new memory space, using BANK directive. (See section \ref{BANK})
+\end{xen}
+
+\subsubsection{ALIGN}\index{ALIGN}
+\begin{verbatim}
+ALIGN <boundary>[,fill]
+\end{verbatim}
+
+\begin{xfr}
+  Si l'adresse d'écriture du code en cours n'est pas un multiple de la valeur d'alignement, on augmente l'adresse en conséquence. Par défaut, cette instruction ne produit pas d'octet sur la sortie (les espaces de travail sont initiaisés avec la valeur O). Mais il est possible de préciser la valeur de remplissage avec les second paramètre. Par exemple:
+\end{xfr}
+
+\begin{xen}
+If the current memory address is not a multiple of the 'boundary' parameter, it will be increased in order to meet the alignment constraint.
+The gap between the current memory address and the aligned one is filled by zeroes, except if the second parameter is specified. For example:
+\end{xen}
+
+\begin{code}
+ORG \#8001
+ALIGN 2       ; align code on even address (\#8002)
+ALIGN 256,\#55 ; align code on high byte (\#8100)
+; \#8002-\#80FF is filled with \#55
+\end{code}
+
+\subsubsection{LIMIT}\index{LIMIT}
+\begin{verbatim}
+LIMIT <address boundary>
+\end{verbatim}
+
+\begin{xfr}
+Cette directive sert à imposer une limite plus basse à l'écriture de l'assemblage.
+Par défaut, la limite est de 65535 mais on peut avoir besoin de ne pas dépasser une certaine valeur.
+Pour protéger une zone définie, il vaut mieux utiliser la fonction \texttt{PROTECT}.
+\end{xfr}
+
+\begin{xen}
+By default, the upper address for locating code is set to 65535, but for some reason, you may need to
+reduce thise value.
+Hoever if you want to protect a memory area zone, take a look at the \texttt{PROTECT} directive below.
+\end{xen}
+
+\subsubsection{PROTECT}\index{PROTECT}
+\begin{verbatim}
+PROTECT <start address>,<end address>
+\end{verbatim}
+
+\begin{xfr}
+Empêcher l'écriture de données dans la zone début/fin de l'espace mémoire courant.
+\end{xfr}
+
+\begin{xen}
+This directive protects a memory zone, delimited by the two parameters, from writing.
+\end{xen}
+
+\subsection{\xlang{Données}{Data definition}}
+
+\subsubsection{DB, DEFB, DM, DEFM}\index{DEFB}\index{DEFM}
+
+\begin{verbatim}
+DEFB <value1>[,<value2>,...]
+DEFM <value1>[,<value2>,...]
+\end{verbatim}
+
+\begin{xfr}
+Cette directive prend un ou plusieurs paramètres et génère une suite d'octets représentative des paramètres en entrée. La valeur peut être une valeur litérale, une formule dont le résultat sera éventuellement arrondi et tronqué ou même une chaine de caractères dont chaque caractère produira un octet en sortie égale à sa valeur ASCII, sauf si la directive CHARSET a été utilisée pour redéfinir ces valeurs. On pourra indifferemment utiliser DB, DM, DEFB ou DEFM.
+Par exemple le code suivant produira la chaine 'Roudoudou': (le 'u' correspond au code ASCII \#75)
+\end{xfr}
+
+\begin{xen}
+This directive handle one or more parameters and output bytes regarding of thoses parameters. The value may be a literal value, a formula (the result will be rounded), or a string where each char will output a byte.
+Following code will producte 'Roudoudou' string. ('u' char corresponds to ASCII code \#75)
+%If CHARSET directive were used, the outputed bytes respect the CHARSET redefinition.
+Example:
+\end{xen}
+\index{HI()}
+\begin{code}
+org \#7500
+label:
+defb 'r'-'a'+'A','oudoud',\#6F,hi(label)
+\end{code}
+
+
+See CHARSET directive for altering the way strings are interpreted.
+
+\subsubsection{DEFW}\index{DEFW}
+
+\begin{verbatim}
+DEFW, DW <value1>[,<value2>,...]
+\end{verbatim}
+
+\begin{xfr}
+La directive \texttt{DEFW} (ou son raccourci \texttt{DW}) prend un ou plusieurs paramètres et génère une suite de mots (deux octets, en little endian) représentative des paramètres en entrée.
+Les valeurs peuvent être une valeur littérale, une formule dont le résultat sera éventuellement arrondi et tronqué.
+Cette directive ne supporte pas une chaine de plusieurs caractères comme valeur.
+\end{xfr}
+
+\begin{xen}
+This directive handles one or more parameters and output words (two bytes). Values may be literals, formula, single char, but char strings are not allowed!
+\end{xen}
+
+Example:
+\begin{code}
+DEFW mylabel1,mylabel2,'a'+\#100
+\end{code}
+
+\subsubsection{DEFI}\index{DEFI}
+\begin{xfr}
+\begin{verbatim}
+DEFI <valeur1>[,<valeur2>,...]
+\end{verbatim}
+
+Cette direction prend un ou plusieurs paramètres et génère une suite de double-mots (4 octets) représentative des paramètres en entrée. Les valeurs peuvent être une valeur littérale, une formule dont le résultat sera éventuellement arrondi et tronqué. Cette directive ne supporte pas une chaine de plusieurs caractères comme valeur.
+\end{xfr}
+
+\begin{xen}
+\begin{verbatim}
+DEFI <value1>[,<value2>,...]
+\end{verbatim}
+
+This directive handles one or more parameters and output four bytes integers.
+Values may be literal value, formula, single char, but not a string!
+\end{xen}
+
+\subsubsection{DEFR}\index{DEFR}
+
+\begin{xfr}
+\begin{verbatim}
+DEFR <reel1>[,<reel2>,...]
+\end{verbatim}
+
+La directive DEFR (ou DR) prend un ou plusieurs paramètres et génère une suite de nombre réels (5 octets chaque) compatibles avec le firmware des Amstrad CPC.
+\end{xfr}
+
+
+\begin{xen}
+\begin{verbatim}
+DEFR <real number1>[,<real number2>,...]
+\end{verbatim}
+
+DEFR (or DR) directive handles one or more parameters and output AMSTRAD firmware compatible real numbers (5 bytes)
+\end{xen}
+
+Example:
+\begin{code}
+defr 5/12, 0.5, sin(90)
+\end{code}
+
+\subsubsection{DEFS}\index{DEFS}
+
+\begin{verbatim}
+DEFS, DS <repetition>[,<value>,[<repetition>,...]
+\end{verbatim}
+
+\begin{xfr}
+Cette directive génère une suite d'octets répétitive. Si la valeur de remplissage est omise alors zéro sera utilisé par défaut. Si la valeur de répétition est nulle alors aucun octet ne sera produit. Il est possible de déclarer plusieurs suites de répétition avec le même DEFS mais les premières répétitions sera toujours interprétées comme ayant une valeur à répéter.
+\end{xfr}
+
+\begin{xen}
+This directive is used for repeating the same byte many times.
+If no output value is set, then zeroes will be written.
+If repetition value is zero then nothing will be output.
+You can declare more than one repetition sequences with only DEFS.
+\end{xen}
+
+Examples:
+\begin{code}
+\begin{tabular}{ll}
+defs 5,8,4,1 &; \#08,\#08,\#08,\#08,\#08,\#01,\#01,\#01,\#01 \\
+defs 5,8,4   &; \#08,\#08,\#08,\#08,\#08,\#00,\#00,\#00,\#00 \\
+defs 5       &; \#00,\#00,\#00,\#00,\#00
+\end{tabular}
+\end{code}
+
+
+\subsubsection{STR}\index{STR}
+
+\begin{verbatim}
+STR 'string1'[,'string2'...]
+\end{verbatim}
+
+\begin{xfr}
+Directive similaire à \texttt{DEFB}, sauf que le dernier caractère de chaque chaine aura son bit 7 forcé à 1 (opération OR \#80 sur le dernier octet).Les deux lignes suivantes produiront les mêmes octets:
+\end{xfr}
+
+\begin{xen}
+Almost same directive as \texttt{DEFB}, except the very last char will have its 7th bit set to 1.
+Both lines will output the same byte sequence:
+\end{xen}
+
+\begin{code}
+str  'roudoudou'
+defb 'roudoudo','u'+128
+\end{code}
+
+\subsubsection{CHARSET}\index{CHARSET}
+
+\begin{verbatim}
+CHARSET
+CHARSET 'string',<value>
+CHARSET <code>,<value>
+CHARSET <start>,<end>,<value>
+\end{verbatim}
+
+\begin{xfr}
+La directive permet de redéfinir des valeurs aux caractères assemblés entre quotes selon quatre formats:
+
+\begin{itemize}
+\item 'chaine',\textless valeur\textgreater : Le premier caractère de la chaine aura pour nouvelle valeur la \textless valeur\textgreater. Le caractère suivant \textless valeur\textgreater+1 et ainsi de suite pour tous les caractères de la chaine.
+\item \textless code\textgreater,\textless valeur\textgreater : Attribuer au caractère de valeur ASCII \textless code\textgreater la valeur \textless valeur\textgreater.
+\item \textless début\textgreater,\textless fin\textgreater,\textless valeur\textgreater : Attribuer aux caractères de valeur ASCII \textless début\textgreater à \textless fin\textgreater une valeur incrémentale en partant de \textless valeur\textgreater.
+\item aucun paramètre : réassigne à tous les caractères leur valeur ASCII par défaut.
+\end{itemize}
+Cette fonction est compatible Winape.
+
+\end{xfr}
+
+
+\begin{xen}
+This directive allows to redefine quoted char values to be changed. There are 4 ways to use this directive:
+
+\begin{itemize}
+\item 'string',\textless value\textgreater : First char of the string will be transposed as \textless value\textgreater. The next char as \textless value\textgreater+1 and so on, until the end of the string.
+\item \textless code\textgreater,\textless value\textgreater : replaces char with ASCII code \textless code\textgreater by a char with ASCII value \textless value\textgreater.
+\item \textless start\textgreater,\textless end\textgreater,\textless value\textgreater : replaces the characters with ASCII values within the range [\textless start\textgreater ;\textless end\textgreater] by \textless value\textgreater,\textless value+1\textgreater, and so on.
+\item without parameter : Ignore any previous \texttt{CHARSET} directive: strings will stay unchanged.
+\end{itemize}
+\end{xen}
+
+\xlang{Par exemple, une simple redéfinition:}{For example, you can set a simple char redefinition:}
+
+\begin{code}
+CHARSET 'T','t'  ; 'T' chars will be translated as 't'
+DEFB 'tT'        ; \#74 \#74
+\end{code}
+
+\xlang{Ou encore de redéfinir par intervalle:}{Or redefine consecutives chars in a range:}
+
+\begin{code}
+CHARSET 'A','Z','a' ; Change all uppercases to their respective lowercases
+DEFB 'abcdeABCDE'   ; \#61,\#62,\#63,\#64,\#65,\#61,\#62,\#63,\#64,\#65
+\end{code}
+
+\xlang{Il est possible de redéfinir des caractères non consécutifs:}{You can also redefine non consecutives chars:}
+
+\begin{code}
+CHARSET 'turndiskheo ',0
+DEFB 'there is no turndisk'
+;\#00,\#08,\#09,\#02,\#0B,\#05,\#06,\#0B,\#03,\#0A,\#0B,\#00,\#01,\#02,\#03,\#04,\#05,\#06,\#07
+\end{code}
+
+\subsubsection{\xlang{Opérateur \$}{\$ Operator}}
+
+\begin{xen}
+The symbols (\$) refers to the current byte address.  For example:
+\end{xen}
+
+\begin{code}
+org \#8000
+defw \$,\$
+\end{code}
+
+\xlang{est équivalent à}{is equivalent to}:
+
+\begin{code}
+defw \#8000,\#8002
+\end{code}
+
+\xlang{En mode de compatibilité AS80, le même code serait équivalent à }{With AS80 compatibility mode it would produce the same output as:}
+
+\begin{code}
+defw \#8000,\#8000
+\end{code}
+
+\xlang{Cependant, lorsque \$ est utilisé avec la directive ORG, il fait référence à l'adresse physique et non l'adresse logique:}{However, when used with ORG directive, \$ refers to the physical address, not the logical one:}
+
+\begin{code}
+ORG \#8000,\#1000
+defw \$  ; \#8000 is written in \#1000
+ORG \$   ; ORG considers the physical address (\#1002)
+defw \$  ; \#1002 is written in \#1002
+; bytecode output:
+; \#1000: \#00,\#80,\#02,\#10
+\end{code}

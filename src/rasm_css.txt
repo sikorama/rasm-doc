@@ -1,0 +1,29 @@
+/*Elements de mise en forme ajoutés au css généré par htlatex*/
+
+.subsectionToc{
+	padding-left: 20px;
+}
+.subsubsectionToc{
+	padding-left: 40px;
+}
+
+.framedenv{
+	border: 0px solid grey;
+	border-left: 1px solid grey;
+}
+
+table.tabular {
+	margin-left:unset;
+}
+
+.obeylines-h, .obeylines-v {
+	white-space: nowrap;
+	margin-left: 10px;
+	text-align: left;
+}
+
+.cmtt-8x-x-62 {
+    font-size: 100%;
+    font-family: monospace;
+}
+

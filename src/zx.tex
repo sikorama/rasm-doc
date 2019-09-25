@@ -1,0 +1,37 @@
+\section{\xlang{Directives et options spécifique au ZX}{ZX Specific features}}\index{ZX}\label{PZX}
+
+\begin{xfr}
+RASM intègre aussi quelques options et directives qui ne concernent que l'architecture spécifique du ZX.
+\end{xfr}
+
+\begin{xen}
+RASM also features a few options and directives for ZX architecture.
+\end{xen}
+
+\subsection{\xlang{Selection des Banques}{Bank Selection}}
+
+\subsubsection{\xlang{Directive BUILDZX}{BUILDZX Directive}}\index{BANK}\label{ZXBANK}
+
+\begin{verbatim}
+BUILDZX <bank>
+\end{verbatim}
+
+\begin{xfr}
+Cette directive sert a selection l'une des 8 banques (0..7)
+\end{xfr}
+
+\begin{xen}
+Use this directive for selecting a bank (0..7) 
+\end{xen}
+
+\subsection{\xlang{Options spécifiques}{Options}}
+
+\begin{xfr}
+l'option \texttt{-sx} permet de réaliser un export pour certaines émulateurs ZX, en précisant la banque où le symbole est logé (\texttt{(<bank>:<adresse>)})
+
+\end{xfr}
+
+
+\begin{xen}
+\texttt{-sx} option can be used for exporting symbols for ZX emulators, where the selected bank is output. \texttt{(<bank>:<adresse>)}
+\end{xen}

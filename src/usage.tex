@@ -1,0 +1,308 @@
+\begin{xfr}
+  \section {Comportement Général}
+  RASM est conçu pour être simple d'utilisation, tout en offrant beaucoup de souplesse. Par défaut, il nomme les fichiers produits de facon cohérente, recherche les fichiers par chemin relatif, détermine la quantité de mémoire à enregistrer ou même créer un fichier cartouche si les banques ROM ont été sélectionnées lors de l'assemblage, autorise l'utilisation de plusieurs directives ORG, etc.
+
+  Dans la mesure du possible, RASM essaie d'afficher des messages d'erreurs afin de vous orienter vers la solution syntaxique convenable.
+
+%\paragraph {pretraitement}
+  RASM va d'abord pré-traiter le fichier à assembler pour enlever les espaces superflus, les commentaires, vérifier les quotes, que les caractères utilisés soient conformes et enfin transformer certaines instructions en d'autres pour convenance interne.
+
+ Par exemple les opérateurs Maxam \texttt{XOR}, \texttt{AND}, \texttt{OR} et \texttt{MOD} seront convertis en un seul caractère approchant la syntaxe du C.
+
+Enfin, il est a noter que RASM n'intègre pas d'éditeur, ce n'est pas un IDE, mais uniquement l'assembleur. Selon les plateformes, vous pouvez utiliser votre éditeur préféré, si possible dans lequel il est possible de configurer la colorisation syntaxique pour l'assembleur z80.
+
+  %Lorsqu'une directive de lecture ne fait pas référence à un chemin absolu, le répertoire racine au chemin relatif est celui du fichier en cours.
+
+\end{xfr}
+
+\begin{xen}
+  \section {Usage}
+  RASM is meant to be convenient to use. It selects automatically the correct file format (plan binary, snaphost or cartridge file)) depending on the selected ROMs, give a consistent name to generated files, looks for files in relatives path, allows multiple origin (ORG) directives, but will detect overlapping code blocs, and so on...
+  
+
+  RASM pre-processor not only performs some checks (valid characters, strings), it also converts some operators into their C equivalent (for example \texttt{XOR}, \texttt{AND},\texttt{OR},\texttt{MOD} which are used by Maxam), so you can indiferently use \texttt{AND} or \texttt{\&} in your expressions.
+  And last, but not least, it is possible to use conditional expressions in order to change the way your program is assembled (like with C preprocesser), and you can even define macros and data structures!   
+\end{xen}
+
+\begin{xfr}
+  \subsection{Invocation}
+  La syntaxe de base est:
+  \begin{verbatim}
+    RASM.exe <fichier à assembler> [options]
+  \end{verbatim}
+  Par exemple, \begin{verbatim}RASM.exe myfile.asm\end{verbatim} produira le fichier \texttt{rasmoutput.bin}
+\end{xfr}
+
+\begin{xen}
+  \subsection{Command line}
+  Usage:
+  \begin{verbatim}
+  RASM.exe <file to assemble> [options]
+  \end{verbatim}
+  
+  Without any option, \begin{verbatim} rasm.exe myfile.asm \end{verbatim} produces \texttt{rasmoutput.bin} file.
+\end{xen}
+
+\subsection{\xlang{Controle des noms de fichier}{Exported file names}}
+\begin{xfr}
+ Les options suivantes permettent de controller le nom des fichiers générés:
+  \begin{itemize}
+    \item -o \textless radix de fichier\textgreater	: définit un nom commun pour chaque type de fichier en sortie, quel que soit son type (.bin, .sym, etc.).
+    La valeur par défaut est “rasmoutput” % a verifier
+    \item -ob \textless nom de fichier .bin\textgreater	: définit le nom complet pour le fichier binaire en sortie
+    \item -os \textless nom de fichier .sym\textgreater	: définit le nom complet pour le fichier des symboles
+    \item -oa : donner aux fichiers de sortie (cpr,bin,sna) le même nom que le source
+    \item -no	: désactive la génération de fichiers en sortie.
+  \end{itemize}
+\end{xfr}
+
+\begin{xen}
+	These options are used for changing the name of the files produced by RASM: 
+  \begin{itemize}
+    \item -o \textless file radix\textgreater	: set a common name for each output file, disregarding its type (.bin, .sym, ...).
+    The default value is “RASMoutput”
+    \item -ob \textless binary filename\textgreater	: set the full filename for automatic binary output.
+    \item -os \textless symbol filename\textgreater	: set the full filename for symbol output.
+    \item -oa : generates output files (cpr,bin,sna) using the same name as the input source file 
+    \item -no : disable file output.
+  \end{itemize}
+\end{xen}
+
+
+\subsection{\xlang{Exportation de symboles}{Symbol exports}}
+\index{\xlang{SYMBOLS}{SYMBOLES}}
+  
+% ------------------- Symboles ----------------------
+\begin{xfr}
+  Ces options permettent de générer un fichier avec les valeurs et adresses associées aux symboles du code assemblé :
+  \begin{itemize}
+    \item -s : exporter les symboles au format RASM
+    \item -sp	: exporter les symboles au format Pasmo
+    \item -sw : exporter les symboles au format Winape
+    \item -sl :	option additionnelle qui permet d'exporter aussi les symboles locaux aux macros ou boucles de répétition.
+    \item -sv :	option additionnelle qui permet d'exporter aussi les variables.
+    \item -sq :	option additionnelle qui permet d'exporter aussi les alias \texttt{EQU}.
+    \item -sx : exporte les symboles pour certaines émulateurs ZX, en précisant la banque où le symbole est logé (\texttt{(<bank>:<adresse>)})
+    \item -sa :	option équivalente à -sl -sv -sq
+     
+  \end{itemize}
+  Par exemple:
+\end{xfr}
+
+
+\begin{xen}
+Symbols such as label's addresses, constants, can be exported in a .sym file, using different formats. 
+For example, it can be useful for debugging a program with Winape.
+  \begin{itemize}
+    \item -s : export symbols in RASM format
+    \item -sw :	export symbols in Winape format
+    \item -sp :	export symbols in Pasmo format
+    \item -sl :	also export local labels.
+    \item -sv :	also export variables.
+    \item -sq :	also export EQU aliases.
+    \item -sx : export for ZX emulators, where the bank is printed :  \texttt{(<bank>:<adresse>)}
+    \item -sa :	export all symbols (same as -sl -sv -sq)
+  \end{itemize}
+  Example:
+\end{xen}
+
+\begin{verbatim}
+  RASM.exe test -o grouik -s
+  Pre-processing [test.asm]
+  Assembling
+  Write binary file grouik.bin (25 bytes)
+  Write symbol file grouik.sym (10 bytes)
+\end{verbatim}
+
+\xlang{Le fichier .sym est de la forme:}{The symbol file looks like this:}
+
+\begin{verbatim}
+  LABEL1 #0 B0
+  LABEL2 #1 B0
+  LABEL3 #2 B0
+  LABEL4 #4 B0
+\end{verbatim}
+
+\xlang{Avec l'option -sp, le fichier de symboles est le suivant:}{With -sp option: }
+
+\begin{verbatim}
+  LABEL1 EQU 00000H
+  LABEL2 EQU 00001H
+  LABEL3 EQU 00002H
+  LABEL4 EQU 00004H
+\end{verbatim}
+
+\xlang{Avec l'option -sw, le fichier de symboles est compatible avec Winape:}{With -sw, symbols are exported in Winape format:}
+
+\begin{verbatim}
+  LABEL1 #0
+  LABEL2 #1
+  LABEL3 #2
+  LABEL4 #4
+\end{verbatim}
+
+\xlang{Il est possible de définir des blocs de code (directives \texttt{NOEXPORT}) pour lesquels l'exportation de symbole est désactivée.}{It is possible to disable symbol export for portion of codes with \texttt{NOEXPORT} directive.}
+% ------------------ IMPORTATIONS -----------------------
+
+% ----------------- Inclusions -------------------
+\subsection{\xlang{Inclusions et importations}{Including files}}
+
+
+\begin{xfr}
+  Il est possible d'inclure des fichiers sources ou binaires à l'aide de directives comme \texttt{INCBIN} ou \texttt{READ}. Par defaut les fichiers sont recherchés dans le repertoire local, de facon relative, mais il est possible de définir un ou plusieurs répertoires pour aller chercher les fichiers à inclure. Il est possible aussi d'importer ou définir des symboles:
+
+  \begin{itemize}
+    \item -I \textless include directory\textgreater : Définit un répertoire dans lequel rechercher des fichiers à inclure. Il est possible d'utiliser plusieurs fois cette option. Les fichiers sont recherchés dans l'ordre des répertoires indiqués.
+    \item -D \textless var\textgreater =\textless valeur \textgreater: option pour définir une variable depuis la ligne de commande. Exemple: \texttt{-DTRUC=1} va définir la variable \texttt{TRUC} à 1.
+    \item -l \textless fichier label\textgreater: importer un fichier de labels pour l'assemblage au format RASM, Sjasm, Pasmo ou Winape. La détection du format est automatique.  Il est possible de cumuler plusieurs fichiers de symboles en cumulant les options -l:
+
+  \end{itemize}
+\end{xfr}
+
+\begin{xen}
+Including source code or binary file can be achieved with \texttt{INCBIN} and \texttt{READ} directives. 
+By default, included files are searched in the local folder, paths are relative, but it is possible to specify one ore more folder where to look for files. It is also possible to define or import symbols:
+  \begin{itemize}
+    \item -I \textless include directory\textgreater :	set include directory. Multiple options -I is possible.
+	-l \textless filename \textgreater	imports symbols in RASM, Pasmo or Winape format.
+	You may import as many symbol file as you want using this option multiple times
+    \item -D \textless var\textgreater =\textless value\textgreater: With this option you can define a variable. For example \texttt{-DFOO=1} will define \texttt{'FOO'} variable with value 1.
+    \item -l \textless fichier label\textgreater: You can import labels from a file with this option. Various formats are supported (RASM, Sjasm, Pasmo or Winape formats) and are automatically detected.  This option can be used many times.
+  \end{itemize}
+\end{xen}
+
+% A mettre dans la partie CPC
+%  Note 2: L'émulateur Arnold est compatible avec RASM et Pasmo.
+%  Note 3: L'émulateur Winape n'est pas capable de prendre en charge des labels trop longs!
+\begin{verbatim}
+  RASM.exe test -l import1.sym -l import2.sym -l import3.sym
+\end{verbatim}
+
+
+%\begin{xfr}
+%\subsection{Fichiers}
+%RASM utilise en interne le modèle de fichiers UNIX qu'il converti automatiquement au besoin. En utilisant uniquement des chemins relatifs (et des noms de fichiers que Windows peut comprendre), on peut tout à fait avoir un code qui compile à la fois sous UNIX et Windows sans faire de modification.
+%La règle de gestion des chemins relatifs est simple. Tout chemin relatif a pour origine le répertoire du fichier dans lequel il a été lu.
+%\end{xfr}
+
+%\begin{xen}
+%\subsection{Files}
+%RASM is using UNIX model for file management, but you can use either linux or windows path style, if you use relative paths: Windows path style is converted on the fly.
+%Also note, relative path are relative to the file containing the relative path.
+%\end{xen}
+
+
+\subsection{\xlang{Dépendances}{Dependencies options}}
+
+\begin{xfr}
+  \begin{itemize}
+    \item -depend=make : Exporte toutes les dépendances du programme sur une seule ligne (pour une utilisation en makefile).
+    \item -depend=list : Exporte toutes les dépendances du programme, une par ligne.
+  \end{itemize}
+  Si un nom de fichier binaire est spécifié (option -ob) alors il sera ajouté en première position dans la liste des dépendances.
+\end{xfr}
+
+\begin{xen}
+  \begin{itemize}
+    \item -depend=make  Export all dependencies in a single line (for makefile usage)
+    \item -depend=list  Export all dependencies, one per line (for other usage)
+  \end{itemize}
+  If a filename for binary output is set (-ob option), it will be added to the dependances list, in first position.
+\end{xen}
+
+% --------------- COMPATIBILITE --------------------
+\index{MAXAM}\index{AS80}\index{UZ80}
+\begin{xfr}
+\subsection{Options de compatibilité}
+\begin{itemize}
+\item -m : compatibilité Maxam
+ \subitem Les calculs réalisés en entiers 16 bits non signés avec un mauvais arrondi
+ \subitem Les comparaisons se font avec l'opérateur = simple
+ \subitem La priorité des opérateurs est simplifiée (voir tableau)
+
+\item -ass : compatibilité AS80
+ \subitem calculs réalisés en entiers 32 bits avec un mauvais arrondi
+ \subitem Les déclarations de type DEFB,DEFW,DEFI ou DEFR multiples ont pour référence d'adresse l'adresse du premier octet produit et non l'adresse de l'octet courant. Cette spécificité d'AS80 fait que deux DEFB ne produisent pas la même chose qu'un seul DEFB avec deux valeurs quand la référence \$ est utilisée.
+ \subitem Les paramètres des macros ne sont plus protégés par les chevrons {}
+ \subitem La directive MACRO s'utilise après le nom de la macro et non avant
+
+\item -uz : compatibilité UZ80
+ \subitem Les calculs sont réalisés en entiers 32 bits avec un mauvais arrondi
+ \subitem Les paramètres des macros ne sont plus protégés par les chevrons {}
+ \subitem La directive MACRO s'utilise après le nom de la macro et non avant
+\end{itemize}
+\end{xfr}
+
+\begin{xen}
+\subsection{Compatibility options}
+\begin{itemize}
+
+\item -m : Maxam compatibility:
+\subitem - unsigned 16 bit computation, with wrong rounding
+\subitem - comparisons are done with equal (=) sign
+\subitem - Operator priorities are simplified (see charts)
+
+\item -ass : AS80 compatibility:
+\subitem - 32 bits integer calculations with wrong rounding
+\subitem - DEFB,DEFW,DEFI or DEFR directives with more than one parameter use the address of the first byte, when using \$ %That's why AS80 does not generate the same thing when using two DEFB instead of one with two parameters when using \$ reference in it.
+\subitem - MACRO directive must be used after the name of the macro, and not before (see \ref{MACRO})
+\subitem - Macro parameters are not protected by \{\}
+
+\item -uz : UZ80 compatibility:
+\subitem - 32 bits integer calculations with wrong rounding
+\subitem - macro parameters are not protected by {}
+\subitem - MACRO directive must be used after the name of the macro
+\end{itemize}
+
+\end{xen}
+
+% ------------------- Dev & Debug ----------------------
+
+\begin{xfr}
+\subsection{Options de développement}
+Ces options sont utlisées,mais peuvent parfois etre utiles pour le débug. 
+\begin{itemize}
+\item -v : mode verbeux, affiche des informations et statistiques sur l'assemblage
+\item -d : produit des informations lors du pré-processing
+\item -a : produit des informations lors de l'assemblage
+\item -n : affiche les licences tierces
+\end{itemize}
+
+\end{xfr}
+
+\begin{xen}
+\subsection{Debug options}
+These options are useful in rare occasions, it can sometime help for tracking bugs:
+\begin{itemize}
+\item -v : verbose mode, display stats
+\item -d : verbose detailed pre-processing
+\item -a : verbose detailed assembling
+\item -n : display third parties licences
+\end{itemize}
+
+\end{xen}
+
+%  If you need to assemble two programs in the same address range you may use the second parameter of ORG to relocate the code elsewhere or create a new memory space with directive BANK
+%  RASM has many error messages to help fixing wrong syntax.
+% A mettre dans la partie cPC
+%-ss 	exporter les symboles dans un snapshot
+%-eb 	exporter les points d'arrêt
+
+%-ss	export symbols in snapshot
+%-eb	export breakpoints
+%Note 1: Arnold emulator is RASM and Pasmo compliant for labels.
+%Note 2: Winape emulator cannot handle long labels.
+
+
+
+\subsection{\xlang{Autres options}{More options}}
+
+\begin{xfr}
+  Il existe d'autres options, qui concernent des architectures spécifiques, en particulier le CPC. La section \ref{options_export_cpc} en particulier.
+  Enfin, l'option -help donne un récapitulatif de toutes les arguments qui peuvent être passés a RASM. 
+\end{xfr}
+
+\begin{xen}
+  Additional options are useful for some architectures only. Export optios specific to the Amstrad CPC (Snapshot and cartridge generation) are documented in paragraph \ref{options_export_cpc}.
+  Also remember -help option, which will display a complete list of all available command line arguments.
+\end{xen}

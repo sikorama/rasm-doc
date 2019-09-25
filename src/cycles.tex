@@ -1,0 +1,335 @@
+%Table du nombre de Cycles des opcodes
+% cf http://www.cpctech.org.uk/docs/instrtim.html
+
+\section{\xlang{Durée des opcodes du Z80 sur CPC}{Z80 Opcodes Duration on CPC}}
+\xlang{
+La table suivante indique la durée des instructions du Z80, exprimée en nombre de NOPs équivalents, ce qui est spécifique au CPC. Par exemple, ADD A,(HL) a la même durée que 2 NOPs.
+}{This table shows the duration of all z80 opcodes, expressed in number of equivalent NOPs. This is valid for CPC only. For example, ADD A,(HL) has the same duration as 2 NOPs.
+}
+
+\begin{itemize}
+\item r: 8 bits register (A,B,C,D,E,H,L)
+\item rr: 16 bits register (AF,BC,DE,HL,SP)
+\item d: 8 bits data (0..255)
+\item dd: 16 bits data
+\item b: bit (0..7)
+\item cond: Condition (CC,Z,M,NC,NZ,P,PO,PE)
+\end{itemize}
+
+\xlang{Les instructions manipulant le registre IY sont équivalentes à celles qui utilisent IX, elles ne sont pas indiquées ici.}{Instruction using IY register have exactly the same duration as IX instructions, they are omitted in the table.}
+
+\renewcommand{\arraystretch}{1.0}
+\setlength{\tabcolsep}{0.2em}
+\begin{ttfamily}
+
+\begin{multicols}{3}
+
+\begin{tabular}{lc}
+Opcode & \xlang{Durée}{Duration} \\
+\hline
+ADC r,r       & 1 \\
+ADC A,(HL)    & 2 \\
+ADC A,n       & 2 \\
+ADC HL,rr     & 4 \\
+ADC HL,SP     & 4 \\ %
+ADC A,IXH     & 2 \\
+ADC A,IXL     & 2 \\ %
+ADC A,(IX+d)  & 3 \\
+%ADC A,IYH     & 2 \\
+%ADC A,IYL     & 2 \\
+%ADC A,(IY+d)  & 3 \\
+
+ADD r,r      & 1 \\
+ADD A,(HL)   & 2 \\
+ADD A,d      & 2 \\
+ADD HL,dd    & 3 \\
+ADD IX,rr    & 4 \\
+%ADD IY,rr    & 4 \\
+%ADD IY,IY   & 4 \\
+ADD IX,IX    & 4 \\
+ADD IX,SP    & 4 \\
+%ADD IY,SP    & 4 \\
+ADD A,IXH    & 2 \\
+ADD A,IXL    & 2 \\
+%ADD A,IYH   & 2 \\
+%ADD A,IYL   & 2 \\
+ADD A,(IX+d) & 3 \\
+%ADD A,(IY+d) 3 \\
+
+AND r       & 1 \\
+AND d       & 2 \\
+AND (HL)    & 2 \\
+AND IXH     & 2 \\
+AND IXL     & 2 \\
+%AND IYH    & 2 \\
+%AND IYL    & 2 \\
+AND (IX+d)  & 3 \\
+%AND (IY+d) & 3 \\
+
+BIT r        & 2 \\
+BIT (HL)     & 3 \\
+BIT b,(IX+d) & 6 \\
+BIT b,(IX+d),r & 6 \\
+
+CALL dd     & 5 \\
+CALL cond,dd  & 5 / 3 \\
+CCF       & 1 \\
+CP r      & 1 \\
+CP d      & 2 \\
+CP (HL)   & 2 \\
+CP IXH    & 2 \\
+
+
+
+\end{tabular}
+
+\columnbreak
+
+\begin{tabular}{lc}
+Opcode & \xlang{Durée}{Duration} \\
+\hline
+
+CP IXL    & 2 \\
+CP (IX+d) & 3 \\
+CPD       & 4 \\
+CPDR      & 6 / 4 \\
+CPI       & 4 \\
+CPIR      & 6 / 4 \\
+CPL       & 1 \\
+
+DAA        & 1\\
+DEC r      & 1\\
+DEC rr     & 2\\
+DEC (HL)   & 3\\
+DEC IX     & 3\\
+DEC IXH    & 2\\
+DEC IXL    & 2\\
+DEC (IX+d) & 6\\
+
+DI          & 1 \\
+DJNZ d      & 4 / 3 \\
+
+EI          & 1 \\
+EX AF,AF’   & 1 \\
+EX DE,HL    & 1 \\
+EX (SP),HL  & 6 \\
+EX (SP),IX  & 7 \\
+EXX         & 1 \\
+HALT        & 1 \\
+
+IM 0 & 2 \\
+IM 1 & 2 \\
+IM 2 & 2 \\
+
+IN A,(d)   & 3 \\
+IN r,(C)   & 4 \\
+INC r      & 1 \\
+INC rr     & 2 \\
+INC (HL)   & 3 \\
+INC IX     & 3 \\
+INC IXH    & 2 \\
+INC IXL    & 2 \\
+
+\end{tabular}
+
+\columnbreak
+
+\begin{tabular}{lc}
+Opcode & \xlang{Durée}{Duration} \\
+\hline
+
+INC (IX+d) & 6 \\
+IND        & 5 \\
+INI        & 5 \\
+INIR       & 6 / 5 \\
+INDR       & 6 / 5 \\
+
+JP dd       & 3 \\
+JP cond,dd     & 3 \\
+JP (HL)     & 1 \\
+JP (IX)     & 2 \\
+
+JR d      & 3 \\
+JR C,d    & 3 / 2 \\
+JR NC,d   & 3 / 2 \\
+JR NZ,d   & 3 / 2 \\
+JR Z,d    & 3 / 2 \\
+
+LD r,r            & 1 \\
+LD r,d            & 2 \\
+LD A,(rr)         & 2 \\
+LD r,(HL)         & 2 \\
+LD (rr),A         & 2 \\
+LD SP,HL          & 2 \\
+LD r,IXH          & 2 \\
+LD r,IXL          & 2 \\
+LD SP,IX          & 3 \\
+LD rr,dd          & 3 \\
+LD (HL),d         & 3 \\
+LD A,R            & 3 \\
+LD R,A            & 3 \\
+LD A,I            & 3 \\
+LD I,A            & 3 \\
+LD IXH,d          & 3 \\
+LD IXL,d          & 3 \\
+LD A,(dd)         & 4 \\
+LD (dd),A         & 4 \\
+LD IX,dd          & 4 \\
+LD HL,(dd)        & 5 \\
+
+\end{tabular}
+
+\columnbreak
+
+\begin{tabular}{lc}
+Opcode & \xlang{Durée}{Duration} \\
+\hline
+LD (dd),HL        & 5 \\
+LD r,(IX+d)       & 5 \\
+LD (dd),rr        & 6 \\
+LD IX,(dd)        & 6 \\
+LD (dd),IX        & 6 \\
+LD (IX+d),d       & 6 \\
+LD (dd),SP        & 6 \\
+
+LD SP,(dd)        & 6 \\
+
+LDD     & 5 \\
+LDI     & 5 \\
+LDDR    & 6 / 5 \\
+LDIR    & 6 / 5 \\
+
+NEG & 2 \\
+NOP & 1\\
+
+OR r      & 1 \\
+OR d      & 2 \\
+OR (HL)   & 2 \\
+OR IXH    & 2 \\
+OR IXL    & 2 \\
+OR (IX+d) & 3 \\
+
+OUT (d),A & 3 \\
+OUT (C),r & 4 \\
+OUT (C),0 & 4 \\
+
+OUTD      & 5     \\
+OUTI      & 5     \\
+OTDR      & 6 / 5 \\
+OTIR      & 6 / 5   \\
+POP rr    & 3 \\
+POP IX    & 4 \\
+PUSH rr   & 4 \\
+PUSH IX   & 5 \\
+
+RES b,r       & 2 \\
+RES b, (HL)    & 4 \\
+RES b,(IX+d)  & 7 \\
+RES b,(IX+d),r & 7 \\
+
+\end{tabular}
+
+\columnbreak
+
+\begin{tabular}{lc}
+Opcode & \xlang{Durée}{Duration} \\
+\hline
+
+RET     & 3    \\
+RET cond   & 4 / 2 \\
+RETN & 4 \\
+RETI & 4 \\
+
+RL r        & 2 \\
+RL (HL)     & 4 \\
+RL (IX+d)   & 7 \\
+RL (IX+d),r    & 7 \\
+
+RLC r       & 2 \\
+RLC (HL)    & 4 \\
+RLC (IX+d)  & 7 \\
+RLC (IX+d),r   & 7 \\
+
+RLCA        & 1 \\
+RLA         & 1 \\
+RLD         & 5 \\
+RR r       & 2 \\
+RR (HL)    & 4 \\
+RR (IX+d)   & 7 \\
+RR (IX+d),r    & 7 \\
+RRA         & 1 \\
+RRC r       & 2 \\
+RRC (HL)    & 4 \\
+RRC (IX+d)  & 7 \\
+RRC (IX+d),r   & 7 \\
+
+RRD         & 5 \\
+RRCA        & 1 \\
+RST d       & 4 \\
+
+SBC A,r      & 1 \\
+SBC A,d      & 2 \\
+SBC A,IXH    & 2 \\
+SBC A,IXL    & 2 \\
+SBC A,(HL)   & 2 \\
+SBC A,(IX+d) & 3 \\
+SBC HL,rr    & 4 \\
+SBC HL,SP    & 4 \\
+
+\end{tabular}
+
+\columnbreak
+
+\begin{tabular}{lc}
+Opcode & \xlang{Durée}{Duration} \\
+\hline
+SCF           & 1 \\
+SET b,r       & 2 \\
+SET b, (HL)    & 4 \\
+SET b,(IX+d)  & 7 \\
+SET b,(IX+d),r & 7 \\
+SLA r       & 2 \\
+SLA (HL)    & 4 \\
+SLA (IX+d)    & 7 \\
+SLA (IX+d),r   & 7 \\
+
+SLL r       & 2 \\
+SLL (HL)    & 4 \\
+SLL (IX+d)    & 7 \\
+SLL (IX+d),r   & 7 \\
+
+SRA r       & 2 \\
+SRA (HL)    & 4 \\
+SRA (IX+d)    & 7 \\
+SRA (IX+d),r   & 7 \\
+
+SRL r       & 2 \\
+SRL (HL)    & 4 \\
+SRL (IX+d)    & 7 \\
+SRL (IX+d),r   & 7 \\
+
+SUB r         & 1 \\
+SUB d         & 2 \\
+SUB (HL) & 2\\
+SUB IXH & 2 \\
+SUB IXL & 2 \\
+SUB (IX+d) & 3 \\
+%SET b,(IY+d) & 7 \\
+%SLA (IY+d) & 7 \\
+%SLL (IY+d) & 7 \\
+%SRA (IY+d) & 7 \\ \\
+%SRL (IY+d) & 7 \\
+
+XOR r       & 1 \\
+XOR d       & 2 \\
+XOR (HL)    & 2 \\
+XOR IXH     & 2 \\
+XOR IXL     & 2 \\
+XOR (IX+d)  & 3 \\
+
+\end{tabular}
+
+
+
+\end{multicols}
+\end{ttfamily}

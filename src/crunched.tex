@@ -1,0 +1,202 @@
+
+\section{\xlang{Importation et compression}{Crunch and import directives}}
+
+\subsection{\xlang{Importation de fichiers}{File Import}}
+
+% FIXME: Introduction: possible d'importer des fichiers, texte, binaires, sons , et de définir des sections compressées. (et donc d'integre des fichiers binaires et les compresset
+
+\subsubsection{INCLUDE}\index{INCLUDE}
+
+\begin{verbatim}
+INCLUDE 'file to read'
+READ 'file to read'
+\end{verbatim}
+
+
+\begin{xfr}
+Lire un fichier texte et l'intégrer au code source à l'emplacement de l'instruction de lecture. Le chemin relatif de lecture a pour racine l'emplacement du fichier dans lequel est l'instruction de lecture. Un chemin absolu s'affranchit de ce répertoire racine.
+Il n'y a pas de limite de récursivité en lecture, donc attention à ce que vous faites.
+\end{xfr}
+
+\begin{xen}
+Read a textfile in place of the directive. The root of the relative path is the location of the file containing the include directive. An absolute path discard the relative path.
+There is no recursivity limit, so be aware of what you are doing.
+\end{xen}
+
+\subsubsection{INCBIN}\index{INCBIN}
+
+\begin{verbatim}
+INCBIN 'file to read'[,offset[,size[,extended offset[,OFF]]]]
+INCBIN 'file to read',REVERT
+INCBIN 'file to read',REMAP,numcol
+INCBIN 'file to read',VTILES,numtiles
+\end{verbatim}
+
+\begin{xfr}
+Lire un fichier binaire. Les données lues seront directement injectées dans le binaire. Les paramètres optionnels sont compatibles avec la fonction \texttt{INCBIN} de Winape. L'offset n'est pas limité à 64Ko comme Winape. L'offset étendu est là pour compatibilité. Son usage est à éviter pour rester lisible.
+
+\begin{itemize}
+\item Il est possible de donner un offset négatif, relatif à la fin du fichier.
+\item Il est possible de donner une taille de fichier négative. La taille lue sera égale à la taille totale du fichier ajoutée à cette valeur négative. Pour tout lire sauf les 10 derniers octets, on précisera une taille de -10 dans la commande.
+\item Une taille nulle chargera tout le fichier.
+\item  Paramètre OFF: Si on souhaite charger un fichier pour initialiser de la “mémoire” et qu'on souhaite assembler du code par dessus, on peut désactiver pour la lecture de ce fichier le contrôle d'écrasement.
+\end{itemize}
+Exemple:
+\end{xfr}
+
+\begin{xen}
+
+Read a binary file. Binary data will go straight to memory space. Additional parameters are an offset, a size, and an option for disabling overwrite check. The extended offset is only here for compaitibily with Winape, so you can ignore it.
+\begin{itemize}
+\item You may use a negative size, for omitting some bytes at the end of the file: With a size of -10, the whole file except the 10 last bytes will be included.
+\item A null size will read the whole file.
+\item You may use a negative offset, it will be relative to the end of the file.
+\item The 'OFF' parameter will disable overwrite check for this file.
+You may want to read binary data in order to initialise a memory space, then assemble code on it.
+\end{itemize}
+%. The first offset had no limitation (like Winape) so for a pure Rasm usage, do not bother with extended offset.
+Example:
+\end{xen}
+
+\begin{code}
+ORG \#4000
+INCBIN 'makeraw.bin',0,0,0,OFF  ; read in \#4000, overwrite check is disabled
+\medskip
+ORG \#4001
+DEFB \#BB ; overwrite 2nd byte (in \#4001) without error
+\end{code}
+
+\subsubsection{\xlang{Importation de fichiers multipes}{Multiple files import}}
+
+\begin{xfr}
+Il est possible d'utiliser \texttt{INCBIN} dans un bloc \texttt{REPEAT}, par exemple si l'on veut importer plusieurs fichiers, ici les fichier myfile1, myfile2, ... myfile10:
+\end{xfr}
+
+\begin{xen}
+It is allowed to use \texttt{INCBIN} inside a \texttt{REPEAT} block, for importing a series of files. For example if you want to import  files myfile1, myfile2, ... myfile10:
+\end{xen}
+
+\begin{code}
+REPEAT 10,cpt
+ INCBIN 'myfile\{cpt\}'
+REND
+\end{code}
+
+\begin{xfr}
+\subsubsection{Variantes}
+
+La forme avec \texttt{REVERT} permet d'importer un fichier binaire, mais dans le sens inverse.
+
+Les variantes utilisant \texttt{REMAP} et \texttt{VTILES} sont utiles pour importer des sprites.
+\end{xfr}
+
+\begin{xen}
+If REVERT keyword is used, the file will be inserted backwards.
+
+REMAP and VTILES variants are used for importing sprites.
+\end{xen}
+
+
+
+\subsubsection{\xlang{Fichiers Audio}{Audio Files}}\index{Audio}\index{WAV}
+
+\begin{xfr}
+Les fichiers WAV sont à priori tous supportés quel que soit leur format, mono-canal ou multi-canal. Une fusion des voix sera réalisée en cas de fichier multi-canal. Il faut préciser l'un des quatre formats parmis SMP,SM2, SM4 et DMA pour réaliser l'import du wav (sinon le fichier sera importé tel quel). La fréquence d'échantillonage n'est pas prise en compte. 
+
+\begin{itemize}
+\item Le format SMP contient une valeur par octet.
+\item Le format SM2 contient deux valeurs sur un seul octet, le premier échantillon correspond aux bits de poids fort.
+\item Le format SM4 contient quatre valeurs sur un seul octet, le premier échantillon est encodé dans les bits de poids fort. Le système retenu est le suivant. Les valeurs codées sont les valeurs 0,13,14,15. Ainsi on peut coder sur seulement 2 bits avec toute l'amplitude 4 bits du PSG. Il suffit de copier les deux bits en position 2 et 3. Le zéro reste zéro de facto.
+\item Avec le format DMA,chaque échantillon sera converti en une liste de commandes DMA. Le sample devra au préalable avoir été converti à 15600Hz.  
+\end{itemize}
+\end{xfr}
+
+% FIXME: traduire en en
+
+\begin{xen}
+
+All WAV formats -single channel or multi channel- are supported . Voices will be merged in latter case. The sampling frequency is not taken into account.  To import a WAV file, you must specify one fo the 4 formats among SMP, SM2, SM4 and DMA:
+\begin{itemize}
+\item With SMP format, a sample corresponds to a byte.
+\item SM2 format groups two values in a single byte (two nibbles), the first sample corresponding to the 4 most significant bits.
+\item SM4 format four samples are stored in a single byte, the first sample being stored in the 2 most significant bits. 2 bits values are converted to 4 bits as follow: 00b $\rightarrow$ 0 ,01b $\rightarrow$ 13, 10b $\rightarrow$ 14, 11b $\rightarrow$ 15
+\item DMA format, which prepares data as DMA list, ready to be executed by the PSG. Your audio file for DMA list must be converted to 15600Hz.
+
+\end{itemize}
+
+\end{xen}
+
+\begin{code}
+ORG \#4000
+INCBIN 'sound.wav',SMP
+INCBIN 'sound.wav',DMA
+\end{code}
+%  FIXME DMA = ?
+
+\subsection{\xlang{Compression}{Crunching}}
+
+\subsubsection{\xlang{Portions compressées}{Crunched Section}}
+\index{LZEX0}\index{LZCLOSE}\index{LZ48}\index{LZ49}\index{LZ4}\index{LZX7}
+\begin{verbatim}
+LZ48 | LZ49 | LZ4 | LZX7 | LZEXO  ... LZCLOSE
+\end{verbatim}
+
+\begin{xfr}
+Ouvrir un segment de code compressé en LZ48,LZ49, LZ4, ZX7 ou Exomizer. Une section compressée se ferme avec \texttt{LZCLOSE}.
+Le code produit sera compressé après assemblage et l'ensemble du code situé après la zone sera relogé.
+Il n'est pas possible d'appeler un label situé après un segment compressé depuis le code compressé pour des raisons évidentes dûes aux aléas de la compression. Une erreur s'affichera expliquant pourquoi.
+Le code ou les données d'une zone LZ ne peut excéder l'espace d'adressage de 64Ko. Enfin, il n'est pas possible d'imbriquer les segments compressés.
+
+
+\end{xfr}
+
+\begin{xen}
+Open a crunched section in LZ48,LZ49, LZ4, ZX7 or Exomizer. A LZ section is closed with \texttt{LZCLOSE}.
+
+Generated code is crunched once it is assembled. The code following such a block is then relocated (labels, ...).
+
+
+You cannot call a label located after a crunched zone from the crunched zone because RASM cannot determine where it will be located after crunching. This will trigger an error.
+
+Code or data of a crunched zone cannot exceed 64K.  Also, you cannot imbricate crunched sections.
+
+Example:
+\end{xen}
+
+
+\begin{code}
+  org \#1000
+  ld hl,zecrunch
+  ld de,\#8000
+  call decrunch
+  call \#8000
+  jp next         ; label next after crunched zone will be relocated
+\medskip
+  zecrunch
+  lz48            ; -- this section will be crunched
+    org \#8000,\$
+    nop
+    nop
+    nop
+    ret
+  lzclose   ; -- end of crunched section
+\medskip
+  next
+    ret
+\end{code}
+
+
+
+\subsubsection{\xlang{Inclusion de fichiers compressés}{Crunched Binaries}}\index{INCL48}\index{INCL49}\index{INCLZ4}\index{INCLEXO}\index{Exomizer}\index{INCZX7}
+
+\begin{verbatim}
+INCL48, INCL49, INCLZ4, INCZX7, INCEXO 'file to read'
+\end{verbatim}
+
+\begin{xfr}
+Lire un fichier binaire, le compresser en LZ48, LZ49, LZ4, Exomizer ou ZX7 et l'injecter directement dans le code.
+\end{xfr}
+
+\begin{xen}
+Read a binary file, crunch it in LZ48, LZ49, LZ4, Exomizer or ZX7 on the fly.
+\end{xen}

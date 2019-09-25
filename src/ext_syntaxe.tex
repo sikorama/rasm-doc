@@ -1,0 +1,621 @@
+%\section{Directives}
+
+\section{\xlang{Préprocesseur}{Preprocessor}}
+
+\begin{xen}
+RASM preprocessor recognizes many directives.
+
+When a directive has parameters, it must be separated by at least one space char:
+
+Wrong syntax: \texttt{ASSERT(4*myvar)}
+
+Correct syntax: \texttt{ASSERT (4*myvar)}
+
+\end{xen}
+
+\subsection{\xlang{Debug et assertion}{Debugging and asserting}}
+
+\subsubsection{PRINT}\index{PRINT}
+
+\begin{verbatim}
+PRINT 'string',<variable>,<expression>
+\end{verbatim}
+
+\begin{xfr}
+Cette directive permet d'écrire du texte, variables ou expressions dans la console, au cours de l'assemblage. Il est impératif que les variables que l'on souhaite afficher existent au préalable. Concernant les valeurs numériques, l'affichage par défaut est un nombre flottant mais il est possible de formater les variables en les préfixant par des tags:
+
+\begin{itemize}
+\item \texttt{\{hex\}} afficher la variable en hexadécimal. Si la variable vaut moins de \texttt{\#FF} alors l'affichage sera forcé sur deux chiffres. Si la variable vaut moins de \texttt{\#FFFF} alors l'affichage sera forcé sur quatre chiffres. Au dessus il n'y aura pas d'extra-zéros.
+\item \texttt{\{hex2\}}, \texttt{\{hex4\}}, \texttt{\{hex8\}}
+pour forcer l'affichage quel que soit la valeur, sur 2, 4 ou 8 chiffres.
+\item \texttt{\{bin\}} afficher la variable en binaire. Si la variable vaut moins de \texttt{\#FF} alors l'affichage sera forcé sur 8 bits. Si la variable vaut moins de \texttt{\#FFFF} alors l'affichage sera forcé sur 16 bits. Un pré-traitement enlève les 16 bits supérieurs de la valeur 32 bits au cas où tous les bits sont à 1 (nombre négatif).
+\item \texttt{\{bin8\}},\texttt{\{bin16\}},\texttt{\{bin32\}} pour forcer l'affichage quel que soit la valeur, sur 8, 16 ou 32 bits.
+\item \texttt{\{int\}} afficher en décimal, nombre entier.
+\end{itemize}
+
+\end{xfr}
+
+
+\begin{xen}
+Write text, variables or the result of evaluation of an expression during assembly.
+
+By default, numerical values are formatted as floating point values, but you may use prefixes to change this behaviour:
+\begin{itemize}
+\item \{hex\}
+Display in hexadecimal format. If the value is less than \texttt{\#FF} two digits will be displayed. If less than \texttt{\#FFFF}, the display will be forced to 4 digits. %There won't be extra zeros for upper values.
+\item \{hex2\}, \{hex4\}, \{hex8\} to force hex display with 2, 4 or 8 digits.
+\item \{bin\} Display a binary value. If the value is less than \texttt{\#FF} 8 bits will be displayed. Otherwise if it is less than \texttt{\#FFFF} 16 bits will be printed. Any negative 32 bits value with all 16 upper bits set to 1 will be displayed as a 16 bits value.
+\item \{bin8\},\{bin16\},\{bin32\} Force binary display with 8, 16 or 32 bits.
+\item \{int\} Display value as integer.
+\end{itemize}
+\end{xen}
+
+
+\subsubsection{FAIL}\index{FAIL}
+
+\begin{verbatim}
+FAIL 'string',<variable>,<expression>
+\end{verbatim}
+
+\begin{xfr}
+Cette directive est simaire à \texttt{PRINT}, mais elle produit une erreur et arrete l'assemblage.
+\end{xfr}
+
+\begin{xen}
+This directive is similar to \texttt{PRINT}, but it will also trigger an error and STOP assembling.
+\end{xen}
+
+\subsubsection{STOP}\index{STOP}
+
+\begin{xfr}
+Arrêter l'assemblage. Aucun fichier ne sera écrit.
+\end{xfr}
+
+\begin{xen}
+Stop assembling an do not generate any file.
+\end{xen}
+
+
+
+\subsection{\xlang{Directives conditionnelles}{Conditionnal code directives}}
+
+\begin{xfr}
+RASM supporte un ensemble de directives qui permettent d'influer
+sur l'assemblage en vérifiant des expressions conditionnelles. D'une manière générale,
+lorsque des variables sont utilisées dans ces expressions, il faut impérativement qu'elles
+soient définies au préalable.
+\end{xfr}
+
+
+\begin{xen}
+It is possible to use conditional directives with RASM, in a way similar to C preprocessor: it is possible to change the assembled code, depending on some conditions. There is a basic rule when writing such expressions: all variables used in it must be declared prior to the expression.
+\end{xen}
+
+\subsubsection{ASSERT}\index{ASSERT}
+
+\begin{verbatim}
+ASSERT <condition>[,text,text,text...]
+\end{verbatim}
+
+\begin{xfr}
+Vérifier une condition et arrêter l'assemblage si la condition est fausse. Le texte supplémentaire est envoyé vers la console dans ce cas.
+\end{xfr}
+
+\begin{xen}
+Stop assembling if the condition test fails. In that case, and if some text is specified, it will be printed on the console. Example:
+\end{xen}
+
+\begin{code}
+assert mygenend-mygenstart\textless\#100
+assert mygenend-mygenstart\textless\#100, 'code is too big'
+\end{code}
+
+
+\subsubsection{IF, IFNOT}\index{IF}\index{IFNOT}
+\begin{verbatim}
+IF <condition> ... [ELSE ...] ENDIF
+IF <condition> ... [ELSEIF <condition> ...] ENDIF
+IFNOT <condition> ... [ELSE, ... ] ENDIF
+IFNOT <condition> ... [ELSEIF <condition> ...] ENDIF
+\end{verbatim}
+
+\begin{xfr}
+Directive de test et définition de blocs pour le code conditionnel.
+\end{xfr}
+
+\begin{xen}
+As with C preprocesor, this directive can be used for enabling some portions of code, depending on a condition.
+Example:
+\end{xen}
+
+\begin{code}
+CODE\_PRODUCTION=1
+[...]
+if CODE\_PRODUCTION
+\  or \#80
+else
+\  print 'test version'
+endif
+\end{code}
+
+\subsubsection{IFDEF, IFNDEF}\index{IFDEF}\index{IFNDEF}\index{ENDIF}\index{ELSE}
+\begin{verbatim}
+IFDEF <variable or label> ... [ELSE ... ] ENDIF
+IFNDEF <variable or label> ... [ELSE ... ] ENDIF
+\end{verbatim}
+
+\begin{xfr}
+Directive de test et définition de blocs pour le code conditionnel.
+\end{xfr}
+
+\begin{xen}
+Both directives test variable or label existence.
+\end{xen}
+
+\subsubsection{UNDEF}\index{UNDEF}
+\begin{verbatim}
+UNDEF <variable>
+\end{verbatim}
+
+\begin{xfr}
+Permet de retirer la définition d'une variable.
+La condition pour une directive \texttt{IFDEF} sera alors évaluée à faux.
+Si la variable n'existe pas, la directive est sans effet.
+\end{xfr}
+
+\begin{xen}
+Removes a variable definition. Any \texttt{IFDEF} condition with this variable will be evaluated as false.
+If the variable doesn't exist, this directive won't do anything.
+\end{xen}
+
+\subsubsection{IFUSED, IFNUSED}\index{IFUSED}\index{IFNUSED}
+\begin{verbatim}
+IFUSED <variable or label> ... ENDIF
+IFNUSED <variable or label> ... ENDIF
+\end{verbatim}
+
+\begin{xfr}
+Ces deux directives permettent de tester l'utilisation ou la non utilisation d'une variable ou d'un label, AVANT l'utilisation de la directive.
+\end{xfr}
+
+\begin{xen}
+Both directives test variable or label usage, BEFORE the test.
+\end{xen}
+
+\subsubsection{SWITCH}\index{SWITCH}\index{CASE}\index{DEFAULT}\index{BREAK}\index{ENDSWITCH}
+
+%SWITCH, CASE, BREAK, DEFAULT, ENDSWITCH
+\begin{xfr}
+La syntaxe est similaire au switch/case en C, avec la particularité de pouvoir écrire plusieurs blocs \texttt{CASE} avec la même valeur, ce qui donne plus de souplesse au code conditionnel. Un bloc switch se termine avec la directive \texttt{ENDSWITCH}.
+Dans cet exemple, la chaîne 'BCE' sera produite.
+\end{xfr}
+
+\begin{xen}
+\texttt{SWITCH/CASE} syntax mimics the C syntax.  A \texttt{SWITCH} block is terminated by \texttt{ENDSWITCH} directive,and each of its \texttt{'CASE'} block with a \texttt{'BREAK'}. With RASM, you can use the same value in different cases, allowing to write more complex cases. For example, this code will be produce 'BCE' string:
+\end{xen}
+
+\begin{code}
+myvar EQU 5
+\medskip
+switch myvar
+\ \ nop 		; outside any case, will never be evaluated
+\ case 3
+\ \ defb 'A'
+\ case 5
+\ \ defb 'B'
+\ case 7
+\ \ defb 'C'
+\ \ break
+\ case 8
+\ \ defb 'D'
+\ case 5
+\ \ defb 'E'
+\ \ break
+\ default
+\ \ defb 'F'
+endswitch
+\end{code}
+
+
+\subsection{\xlang{Boucles et macros}{Loops and Macros}}
+
+\subsubsection{REPEAT}\index{REPEAT}\index{REPEAT\_COUNTER}\index{REND}\index{UNTIL}
+
+\begin{verbatim}
+REPEAT <number of repetitions>[,counter] ... REND
+REPEAT ... UNTIL <condition>
+\end{verbatim}
+
+\begin{xfr}
+Répète un bloc d'instructions.
+On peut soit fixer un nombre de répétitions, soit utiliser le mode conditionnel avec la directive de fin de bloc \texttt{UNTIL}. Pour compatibilité avec Vasm, il est possible de finir un tel bloc par \texttt{ENDREP} ou \texttt{ENDREPEAT}
+\end{xfr}
+
+\begin{xen}
+This directive repeats a block of instructions. You may fix a number of repetition or use conditionnal mode with \texttt{UNTIL}. It is also possible to close such a bloc with \texttt{ENDREP} or \texttt{ENDREPEAT}, for Vasm compatibility.
+\end{xen}
+
+\begin{code}
+cnt=90
+repeat
+\    defb 64*sin(cnt)
+\    cnt=cnt-4
+until cnt\textless 0
+\end{code}
+
+\begin{xfr}
+Dans le cas de répétition non conditionnelle, il est possible de spécifier une variable qui contiendra le numéro d'itération.
+Cette variable (ici 'cnt') n'a pas besoin d'éxister, elle sera créée le cas echéant, au début de la boucle \texttt{REPEAT}.
+\end{xfr}
+
+\begin{xen}
+In the case of a non conditional loop, it is possible to specify a variable which contains the iteraction counter.
+There's no need to declare this variable (here 'cnt') prior to the \texttt{REPEAT} block. It will automatically be created.
+\end{xen}
+
+\begin{code}
+repeat 10,cnt
+\ ldi
+\ print cnt
+rend
+\end{code}
+
+% Compteur interne
+\begin{xfr}
+La variable interne \texttt{REPEAT\_COUNTER} contient le numéro de l'itération courante (en commencant par 1).
+\end{xfr}
+\begin{xen}
+You can get the internal loop counter anytime with internal variable \texttt{REPEAT\_COUNTER}.
+\end{xen}
+
+\begin{code}
+repeat 10
+\ ldi
+\ print repeat\_counter
+rend
+\end{code}
+
+
+\subsubsection{WHILE, WEND}\index{WHILE}\index{WEND}\index{WHILE\_COUNTER}
+\begin{verbatim}
+WHILE <condtion> ... wEND
+\end{verbatim}
+
+\begin{xfr}
+Répete un bloc tant que la condition est évaluée a vrai. A tout moment, il est possible d'utiliser la variable interne \texttt{WHILE\_COUNTER} pour récuperer le compteur de boucle.
+\end{xfr}
+
+\begin{xen}
+Repeat a block as long as the condition is evaluated as true. You may use the internal variable \texttt{WHILE\_COUNTER} variable to get the loop counter.
+\end{xen}
+
+\begin{code}
+cpt=10
+while cpt\textgreater 0
+\ ldi
+\ cpt=cpt-1
+\ print 'cpt=',cpt,' while\_counter=',while\_counter
+wend
+\end{code}
+
+\begin{xfr}
+La boucle va s'executer 10 fois, avec le résultat suivant sur la sortie standard:
+\end{xfr}
+
+\begin{xen}
+This code will loop 10 times with the following output:
+\end{xen}
+
+\begin{verbatim}
+Pre-processing [while.asm]
+Assembling
+cpt= 9.00 while_counter= 1.00
+cpt= 8.00 while_counter= 2.00
+cpt= 7.00 while_counter= 3.00
+cpt= 6.00 while_counter= 4.00
+cpt= 5.00 while_counter= 5.00
+cpt= 4.00 while_counter= 6.00
+cpt= 3.00 while_counter= 7.00
+cpt= 2.00 while_counter= 8.00
+cpt= 1.00 while_counter= 9.00
+cpt= 0.00 while_counter= 10.00
+Write binary file rasmoutput.bin (20 bytes)
+\end{verbatim}
+
+\subsubsection{\xlang{Définition d'une MACRO}{Macros}}\index{MACRO}\label{MACRO}\index{MEND}\index{ENDM}
+\begin{verbatim}
+MACRO <macro_name> [param1[,param2[,...]]]
+...
+MEND
+\end{verbatim}
+
+\begin{xfr}
+Une macro est une facon d'étendre le langage, en définissant un bloc d'instructions, délimité par \texttt{MACRO} et \texttt{MEND} (ou \texttt{ENDM}), et qui pourra être inséré ulterieurement dans le code, par simple utilisation du nom de la macro.
+Les macros peuvent prendre des parametres, il est ainsi possible de faire de l'assemblage conditionnel avec les macros : a  chaque appel de macro, le code d'origine est inséré, avec substitution des paramètres. Ce n'est qu'ensuite que le code interprété de façon classique.
+
+Voici un exemple pour une écriture longue distance générique (sauf pour B ou C):
+
+\end{xfr}
+
+\begin{xen}
+A macro is a way to extend the language, by defining a block of instructions, delimited by MACRO and \texttt{MEND} (or ENDM) directives, that can later be inserted in your code.
+Macros can take parameters, so you can make conditionnal assembling with it: a macro is barely a copy/paste with arguments replacement. Arguments inside the macro are referenced using curly brackets. Here is an example of a long distance indexing, working for any 16 bit register (except B or C):
+\end{xen}
+
+\begin{code}
+macro LDIXREG register,dep
+\ if \{dep\}\textless-128 || \{dep\}\textgreater127
+\ \ push BC
+\ \ ld BC,\{dep\}
+\ \ add IX,BC
+\ \ ld (IX+0),\{register\}
+\ \ pop BC
+\ else
+\ \ ld (IX+\{dep\}),\{register\}
+\ endif
+mend
+\end{code}
+
+\paragraph{\xlang{Utilisation d'une macro}{Macro invocation}}
+
+\begin{code}
+LDIXREG H,200
+LDIXREG L,32
+\end{code}
+
+\begin{xfr}
+Attention! Rasm ne peut pas savoir si vous voulez déclarer un label quand vous vous trompez dans l'écriture du nom d'une macro sans paramètre.
+Pour palier à ce défaut, vous pouvez ajouter un paramètre fictif "\texttt{(void)}"  qui déclenchera une erreur si le nom de macro n'est pas connu.
+\end{xfr}
+
+\begin{xen}
+Beware that RASM will understand any misspeled macro as a label declaration!
+A recommanded usage for macros without parameters, is to systematicaly use an empty parameter "\texttt{(void)}" .
+A misspeled macro call will then trigger an error.
+\end{xen}
+
+\begin{code}
+MACRO withoutparam
+nop
+MEND
+withoutparam (void) ; secured call of macro
+\end{code}
+
+\paragraph{\xlang{Appel de macro avec parametres dynamiques}{Macro calls with static or dynamic args}}
+
+\begin{xfr}
+Les parametres passés lors de l'appel d'une macro ne sont pas nécessairement des constantes, ils peuvent etre des expressions:
+\end{xfr}
+
+\begin{xen}
+Arguments sent to a macro can also be formulas. %either as text replacement, or as formula. %Evaluation that will be evaluated before substitution.
+\end{xen}
+
+\begin{code}
+MACRO test myarg
+\ DEFB \{myarg\}
+MEND
+
+;\xlang{Identique à }{Same as }1,2:
+REPEAT 2
+\ test repeat\_counter
+REND
+;\xlang{Identique à }{Same as }defb 1,1:
+
+REPEAT 2
+\ test \{eval\}repeat\_counter
+REND
+\end{code}
+
+
+%In the first loop, a 'defb repeat_counter' will be repeated.
+%In the second loop, a 'defb 1' will be repeated as the counter is previously evaluated.
+
+\subsubsection{\xlang{Labels Locaux}{Local labels}}\label{LOCALLABELS}
+\index{REPEAT}\index{WHILE}\index{UNTIL}\index{BRK}\index{Labels}
+
+\begin{xfr}
+  À l'intérieur d'une boucle (\texttt{REPEAT/WHILE/UNTIL}) ou d'une macro, il est possible d'utiliser des labels locaux de la même façon qu'avec l'assembleur intégré de Winape en préfixant le label par le caractère '\at'. L'interet est que l'on peut reutiliser le meme label a différents endroits du code, sans avoir a chercher des noms différents.
+
+  À chaque itération de boucle et ce pour chaque imbrication de boucle, un suffixe est ajouté au label local contenant la valeur hexadécimale du compteur interne de répétition. Il est ainsi possible d'appeler un label local à une répétition en dehors de la boucle, mais cet usage n'est pas conseillé.
+
+  Il est possible d'utiliser la valeur d'un label dans une commande (\texttt{ORG} par exemple) si et seulement si le label précède la directive.
+
+
+
+  En mode DAMS\index{DAMS}, il est possible d'utiliser la déclaration désuète d'un label en le préfixant d'un point. L'appel à ce label se fera sans le point du début. L'usage des labels de proximité est alors désactivé.
+\end{xfr}
+
+\begin{xen}
+Inside a loop (\texttt{REPEAT/WHILE/UNTIL}) or inside a macro, you can define local labels the same way as Winape assembler does, by prefixing labels with '\at'.
+You cannot use these labels outside of the loop or macro.
+
+%In DAMS mode, you may prefix labels with a dot, but the call to this label must be done without the dot. In DAMS mode proximity labels ares disabled.
+
+You can use label value with a directive (\texttt{ORG}\index{ORG} for example) only if the label was previously declared.
+Usage of local label in a loop:
+
+%Local labels must be declared inside a loop or a repeat.
+%Those labels are invisibles out of the loop scope.
+%Local labels are declared with prefix '\at'.
+
+\end{xen}
+
+% Question peut on combiner @BRK
+%\begin{xfr}
+%
+%\paragraph{Labels locaux non exportables}
+%  On peut déclarer un label local à l'intérieur d'une boucle ou d'une macro. Ce label sera invisible hors de son contexte (hors de la macro, ou à chaque répétition de boucle).
+%  Les labels locaux sont préfixés par le caractère '\at'.
+%
+%  Exemple d'utilisation d'un label local dans une boucle:
+%\end{xfr}
+
+\begin{code}
+repeat 16
+  add hl,bc
+  jr nc,\at no\_overflow
+  dec hl
+\at no\_overflow
+rend
+\end{code}
+
+\subsubsection{\xlang{Labels de proximité}{Proximity labels}}
+
+\begin{xfr}
+Hors d'une macro ou d'une boucle, les labels locaux héritent du label global qui précède. Exemple d'utilisation d'un label de proximité:
+\end{xfr}
+
+\begin{xen}
+Proximity labels are prefixed with a dot, and are associated with the previous label. They can be used 'locally' directly with their 'short' names, and anymwhere with their full name:
+\end{xen}
+
+
+\begin{code}
+routine1
+\ add hl,bc
+\ jr nc,.no\_overflow
+\ dec hl
+.no\_overflow
+\medskip
+routine2
+\ add hl,bc
+\ jr nc,.no\_overflow
+\ dec hl
+.no\_overflow
+\medskip
+routine3
+\ xor a
+\ ld hl,routine1.no\_overflow ; retrieve proximity label of routine1
+\ ld de,routine2.no\_overflow ; of routine2
+\ sbc hl,de
+\end{code}
+
+\subsection{\xlang{Structures de données}{Structures}}
+
+\subsubsection{STRUCT} \index{STRUCT} \index{ENDSTRUCT}
+\begin{verbatim}
+STRUCT <prototype name> [,<variable name>]
+...
+ENDSTRUCT
+
+\end{verbatim}
+
+\begin{xen}
+As Z80 processor is able to manage structured data thanks to its IX and IY registers, RASM introduces STRUCT directive, wich is used for defining a structure, in a similar way to C syntax
+\end{xen}
+
+\begin{code}
+; structure st1 created with two fields ch1 and ch2.
+struct st1
+ ch1 defw 0
+ ch2 defb 0
+endstruct
+
+; Nested structures:
+; metast1 is created with 2 sub-structures st1 called pr1 et pr2
+struct metast1
+ struct st1 pr1
+ struct st1 pr2
+endstruct
+\end{code}
+
+\begin{xfr}
+Quand \texttt{\{STRUCT\}} est utilisé avec 2 paramètres, RASM va créer une structure en mémoire, basée sur le prototype.
+Dans l'exemple ci dessous, une structure de type 'metast1' sera instanciée,avec pour nom 'mymeta':
+\end{xfr}
+
+\begin{xen}
+When \texttt{\{STRUCT\}} directive is used with 2 parameters, RASM will create a structure in memory, based on the prototype.
+In the example below, it will instantiate a metast1 structure type, called mymeta.
+\end{xen}
+
+\begin{code}
+struct metast1 mymeta
+\end{code}
+
+\begin{xfr}
+Exemple de récuperation de l'adresse absolue d'un membre en utilisant le nom d'une structure déclarée:
+\end{xfr}
+
+\begin{xen}
+Example of retrieving fields absolute address using the structure previously declared:
+\end{xen}
+
+\begin{code}
+LD HL,mymeta.pr2.ch1
+LD A,(HL)
+\end{code}
+
+\begin{xfr}
+Exemple d'accès d'un membre avec un offset, en utilisant le nom du prototype:
+\end{xfr}
+\begin{xen}
+Example of accessing a field with an offset, by using the prototype name:
+\end{xen}
+
+\begin{code}
+LD A,(IX+metast1.pr2.ch1)
+\end{code}
+
+
+\subsubsection{SIZEOF}\index{SIZEOF}
+
+\begin{xfr}
+  Le préfixe \texttt{\{SIZEOF\}} devant un nom de structure, de sous-structure ou meme devant le champ d'une structure, permet de récupérer sa taille.
+%Il est recommandé, pour recuperer la taille d'une structure, d'utiliser le prefixe \{SIZEOF\}.
+\end{xfr}
+
+\begin{xen}
+%Using \texttt{\{SIZEOF\}} prefix before a structure name get the size of it.
+Recommended usage to get the size of a structure is to use \{SIZEOF\} prefix.
+It alsoworks for a substructure or a field.
+\end{xen}
+
+\begin{code}
+  LD A,\{SIZEOF\}metast1              ; LD A, 6
+  LD A,\{SIZEOF\}metast1.pr2          ; LD A, 3
+  LD A,\{SIZEOF\}metast1.pr2.ch1      ; LD A, 2
+\end{code}
+
+
+\begin{xen}
+Like Vasm, you also can get the structure size using its prototype name but it is not recommended.
+\end{xen}
+
+
+\subsection{\xlang{Durée d'un bloc}{Duration of a bloc}}
+
+\begin{verbatim}
+TICKER START,<var>
+...
+TICKER STOP,<var>
+\end{verbatim}
+
+\begin{xfr}
+Cette directive calcule la durée d'un bloc d'instructions (délimité par TICKER START et TICKER STOP) et stocke le résultat dans une variable. Elle n'est pour le moment valable que pour CPC, la durée calculée est exprimée en "nombre de NOPs équivalents" (cf Annexe C), ce qui correpond à peu pres à la durée en micro secondes. Cette directive est très pratique pour écrire et maintenir du code à durée fixe. Par exemple, si on veut faire un effet 'raster', il faut il faut s'assurer que l'on change de couleur à chaque ligne écran, soit toutes les 64 microsecondes:
+\end{xfr}
+\begin{xen}
+TICKER directive computes the duration of an instruction bloc (delimited by TICKER START and TICKER STOP), and stores the result in a variable. Curently, this feature is only interesting for CPC architecture, as the duration is expressed in "number of NOPs", which is approximatively equivalent to micro seconds (see Annexe C). This directive is very convenient when writing video effects, such as rasters, where colors have to be changed periodically, every 64 micro seconds (the duration of a video line):
+\end{xen}
+
+\begin{code}
+ld hl,col\_tab
+ld bc,col\_port  ;\#7fxx
+out (c),c
+ld d,20
+loop:
+TICKER START, cntline
+\ ld a,(hl)
+\ out (c),a
+\ inc hl
+TICKER STOP, cntline
+\ ds 64-4-cntline
+\ dec d
+\	jr nz, loop
+\end{code}
+
+\begin{xfr}
+Comme on sait que les deux dernieres instructions (DEC et JR) durent "4 NOPs",
+on rallonge la boucle la boucle de 60-cntline NOPs.
+\end{xfr}

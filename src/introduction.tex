@@ -1,0 +1,87 @@
+\section{Introduction}
+
+\begin{xfr}
+Lors de la création de ma démo CRTC$^3$, les assembleurs existants ont tous rapidement montré leurs limites, que ce soit en termes de rapidité d'assemblage ou de fonctionnalités.
+En effet, le projet final pesait plus de 250'000 mots (hors commentaires), 35'000 labels et 60'000 expressions.
+Il fallait donc en priorité un assembleur qui soit rapide et lui ajouter au minimum des fonctionnalités que n'ont pas les autres: support natif des cartouches, disquettes ou snapshot Amstrad, espaces mémoires multiples, calculs flottants, compressions les plus courantes intégrées, afin de s'éviter par exemple de fastidieux export/imports de symboles, etc.
+
+\medskip
+C'est ainsi qu'est né RASM. Ce n'était pas mon premier assembleur, j'en avais déja concu un 18 ans auparavant, mais il était trop limité. J'en ai néanmoins repris certains principes, comme l'assemblage en une seule passe. Rasm utilise des concepts éprouvés (arbres de Merkel, nombreux caches, allocations groupées) et surtout une conception linéaire, la récursivité tuant les performances.
+
+Résultat: RASM présente des performances d'assemblage très élevées en conditions réelles, il est tres rapide, même sur de gros projets. %, si bien que certaines optimisations n'ont même pas été faites.
+
+\medskip
+Aujourd'hui Rasm est utilisé dans de nombreux projets d'envergure:
+\begin{itemize}[noitemsep]
+\item Ghost'n Goblins par Golem13
+\item Arkos Tracker II par Targhan de façon intégrée au logiciel
+\end{itemize}
+
+\end{xfr}
+
+\begin{xen}
+During the making of my first big demo, CRTC$^3$, available assemblers on CPC were too slow and too limited for my needs: The source code consisted in 250'000 words (out of comments), 35'000 labels and 60'000 expressions. I needed a damn fast assembler with cartridge management, memory bank management and integrated crunched code and data sections, so i had to write a new assembler.
+
+It was not my first attempt to write such a tool: 18 years ago, i had already written a small assembler. It was so limited, i couldn't use it for CRTC$^3$, but i've kept some aspects of its design, particularly the fact that the process of assembling was mono-pass.
+
+RASM uses efficient algorithmic patterns, such as merkel trees, caches, and grouped memory allocation.
+Thanks to its linear conception, performances in real conditions are really high, it's particularly fast, even with huge projects.
+\medbreak
+Nowadays RASM is used on big projects such as:
+\begin{itemize}[noitemsep]
+\item Ghost'n Goblins by Golem13 - still in development, for CPC+ architectures.
+\item Arkos Tracker II by Targhan (embedded in the software) % Ca serait interessant de préciser pourquoi et comment
+\end{itemize}
+
+\end{xen}
+
+%\xlang{Fonctionnalités}{Features}
+\subsection{\xlang{Fonctionnalités}{Features}}
+
+\begin{xfr}
+\begin{itemize}[noitemsep]
+\item compilation ultra-rapide
+\item export au format binaire, cartouche, disquettes, snapshot...
+\item export/import des symboles
+\item intégration des compresseurs les plus courants
+\item contrôle automatique des zones mémoires contre l'écrasement
+\item possibilité d'utiliser des variables en plus des constantes traditionelles
+\item espaces mémoires illimités où les labels/variables sont partagées
+\item absolument toutes les instructions Z80 sont supportées
+\item macros, code conditionnel, boucles illimités, labels locaux, switch/case
+\item calculs internes en double précision et arrondi correct
+\item compatibilité optionnelle avec Maxam ou AS80
+\item gestion dédiée des ROM et extensions mémoires
+\item calcul de la durée des instructions
+\end{itemize}
+\medbreak
+Rasm est diffusé sous licence MIT (voir Annexe \ref{licenses} pour l'ensemble des licenses).
+\medbreak
+La présente documentation est maintenue par Stéphane Sikora, merci de faire remonter vos remarques à l'adresse \texttt{sikoogle+rasm@gmail.com}.
+\end{xfr}
+
+\begin{xen}
+\begin{itemize}[noitemsep]
+\item Ultra-fast compilation
+\item common compressors included
+\item binary, snapshot, floppy, cartridge export
+\item symbols import/export
+\item overwriting control
+\item unlimited memory spaces where labels are shared
+\item dedicated directives for memory/ROM management
+\item all Z80 instructions are supported
+\item macros, conditionnal code, unlimited loops, local labels, switch/case
+\item double precision calculation with correct rounding
+\item optionnal compatibility with Maxam or AS80
+\item code duration evaluation
+\end{itemize}
+
+Rasm is licenced under MIT licence (see Annex \ref{licenses} for the complete list of licenses).
+\medbreak
+This documentation is maintained by Stephane Sikora, please send any feedback to
+
+\texttt{sikoogle+rasm@gmail.com} .
+
+\end{xen}
+
+%Rasm is a standalone executable, no installation is required.

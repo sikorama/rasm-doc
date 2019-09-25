@@ -1,0 +1,266 @@
+\section{Expressions}
+
+\subsection{\xlang{Alias, et Variables}{Aliases and Variables}}\index{EQU}\index{Variables}
+\begin{xfr}
+Il est possible de créer un nombre illimité d’alias avec la directive EQU.
+Ces alias ne peuvent pas être modifiés une fois qu'ils sont définis.
+Les variables au contraire peuvent être modifiées.
+\end{xfr}
+
+\begin{xen}
+EQU is a common way in assemblers to define constants in a convenient way.  
+RASM also introduces variables, which value can be changed during the assembling process.
+There is no limit in the number of variables or alias that can be defined.
+\end{xen}
+
+\subsubsection{\xlang{Variables statiques ou alias}{Constants or Alias}}
+\begin{verbatim}
+<alias> EQU <replacement string>
+\end{verbatim}
+
+\begin{xfr}
+Création d'un alias. Quand l'assembleur rencontrera l'alias dans une expression, le texte sera remplacé par celui défini lors du \texttt{EQU}. 
+Un test de récursivité infini est réalisé à la création de l'alias.
+\end{xfr}
+
+\begin{xen}
+\texttt{EQU} directive allows to define aliases by associating a symbol with a value: any occurence of the symbol will be replaced by the value. An alias cannot be changed once it has been changed, it's a constant value.
+There is an infinite recursivity check done for each alias declaration.
+\end{xen}
+
+Example:
+\begin{code}
+tab1 EQU \#8000
+tab2 EQU tab1+\#100
+ld HL,tab2
+\end{code}
+
+\subsubsection{\xlang{Valeurs dynamiques}{Variables}}
+\begin{xfr}
+Les constantes défclarées avec EQU ne peuvent pas être modifiées une foit définies.
+Il est possible avec RASM de définir des variables, avec la syntaxe suivante:
+\end{xfr}
+
+\begin{xen}
+%You may create an unlimited number of alias with directive EQU. 
+An alias it cannot be changed, once it has been defined. 
+However, it is possible to use variables with RASM, with the following syntax:
+\end{xen}
+
+\begin{code}
+myvar=5
+LET myvar=5 		; Winape compatible Variables are used for numeric values only.
+\end{code}
+
+\xlang{Rasm autorise un nombre illimité de variables. }{You can define as many variables as you want.}
+\xlang{Voici quelques exemples:}{Some examples:}
+
+\begin{code}
+  dep=0
+  repeat 16
+    ld (IX+dep),A
+    dep=dep+8
+  rend
+\end{code}
+
+\begin{code}
+  ang=0
+  repeat 256
+    defb 127*sin(ang)
+    ang=ang+360/256
+  rend
+\end{code}
+
+\subsection{\xlang{Valeurs littérales}{Literal values}}
+
+\begin{xfr}
+
+\subsubsection{Valeurs Numériques}
+
+Rasm interprète les valeurs numériques de la façon suivante:
+
+\begin{itemize}
+  \item En décimal si la valeur commence par un chiffre.
+  \item En binaire si la valeur commence par un \% ou 0b.
+  \item En octal si la valeur commence par un \at.
+  \item En hexadécimal si la valeur commence par un \#, un \$, 0x ou se termine par un h.
+  \item En valeur ascii si un caractère unique est entre quotes. %ou guillemet?
+  \item En valeur associée à une variable ou un label, si la littérale commence par une lettre ou un '\at' pour les labels locaux.
+  \item Le symbole \$ utilisé seul indique l'adresse de début de l'instruction en cours. Lors d'un define type DEFB, DEFW, DEFI, DEFR ou DEFS, l'adresse courante est celle de l'élément en cours. Un DEF* produira les mêmes données que vous utilisiez plusieurs arguments à la suite ou bien plusieurs DEF*.
+\end{itemize}
+
+Attention, le caractère \& est réservé pour l'opérateur AND.
+
+\subsubsection{Caractères autorisés}
+Entre quotes, tous les caractères sont autorisés, à vos risques et périls concernant la conversion ASCII vers l'Amstrad. En dehors des quotes, vous pourrez utiliser toutes les lettres, tous les chiffres, le point, l'arobas, les parenthèses, le dollar, les opérateurs plus, moins, multiplié, divisé, le pipe, circonflexe, le pourcent, le dièse, le paragraphe, les chevrons et les deux types de quotes ainsi que les caractères échappés \begin{ttfamily} \textbackslash t \textbackslash n  \textbackslash r \textbackslash f \textbackslash v \textbackslash b \textbackslash 0 \end{ttfamily}.
+Ceci ne s'applique pas avec la directive PRINT. % CAD?
+\end{xfr}
+
+
+\begin{xen}
+Rasm accepts these values in expressions:
+\begin{itemize}
+  \item Decimal if the value begins with a digit.
+  \item Binary if the value begins with %, 0b or ends with b.
+  \item Octal if the value begins with \at.
+  \item Hexadecimal if the value begins with \#, \$, 0x or ends with h.
+  \item ASCII value of a char, delimited by quotes.
+  \item Value of a constant or a variable, referenced by its name, eventually prefixed with '\at'.
+  \item Current address symbol (\$)  
+\end{itemize}
+
+All internal calculation are done with double precision floating point accumulator. 
+A correct rounding is done in the end for integer needs.
+If the evaluation leads to a computation error, the result will be null.
+
+Beware of the \& char, it is reserved for AND operator.
+
+\subsubsection{Allowed chars}
+Between quotes, all standard ASCII characters are allowed. 
+Quoted strings may contains escaped chars: \begin{ttfamily} \textbackslash t \textbackslash n  \textbackslash r \textbackslash f \textbackslash v \textbackslash b \textbackslash 0 \end{ttfamily}.
+Escaped characters are ignored when used with PRINT directive.
+
+%Outside quotes, you can use letters, digits, the dot, arobas, parenthesis, dollar, operators, pipe, power, percent, sharp, paragraphs, and also both quotes types.
+
+\end{xen}
+
+\subsection{\xlang{Opérateurs de calcul}{Operators}}
+\index{HI()}\index{LO()}\index{SIN()}\index{COS()}\index{XOR}\index{OR}\index{AND}\index{ATAN()}\index{ASIN}\index{ACOS}
+
+\begin{xfr}
+  Rasm utilise un moteur d'expression simplifié à priorités multiples (comme le C). Il supporte les opérateurs et fonctions suivants:
+
+\begin{tabular}{ll|ll}
+$*$ & multiplication &
+$/$ & division \\
+$+$ & addition &
+$-$ & soustraction \\
+
+\texttt{\^}  ou \texttt{XOR} & opérateur logique OU Exclusif &
+\texttt{\%\%} ou \texttt{MOD} & Reste de la division (Modulo) \\
+
+\& ou \texttt{AND} & opérateur logique ET &
+$|$ ou \texttt{OR} & opérateur logique OU \\
+\&\& & opérateur booléen ET &
+$||$ & opérateur booléen OU \\
+$<<$ & décalage à gauche (multiplication par $2^n$) &
+$>>$ & décalage à droite (division par $2^n$) \\
+
+
+\texttt{hi()} & poids fort de l'entier 16 bits &
+\texttt{lo()} & poids faible de l'entier 16 bits \\
+
+\texttt{sin()} & calcul de sinus &
+\texttt{cos()} & calcul de cosinus \\
+\texttt{asin()} & calcul d'arc-sinus &
+\texttt{acos()} & calcul d'arc-cosinus \\
+
+\texttt{atan()} & calcul d'arc-tangente &
+& \\
+\texttt{int()} & conversion en nombre entier &
+\texttt{frac()} & récupere la partie fractionnaire  \\
+\texttt{floor()} & conversion à l'entier entier inférieur &
+\texttt{abs()} & valeur absolue \\
+
+
+\texttt{ln()} & logarithme népérien &
+\texttt{log10()} & logarithme base 10 \\
+\texttt{exp()} & exponentielle &
+\texttt{sqrt()} & racine carrée \\
+
+\texttt{$==$} & égalité (= en mode Maxam) &
+\texttt{$!=$} ou \texttt{$<>$} & différent de \\
+\texttt{$<=$} & inférieur ou égal &
+\texttt{$>=$} & supérieur ou égal \\
+\texttt{$<$} & inférieur &
+\texttt{$>$} & supérieur \\
+
+\end{tabular}
+
+\medskip
+Rasm fait tous ses calculs internes en nombre flottant double précision.
+Un arrondi correct est réalisé en fin de chaine de calcul pour les besoins en nombres entiers.
+Si l'evaluation d'une expression aboutit à une erreur de calcul, le résultat de l'évaluation sera forcé à 0.
+\end{xfr}
+
+\begin{xen}
+Rasm is using a simplified calculation engine with multiple priorities (like C language). Here is the list of supported operations:
+
+\begin{tabular}{ll|ll}
+$*$ & multiply &
+$/$ & divide \\
+$+$ & addition &
+$-$ & subtraction \\
+\^\  or XOR & logical Exclusive OR &
+\%\% or MOD & Modulo \\
+\& AND & Logical AND &
+$|$ OR & Logical OR \\
+\&\& & Boolean AND &
+$||$ & Boolean OR \\
+$<<$ & Left shift (multiply by $2^n$) &
+$>>$ & Right shift (divide by $2^n$) \\
+
+\texttt{hi()} & get upper 8 bits of a word &
+\texttt{lo()} & get lower 8 bits of a words \\
+
+\texttt{sin()} & sinus &
+\texttt{cos()} & cosinus \\
+\texttt{asin()} & arg sinus &
+\texttt{acos()} & arc-cosinus \\
+
+\texttt{atan()} & arc-tangente &
+& \\
+
+\texttt{int()} & float to integer conversion &
+\texttt{frac()} &  keeps fractional part of a float \\
+\texttt{floor()} & rounds to the lower integer &
+\texttt{abs()} & absolute value \\
+
+\texttt{ln()} & neperian logarithm &
+\texttt{log10()} & base 10 logarithm \\
+\texttt{exp()} & exponent &
+\texttt{sqrt()} & square root \\
+
+
+$==$ & equals (= in Maxam mode) &
+$!=$ ou $<>$ & not equal \\
+$<=$ & lesser or equal &
+$>=$ & greater or  equal \\
+$<$ & lesser &
+$>$ & greater \\
+
+\end{tabular}
+
+\end{xen}
+
+\begin{xfr}
+\subsection{Priorité d’exécution des opérateurs}
+La tableau suivant indique la prévalence des opérateurs: plus elles est basse, plus la priorité est élevée.
+\end{xfr}
+
+\begin{xen}
+\subsection{Operators priorities}
+Lower is the prevalence, higher is the execution priority.
+\end{xen}
+
+\begin{tabular}{lcc}
+\begin{xen}
+Operators &	Rasm Prevalence	& Maxam Prevalence \\
+
+\end{xen}
+\begin{xfr}
+Opérateur &	Prévalence Rasm	& Prévalence Maxam \\
+\hline
+\end{xfr}
+$($ $)$	 & 0	& 0 \\
+$!$ & 1	& 464 \\
+$*$ $/$  \%	& 2	& 464 \\
+$+$ $-$	& 3	& 464 \\
+$<<$ $>>$	& 4	 & 464 \\
+$<$ $<=$ $==$ $=>$ $>$ $!=$	& 5	& 664 \\
+\& AND & 6	& 464 \\
+$|$ OR & 7	& 464 \\
+\^\  XOR & 8	& 464 \\
+\&\& & 9 & 6128 \\
+$||$ & 10	& 6128 \\
+\end{tabular}

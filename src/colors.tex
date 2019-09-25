@@ -1,0 +1,27 @@
+
+\section{\xlang{Coloration syntaxique}{Syntactic coloration}}
+
+\begin{xfr}
+\subsection{Coloration syntaxique dans VIM}
+  Si vous avez déjà le fichier de coloration syntaxique Z80 il suffit d'ajouter les lignes suivantes au fichier .vim/syntax/z80.vim
+  Ou vous pouvez télécharger le fichier complet de syntaxe \href{http://www.roudoudou.com/rasm/z80.vim}{z80.vim}
+\end{xfr}
+
+\begin{xen}
+\subsection{Syntax color with VIM}
+  If you already have a syntax color file, just add the following lines to the file .vim/syntax/z80.vim
+  Or you may download the whole file \href{http://www.roudoudou.com/rasm/z80.vim}{here}
+\end{xen}
+
+% Il manque des directives
+\begin{verbatim}
+" rasm/winape directives
+syn keyword z80PreProc charset bank write save include incbin incl48 incl49
+syn keyword z80PreProc macro mend switch case break while wend repeat until
+syn keyword z80PreProc buildcpr amsdos lz48 lz49 lzclose protect
+syn keyword z80PreProc direct brk let print stop nolist str
+syn keyword z80PreProc defr dr defi undef
+syn keyword z80PreProc bankset page pageset sizeof endm struct endstruct ends
+syn keyword z80PreProc incexo lzexo lzx7 inczx7 buildsna setcrtc setcpc assert print
+syn keyword z80Reg lix liy hix hiy
+\end{verbatim}

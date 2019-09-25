@@ -1,0 +1,16 @@
+\documentclass{article}
+\usepackage{comment}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+
+\AtBeginDocument{\def\labelitemi{$\bullet$}}
+
+\includecomment{xfr}
+\renewcommand\ThisComment[1]{%
+\immediate\write\CommentStream{\unexpanded{#1}}%
+}
+
+\excludecomment{xen}
+\newcommand{\xlang}[2]{{#1}}
+
+\input{main.tex}
