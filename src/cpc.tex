@@ -426,36 +426,42 @@ Voici les options qui peuvent etre passée en ligne de commande pour specifier l
 \subsubsection{GET\_R, GET\_G, GET\_B}
 
 \begin{verbatim}
-GET_R <RGB value>
-GET_G <RGB value>
-GET_B <RGB value>
+GET_R <16 bits RGB value>
+GET_G <16 bits RGB value>
+GET_B <16 bits RGB value>
 \end{verbatim}
 
 \begin{xfr}
-Permet dans une expression de récuperer l'une des 3 composantes R,G,B
+Permet, dans une expression, de récuperer l'une des 3 composantes (4 bits) R,G,B d'une couleur au format utilisé par l'ASIC
 \end{xfr}
 
 \begin{xen}
-Use this in an expression, in order to get one of the color (R,G,B) component
+Use this in an expression, in order to get one of the 4 bit component of a 16 bit color as used in the ASIC
 \end{xen}
 
 \subsubsection{SET\_R, SET\_G, SET\_B}
 \begin{verbatim}
-SET_R <8 bit value>
-SET_G <8 bit value>
-SET_B <8 bit value>
+SET_R <4 bits value>
+SET_G <4 bits value>
+SET_B <4 bits value>
 \end{verbatim}
 
 \begin{xfr}
-Renvoie une valeur 16 bit dont la composante R,G ou B est fixée selon le parametre passé.
+Renvoie une valeur 16 bit compatible avec le format de l'ASIC, dont la composante R,G ou B est fixée selon le parametre passé.
 \end{xfr}
 
 \begin{xen}
-Returns a 16 bit value where the value of the color component (R,G,B) is set 
+Returns a 16 bit value where the 4-bit value of the color component (R,G,B) is set 
 \end{xen}
 
 \begin{code}
-dw (SET\_R 16) | (SET\_G 255) | (SET\_B 0) ; Defines RGB Color (16,255,0)
+  dw (SET\_R 4) | (SET\_G 15) | (SET\_B 0) ; Defines RGB Color  (4,15,0)
+\end{code}
+\xlang{ou encore}{you also can define your own macro like this:}
+\begin{code}
+  macro drgb dr,db,dg
+  dw SET\_R {dr} | SET\_G {dg} | SET\_B {db}
+  mend
 \end{code}
 
 

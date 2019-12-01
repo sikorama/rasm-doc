@@ -1,9 +1,10 @@
 force:
 	yes R |make all
 
-all: rasm_fr.pdf rasm_en.pdf rasm_fr.html rasm_en.html
+all: rasm_fr.pdf rasm_en.pdf rasm_fr.html rasm_en.html cp
 
-
+cp:
+	cp *.pdf ../pdf/
 
 rasm_fr.pdf: clean
 	latex -file-line-error -halt-on-error rasm_fr.tex 
