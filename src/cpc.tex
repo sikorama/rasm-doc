@@ -36,13 +36,13 @@ mysub
 \subsubsection{\xlang{Préfixe PAGE}{PAGE Prefix}}\index{PAGE}
 
 \begin{xfr}
-  Le préfixe \texttt{\{PAGE\}} devant une référence à un label (exemple: \texttt{\{PAGE\}monlabel} ) permet de récupérer la valeur de type Gate array de la BANK dans laquelle est déclaré le label, plutôt que l'adresse du label. Par exemple pour un label situé dans la BANK 5 la valeur retournée sera \#C5.
+  Le préfixe \texttt{\{PAGE\}} devant une référence à un label (exemple: \texttt{\{PAGE\}monlabel} ) permet de récupérer la valeur de type Gate array de la BANK dans laquelle est déclaré le label, plutôt que l'adresse du label. Par exemple pour un label situé dans la BANK 5 la valeur retournée sera \#7FC5.
   Si vous utilisez l'adressage mémoire par 64K avec la directive \texttt{BANKSET}, alors la valeur gate array sera déduite du set de 64K ainsi que de l'adresse du label (2 bits de poids fort).
   Exemple d'utilisation du tag:
 \end{xfr}
 
 \begin{xen}
-  Use {PAGE} prefix before a label (example: \texttt{\{PAGE\}mylabel} ) to get a value that can be used to program the Gate Array for accessing the bank where the label is located.
+  Use {PAGE} prefix before a label (example: \texttt{\{PAGE\}mylabel} ) to get a value that can be used to program the Gate Array for accessing the bank where the label is located. For example with a label located into BANK 5, \#7FC5 will be returned.
   If you are using BANKSET directive to select 4 banks in a 64K set, then the gate array value is composed by the set number and the 2 most significant bits of the label address.
   Example:
 \end{xen}
@@ -50,8 +50,7 @@ mysub
 \vbox{
 \begin{code}
 BANK 0
-\  ld a,\{page\}mysub    ; \xlang{sera assemblé comme }{will be assembled }LD A,\#C5
-\  ld b,\#7F			  ; \xlang{Commute sur la banque}{switch to bank} 5
+\  ld bc,\{PAGE\}mysub    ; \xlang{sera assemblé comme }{will be assembled }LD BC,\#7FC5
 \  out (c),a
 \  jp mysub
 \medskip
@@ -64,16 +63,16 @@ mysub
 
 \subsubsection{\xlang{Préfixe PAGESET}{PAGESET Prefix}}\index{PAGESET}
 \begin{xfr}
-  Le préfixe \texttt{\{PAGESET\}} devant un label (exemple: \texttt{\{PAGESET\}monlabel} ) permet de récupérer la valeur de type "Gate Array" du \texttt{BANKSET} dans lequel est déclaré le label, plutôt que l'adresse du label. Par exemple pour un label situé dans la \texttt{BANK 5} la valeur retournée sera \#C2
+  Le préfixe \texttt{\{PAGESET\}} devant un label (exemple: \texttt{\{PAGESET\}monlabel} ) permet de récupérer la valeur de type "Gate Array" du \texttt{BANKSET} dans lequel est déclaré le label, plutôt que l'adresse du label. Par exemple pour un label situé dans la \texttt{BANK 5} la valeur retournée sera \#7FC2
 \end{xfr}
 
 \begin{xen}
-  You can use \{PAGESET\} prefix before a label (example: \{PAGESET\}mylabel ) to program the Gate array for selecting the BANKSET where the label is located. For example, for a label stored in BANK \#5, \#C2 will be returned.
+  You can use \{PAGESET\} prefix before a label (example: \{PAGESET\}mylabel ) to program the Gate array for selecting the BANKSET where the label is located. For example, for a label stored in BANK \#5, \#7FC2 will be returned.
 \end{xen}
 
 \begin{code}
 BANK 0
-\  ld a,\{pageset\}mysub ; \xlang{sera assemblé comme }{will be assembled as }LD A,\#C2
+\  ld a,lo(\{pageset\}mysub) ; \xlang{sera assemblé comme }{will be assembled as }LD A,\#C2
 \  ld b,\#7F
 \  out (c),a           ; \xlang{Tout la RAM est basculée, le code est suppoosé}{whole RAM is switched, code is supposed}
 \  jp mysub            ; \xlang{stocké en ROM ou a un endroit approprié}{to be stored in ROM, or in a proper place}
@@ -421,6 +420,43 @@ Voici les options qui peuvent etre passée en ligne de commande pour specifier l
 \end{itemize}
 \end{xen}
 
+
+\subsection{\xlang{Gestion des couleurs du CPC+}{CPC+ Colors}}
+
+\subsubsection{GET\_R, GET\_G, GET\_B}
+
+\begin{verbatim}
+GET_R <RGB value>
+GET_G <RGB value>
+GET_B <RGB value>
+\end{verbatim}
+
+\begin{xfr}
+Permet dans une expression de récuperer l'une des 3 composantes R,G,B
+\end{xfr}
+
+\begin{xen}
+Use this in an expression, in order to get one of the color (R,G,B) component
+\end{xen}
+
+\subsubsection{SET\_R, SET\_G, SET\_B}
+\begin{verbatim}
+SET_R <8 bit value>
+SET_G <8 bit value>
+SET_B <8 bit value>
+\end{verbatim}
+
+\begin{xfr}
+Renvoie une valeur 16 bit dont la composante R,G ou B est fixée selon le parametre passé.
+\end{xfr}
+
+\begin{xen}
+Returns a 16 bit value where the value of the color component (R,G,B) is set 
+\end{xen}
+
+\begin{code}
+dw (SET\_R 16) | (SET\_G 255) | (SET\_B 0) ; Defines RGB Color (16,255,0)
+\end{code}
 
 
 \subsection{\xlang{Directives obsolètes}{Deprecated Directives}}
