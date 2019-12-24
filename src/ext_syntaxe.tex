@@ -366,12 +366,17 @@ LDIXREG L,32
 \begin{xfr}
 Attention! Rasm ne peut pas savoir si vous voulez déclarer un label quand vous vous trompez dans l'écriture du nom d'une macro sans paramètre.
 Pour palier à ce défaut, vous pouvez ajouter un paramètre fictif "\texttt{(void)}"  qui déclenchera une erreur si le nom de macro n'est pas connu.
+
+De plus, si vous souhaitez forcer l'utilisation de cette syntaxe, il est possible de lancer RASM avec l'option \texttt{-void}.
+L'utilisation d'une macro sans parametre provoquera une erreur.
 \end{xfr}
 
 \begin{xen}
 Beware that RASM will understand any misspeled macro as a label declaration!
 A recommanded usage for macros without parameters, is to systematicaly use an empty parameter "\texttt{(void)}" .
 A misspeled macro call will then trigger an error.
+If you want to enforce usage of this syntax, you can use \texttt{-void} option. Using a macro without any parameter will raise an error.
+
 \end{xen}
 
 \begin{code}

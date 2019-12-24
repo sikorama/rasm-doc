@@ -18,10 +18,10 @@ Enfin, il est a noter que RASM n'intègre pas d'éditeur, ce n'est pas un IDE, m
 \begin{xen}
   \section {Usage}
   RASM is meant to be convenient to use. It selects automatically the correct file format (plan binary, snaphost or cartridge file)) depending on the selected ROMs, give a consistent name to generated files, looks for files in relatives path, allows multiple origin (ORG) directives, but will detect overlapping code blocs, and so on...
-  
+
 
   RASM pre-processor not only performs some checks (valid characters, strings), it also converts some operators into their C equivalent (for example \texttt{XOR}, \texttt{AND},\texttt{OR},\texttt{MOD} which are used by Maxam), so you can indiferently use \texttt{AND} or \texttt{\&} in your expressions.
-  And last, but not least, it is possible to use conditional expressions in order to change the way your program is assembled (like with C preprocesser), and you can even define macros and data structures!   
+  And last, but not least, it is possible to use conditional expressions in order to change the way your program is assembled (like with C preprocesser), and you can even define macros and data structures!
 \end{xen}
 
 \begin{xfr}
@@ -39,7 +39,7 @@ Enfin, il est a noter que RASM n'intègre pas d'éditeur, ce n'est pas un IDE, m
   \begin{verbatim}
   RASM.exe <file to assemble> [options]
   \end{verbatim}
-  
+
   Without any option, \begin{verbatim} rasm.exe myfile.asm \end{verbatim} produces \texttt{rasmoutput.bin} file.
 \end{xen}
 
@@ -57,13 +57,13 @@ Enfin, il est a noter que RASM n'intègre pas d'éditeur, ce n'est pas un IDE, m
 \end{xfr}
 
 \begin{xen}
-	These options are used for changing the name of the files produced by RASM: 
+	These options are used for changing the name of the files produced by RASM:
   \begin{itemize}
     \item -o \textless file radix\textgreater	: set a common name for each output file, disregarding its type (.bin, .sym, ...).
     The default value is “RASMoutput”
     \item -ob \textless binary filename\textgreater	: set the full filename for automatic binary output.
     \item -os \textless symbol filename\textgreater	: set the full filename for symbol output.
-    \item -oa : generates output files (cpr,bin,sna) using the same name as the input source file 
+    \item -oa : generates output files (cpr,bin,sna) using the same name as the input source file
     \item -no : disable file output.
   \end{itemize}
 \end{xen}
@@ -71,7 +71,7 @@ Enfin, il est a noter que RASM n'intègre pas d'éditeur, ce n'est pas un IDE, m
 
 \subsection{\xlang{Exportation de symboles}{Symbol exports}}
 \index{\xlang{SYMBOLS}{SYMBOLES}}
-  
+
 % ------------------- Symboles ----------------------
 \begin{xfr}
   Ces options permettent de générer un fichier avec les valeurs et adresses associées aux symboles du code assemblé :
@@ -84,14 +84,14 @@ Enfin, il est a noter que RASM n'intègre pas d'éditeur, ce n'est pas un IDE, m
     \item -sq :	option additionnelle qui permet d'exporter aussi les alias \texttt{EQU}.
     \item -sx : exporte les symboles pour certaines émulateurs ZX, en précisant la banque où le symbole est logé (\texttt{(<bank>:<adresse>)})
     \item -sa :	option équivalente à -sl -sv -sq
-     
+
   \end{itemize}
   Par exemple:
 \end{xfr}
 
 
 \begin{xen}
-Symbols such as label's addresses, constants, can be exported in a .sym file, using different formats. 
+Symbols such as label's addresses, constants, can be exported in a .sym file, using different formats.
 For example, it can be useful for debugging a program with Winape.
   \begin{itemize}
     \item -s : export symbols in RASM format
@@ -160,7 +160,7 @@ For example, it can be useful for debugging a program with Winape.
 \end{xfr}
 
 \begin{xen}
-Including source code or binary file can be achieved with \texttt{INCBIN} and \texttt{READ} directives. 
+Including source code or binary file can be achieved with \texttt{INCBIN} and \texttt{READ} directives.
 By default, included files are searched in the local folder, paths are relative, but it is possible to specify one ore more folder where to look for files. It is also possible to define or import symbols:
   \begin{itemize}
     \item -I \textless include directory\textgreater :	set include directory. Multiple options -I is possible.
@@ -260,9 +260,10 @@ By default, included files are searched in the local folder, paths are relative,
 
 \begin{xfr}
 \subsection{Options de développement}
-Ces options sont utlisées,mais peuvent parfois etre utiles pour le débug. 
+Ces options sont moins courantes ,mais peuvent parfois etre utiles pour le débug.
 \begin{itemize}
 \item -v : mode verbeux, affiche des informations et statistiques sur l'assemblage
+\item -void : permet de forcer l'utilisation de (void) pour les macros sans parametre (\ref{macro})
 \item -d : produit des informations lors du pré-processing
 \item -a : produit des informations lors de l'assemblage
 \item -n : affiche les licences tierces
@@ -275,6 +276,7 @@ Ces options sont utlisées,mais peuvent parfois etre utiles pour le débug.
 These options are useful in rare occasions, it can sometime help for tracking bugs:
 \begin{itemize}
 \item -v : verbose mode, display stats
+\item -void : enforce usage of (void) syntax for macros without parameter (\ref{macro})
 \item -d : verbose detailed pre-processing
 \item -a : verbose detailed assembling
 \item -n : display third parties licences
@@ -299,7 +301,7 @@ These options are useful in rare occasions, it can sometime help for tracking bu
 
 \begin{xfr}
   Il existe d'autres options, qui concernent des architectures spécifiques, en particulier le CPC. La section \ref{options_export_cpc} en particulier.
-  Enfin, l'option -help donne un récapitulatif de toutes les arguments qui peuvent être passés a RASM. 
+  Enfin, l'option -help donne un récapitulatif de toutes les arguments qui peuvent être passés a RASM.
 \end{xfr}
 
 \begin{xen}

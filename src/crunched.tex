@@ -30,6 +30,7 @@ INCBIN 'file to read'[,offset[,size[,extended offset[,OFF]]]]
 INCBIN 'file to read',REVERT
 INCBIN 'file to read',REMAP,numcol
 INCBIN 'file to read',VTILES,numtiles
+INCBIN 'file to read',ITILES,width
 \end{verbatim}
 
 \begin{xfr}
@@ -66,14 +67,27 @@ ORG \#4001
 DEFB \#BB ; overwrite 2nd byte (in \#4001) without error
 \end{code}
 
+\begin{xfr}
+Un autre exemple, dans lequel un fichier de 32K est lu en deux fois, par exemple dans deux banques de 16 différentes (cf \ref{BANK})
+\end{xfr}
+\begin{xen}
+If you want for example to import a 32K file into 2 16Kb banks (see \ref{BANK})
+\end{xen}
+
+\begin{code}
+bank n
+incbin 'my32Kbfile.bin',0,16384
+bank n+1
+incbin 'my32Kbfile.bin',16384,16384
+\end{code}
+
 \subsubsection{\xlang{Importation de fichiers multipes}{Multiple files import}}
 
 \begin{xfr}
 Il est possible d'utiliser \texttt{INCBIN} dans un bloc \texttt{REPEAT}, par exemple si l'on veut importer plusieurs fichiers, ici les fichier myfile1, myfile2, ... myfile10:
 \end{xfr}
-
 \begin{xen}
-It is allowed to use \texttt{INCBIN} inside a \texttt{REPEAT} block, for importing a series of files. For example if you want to import  files myfile1, myfile2, ... myfile10:
+You can use \texttt{INCBIN} inside a \texttt{REPEAT} block, for importing a series of files. For example if you want to import  files myfile1, myfile2, ... myfile10:
 \end{xen}
 
 \begin{code}
@@ -87,13 +101,17 @@ REND
 
 La forme avec \texttt{REVERT} permet d'importer un fichier binaire, mais dans le sens inverse.
 
-Les variantes utilisant \texttt{REMAP} et \texttt{VTILES} sont utiles pour importer des sprites.
+Les variantes utilisant \texttt{REMAP}, \texttt{VTILES}  et \texttt{ITILES} sont utiles pour importer des sprites.
+
+\texttt{ITILES} permet d'importer des tiles de hauteur multiples de 8, en entrelacant les lignes dans l'ordre suivant: 0,1,3,2,6,7,5,4.
+De plus les octets sont encodés en zig zag: pour les lignes paires, la séquence d'octets correspond aux pixels de gauche à droite,
+et de droite à gauche sur les lignes impaires. Le parametre passé correspond à la largeur (en octet) des tiles.
 \end{xfr}
 
 \begin{xen}
 If REVERT keyword is used, the file will be inserted backwards.
 
-REMAP and VTILES variants are used for importing sprites.
+REMAP VTILES and ITILES variants are used for importing sprites.
 \end{xen}
 
 
@@ -101,13 +119,13 @@ REMAP and VTILES variants are used for importing sprites.
 \subsubsection{\xlang{Fichiers Audio}{Audio Files}}\index{Audio}\index{WAV}
 
 \begin{xfr}
-Les fichiers WAV sont à priori tous supportés quel que soit leur format, mono-canal ou multi-canal. Une fusion des voix sera réalisée en cas de fichier multi-canal. Il faut préciser l'un des quatre formats parmis SMP,SM2, SM4 et DMA pour réaliser l'import du wav (sinon le fichier sera importé tel quel). La fréquence d'échantillonage n'est pas prise en compte. 
+Les fichiers WAV sont à priori tous supportés quel que soit leur format, mono-canal ou multi-canal. Une fusion des voix sera réalisée en cas de fichier multi-canal. Il faut préciser l'un des quatre formats parmis SMP,SM2, SM4 et DMA pour réaliser l'import du wav (sinon le fichier sera importé tel quel). La fréquence d'échantillonage n'est pas prise en compte.
 
 \begin{itemize}
 \item Le format SMP contient une valeur par octet.
 \item Le format SM2 contient deux valeurs sur un seul octet, le premier échantillon correspond aux bits de poids fort.
 \item Le format SM4 contient quatre valeurs sur un seul octet, le premier échantillon est encodé dans les bits de poids fort. Le système retenu est le suivant. Les valeurs codées sont les valeurs 0,13,14,15. Ainsi on peut coder sur seulement 2 bits avec toute l'amplitude 4 bits du PSG. Il suffit de copier les deux bits en position 2 et 3. Le zéro reste zéro de facto.
-\item Avec le format DMA,chaque échantillon sera converti en une liste de commandes DMA. Le sample devra au préalable avoir été converti à 15600Hz.  
+\item Avec le format DMA,chaque échantillon sera converti en une liste de commandes DMA. Le sample devra au préalable avoir été converti à 15600Hz.
 \end{itemize}
 \end{xfr}
 
