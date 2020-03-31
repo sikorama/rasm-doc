@@ -34,7 +34,7 @@ ADC HL,rr     & 4 \\
 ADC HL,SP     & 4 \\ %
 ADC A,IXH     & 2 \\
 ADC A,IXL     & 2 \\ %
-ADC A,(IX+d)  & 3 \\
+ADC A,(IX+d)  & 5 \\
 %ADC A,IYH     & 2 \\
 %ADC A,IYL     & 2 \\
 %ADC A,(IY+d)  & 3 \\
@@ -53,7 +53,7 @@ ADD A,IXH    & 2 \\
 ADD A,IXL    & 2 \\
 %ADD A,IYH   & 2 \\
 %ADD A,IYL   & 2 \\
-ADD A,(IX+d) & 3 \\
+ADD A,(IX+d) & 5 \\
 %ADD A,(IY+d) 3 \\
 
 AND r       & 1 \\
@@ -191,6 +191,7 @@ LD r,(IX+d)       & 5 \\
 LD (dd),rr        & 6 \\
 LD IX,(dd)        & 6 \\
 LD (dd),IX        & 6 \\
+LD (IX+d),r       & 5 \\
 LD (IX+d),d       & 6 \\
 LD (dd),SP        & 6 \\
 
@@ -274,7 +275,7 @@ SBC A,d      & 2 \\
 SBC A,IXH    & 2 \\
 SBC A,IXL    & 2 \\
 SBC A,(HL)   & 2 \\
-SBC A,(IX+d) & 3 \\
+SBC A,(IX+d) & 5 \\
 SBC HL,rr    & 4 \\
 SBC HL,SP    & 4 \\
 
@@ -315,7 +316,7 @@ SUB d         & 2 \\
 SUB (HL) & 2\\
 SUB IXH & 2 \\
 SUB IXL & 2 \\
-SUB (IX+d) & 3 \\
+SUB (IX+d) & 5 \\
 %SET b,(IY+d) & 7 \\
 %SLA (IY+d) & 7 \\
 %SLL (IY+d) & 7 \\
