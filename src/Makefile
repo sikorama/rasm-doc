@@ -4,10 +4,13 @@ force:
 all: rasm_fr.pdf rasm_en.pdf rasm_fr.html rasm_en.html cp
 
 cp:
-	cp *.pdf ../pdf/
+	mv -f *.png *.html *.css ../html/
+	mv -f *.pdf ../pdf/
+
+
 
 rasm_fr.pdf: clean
-	latex -file-line-error -halt-on-error rasm_fr.tex 
+	latex -file-line-error -halt-on-error rasm_fr.tex
 	makeindex rasm_fr.idx
 	latex rasm_fr.tex >/dev/null
 	makeindex rasm_fr.idx
@@ -15,16 +18,16 @@ rasm_fr.pdf: clean
 	make clean
 
 rasm_en.pdf: clean
-	latex -file-line-error -halt-on-error rasm_en.tex 
+	latex -file-line-error -halt-on-error rasm_en.tex
 	makeindex rasm_en.idx
-	latex rasm_en.tex >/dev/null	
+	latex rasm_en.tex >/dev/null
 	makeindex rasm_en.idx
 	pdflatex rasm_en.tex
 	make clean
 
 rasm_en.html: clean
-	htlatex rasm_en.tex 
-	htlatex rasm_en.tex 
+	htlatex rasm_en.tex
+	htlatex rasm_en.tex
 	cat rasm_css.txt >> rasm_en.css
 	make clean
 	cat rasm_en.html |sed s/'auto<\/span'/'<\/span'/g >Rasm_en.html
@@ -34,7 +37,7 @@ rasm_en.html: clean
 
 
 rasm_fr.html: clean
-	htlatex rasm_fr.tex 
+	htlatex rasm_fr.tex
 	htlatex rasm_fr.tex
 	cat rasm_css.txt >> rasm_fr.css
 	make clean
