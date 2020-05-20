@@ -52,13 +52,13 @@ rend
 \subsubsection{\xlang{Labels de proximité}{Proximity labels}}
 
 \begin{xfr}
-Hors d'une macro ou d'une boucle, les labels locaux héritent du label global qui précède. 
+Hors d'une macro ou d'une boucle, les labels locaux héritent du label global qui précède.
 A l'interieur d'une boucle ou d'une macro, ils sont relatifs au label qui précède, qui est soit global, soit local.
 Exemple d'utilisation d'un label de proximité avec un label global:
 \end{xfr}
 
 \begin{xen}
-Proximity labels are prefixed with a dot, and are associated with the previous label. 
+Proximity labels are prefixed with a dot, and are associated with the previous label.
 They can be used 'locally' directly with their 'short' names, and anymwhere with their full name:
 \end{xen}
 
@@ -85,7 +85,7 @@ routine3:
 \subsubsection{\xlang{Combinaison de différents types de labels}{Mixing different kinds of labels}}
 
 \begin{xfr}
-L'exemple suivant permet de montrer les différentes combinaisons possibles, quand on mélange label global, local et de proximité. 
+L'exemple suivant permet de montrer les différentes combinaisons possibles, quand on mélange label global, local et de proximité.
 Le code n'a pas grande utilité, si ce n'est à illustrer le principe:
 \end{xfr}
 
@@ -98,7 +98,7 @@ Le code n'a pas grande utilité, si ce n'est à illustrer le principe:
   @label:   nop  ; (2)
   .prox :   nop  ; (3)
   @label2:  nop  ; (4)
-  .prox :   nop  ; (5) 
+  .prox :   nop  ; (5)
   \           jp global.prox  ; (=> 1)
   \           jp @label       ; (=> 2)
   \           jp @label.prox  ; (=> 3)
@@ -106,18 +106,18 @@ Le code n'a pas grande utilité, si ce n'est à illustrer le principe:
   \           jp .prox        ; (=> 6)
   rend
   \medskip
-  \           jp .prox        ; (=> 1) 
+  \           jp .prox        ; (=> 1)
   \           jp global2.prox ; (=> 8)
   \medskip
   global2:    nop  ; (7)
-  \           jp .prox        ; (=> 8) 
+  \           jp .prox        ; (=> 8)
   .prox:      nop ; (8)
   \           jp global.prox  ; (=> 1)
   \           jp global2.prox ; (=> 8)
-  \           jp .prox        ; (=> 8) 
+  \           jp .prox        ; (=> 8)
   \end{code}
 
-  
+
 \subsubsection{Modules}\label{MODULES}
 \index{MODULES}
 
@@ -132,30 +132,30 @@ Le code n'a pas grande utilité, si ce n'est à illustrer le principe:
 \texttt{MODULE} est une facon supplémentaire de cloisonner du code ou des données, en permettant de préfixer les labels globaux ou de proximité, à la manière de namespace en C
 Ceci permet en particulier d'éviter des conflits lorsque des labels identiques sont utilisés, par exemple lorsque de l'inclusion de code tiers.
 Pour fermer une section module, il faut soit en déclarer une nouvelle, ou utiliser \texttt{MODULE OFF}
-A noter que le préfixe utilisé est un underscore: \texttt{module_label}. Par exemple:
+A noter que le préfixe utilisé est un underscore: \texttt{module\_label}. Par exemple:
 \end{xfr}
 
 \begin{xen}
 \texttt{MODULE} is a way to declare a section in your code. It is similar to namespace in C, and allows to prefix globals and proximity labels with a name.
 It can be usefull in order to avoid conflict between portions of code using similar labels, for example when including external code.
 Closing a Module section can be done by declaring a new module, or using \texttt{MODULE OFF}
-In order to prefix a label inside a module, underscore symbol is used : \texttt{module_label}. For exemple:
+In order to prefix a label inside a module, underscore symbol is used : \texttt{module\_label}. For exemple:
 \end{xen}
 
 \begin{code}
-  MODULE module1: 
+  MODULE module1:
   start:
     ...
     ret
   data: equ 1
 \medskip
-MODULE module2: 
+MODULE module2:
   start:
     ...
     ret
   data: equ 2
 MODULE OFF
 \medskip
- ld a,(module1_data)
- call module2_start
+ ld a,(module1\_data)
+ call module2\_start
 \end{code}
