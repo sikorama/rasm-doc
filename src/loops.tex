@@ -1,0 +1,103 @@
+\subsubsection{REPEAT}\index{REPEAT}\index{REPEAT\_COUNTER}\index{REND}\index{UNTIL}
+
+\begin{verbatim}
+REPEAT <number of repetitions>[,counter] ... REND
+REPEAT ... UNTIL <condition>
+\end{verbatim}
+
+\begin{xfr}
+Répète un bloc d'instructions.
+On peut soit fixer un nombre de répétitions, soit utiliser le mode conditionnel avec la directive de fin de bloc \texttt{UNTIL}. Pour compatibilité avec Vasm, il est possible de finir un tel bloc par \texttt{ENDREP} ou \texttt{ENDREPEAT}
+\end{xfr}
+
+\begin{xen}
+This directive repeats a block of instructions. You may fix a number of repetition or use conditionnal mode with \texttt{UNTIL}. It is also possible to close such a bloc with \texttt{ENDREP} or \texttt{ENDREPEAT}, for Vasm compatibility.
+\end{xen}
+
+\begin{code}
+cnt=90
+repeat
+\    defb 64*sin(cnt)
+\    cnt=cnt-4
+until cnt\textless 0
+\end{code}
+
+\begin{xfr}
+Dans le cas de répétition non conditionnelle, il est possible de spécifier une variable qui contiendra le numéro d'itération.
+Cette variable (ici 'cnt') n'a pas besoin d'éxister, elle sera créée le cas echéant, au début de la boucle \texttt{REPEAT}.
+\end{xfr}
+
+\begin{xen}
+In the case of a non conditional loop, it is possible to specify a variable which contains the iteraction counter.
+There's no need to declare this variable (here 'cnt') prior to the \texttt{REPEAT} block. It will automatically be created.
+\end{xen}
+
+\begin{code}
+repeat 10,cnt
+\ ldi
+\ print cnt
+rend
+\end{code}
+
+% Compteur interne
+\begin{xfr}
+La variable interne \texttt{REPEAT\_COUNTER} contient le numéro de l'itération courante (en commencant par 1).
+\end{xfr}
+\begin{xen}
+You can get the internal loop counter anytime with internal variable \texttt{REPEAT\_COUNTER}.
+\end{xen}
+
+\begin{code}
+repeat 10
+\ ldi
+\ print repeat\_counter
+rend
+\end{code}
+
+
+\subsubsection{WHILE, WEND}\index{WHILE}\index{WEND}\index{WHILE\_COUNTER}
+\begin{verbatim}
+WHILE <condtion> ... wEND
+\end{verbatim}
+
+\begin{xfr}
+Répete un bloc tant que la condition est évaluée a vrai. A tout moment, il est possible d'utiliser la variable interne \texttt{WHILE\_COUNTER} pour récuperer le compteur de boucle.
+\end{xfr}
+
+\begin{xen}
+Repeat a block as long as the condition is evaluated as true. You may use the internal variable \texttt{WHILE\_COUNTER} variable to get the loop counter.
+\end{xen}
+
+\begin{code}
+cpt=10
+while cpt\textgreater 0
+\ ldi
+\ cpt=cpt-1
+\ print 'cpt=',cpt,' while\_counter=',while\_counter
+wend
+\end{code}
+
+\begin{xfr}
+La boucle va s'executer 10 fois, avec le résultat suivant sur la sortie standard:
+\end{xfr}
+
+\begin{xen}
+This code will loop 10 times with the following output:
+\end{xen}
+
+\begin{verbatim}
+Pre-processing [while.asm]
+Assembling
+cpt= 9.00 while_counter= 1.00
+cpt= 8.00 while_counter= 2.00
+cpt= 7.00 while_counter= 3.00
+cpt= 6.00 while_counter= 4.00
+cpt= 5.00 while_counter= 5.00
+cpt= 4.00 while_counter= 6.00
+cpt= 3.00 while_counter= 7.00
+cpt= 2.00 while_counter= 8.00
+cpt= 1.00 while_counter= 9.00
+cpt= 0.00 while_counter= 10.00
+Write binary file rasmoutput.bin (20 bytes)
+\end{verbatim}
+

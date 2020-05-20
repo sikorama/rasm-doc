@@ -1,0 +1,159 @@
+%In the first loop, a 'defb repeat_counter' will be repeated.
+%In the second loop, a 'defb 1' will be repeated as the counter is previously evaluated.
+
+\subsubsection{\xlang{Labels Locaux}{Local labels}}\label{LOCALLABELS}
+\index{REPEAT}\index{WHILE}\index{UNTIL}\index{BRK}\index{Labels}
+
+\begin{xfr}
+  À l'intérieur d'une boucle (\texttt{REPEAT/WHILE/UNTIL}) ou d'une macro, il est possible d'utiliser des labels locaux de la même façon qu'avec l'assembleur intégré de Winape en préfixant le label par le caractère '\at'. L'interet est que l'on peut reutiliser le meme label a différents endroits du code, sans avoir a chercher des noms différents.
+
+  À chaque itération de boucle et ce pour chaque imbrication de boucle, un suffixe est ajouté au label local contenant la valeur hexadécimale du compteur interne de répétition. Il est ainsi possible d'appeler un label local à une répétition en dehors de la boucle, mais cet usage n'est pas conseillé.
+
+  Il est possible d'utiliser la valeur d'un label dans une commande (\texttt{ORG} par exemple) si et seulement si le label précède la directive.
+
+  En mode DAMS\index{DAMS}, il est possible d'utiliser la déclaration désuète d'un label en le préfixant d'un point. L'appel à ce label se fera sans le point du début. L'usage des labels de proximité est alors désactivé.
+
+\end{xfr}
+
+\begin{xen}
+Inside a loop (\texttt{REPEAT/WHILE/UNTIL}) or inside a macro, you can define local labels the same way as Winape assembler does, by prefixing labels with '\at'.
+You cannot use these labels outside of the loop or macro.
+
+%In DAMS mode, you may prefix labels with a dot, but the call to this label must be done without the dot. In DAMS mode proximity labels ares disabled.
+
+You can use label value with a directive (\texttt{ORG}\index{ORG} for example) only if the label was previously declared.
+Usage of local label in a loop:
+
+%Local labels must be declared inside a loop or a repeat.
+%Those labels are invisibles out of the loop scope.
+%Local labels are declared with prefix '\at'.
+
+\end{xen}
+
+% Question peut on combiner @BRK
+%\begin{xfr}
+%
+%\paragraph{Labels locaux non exportables}
+%  On peut déclarer un label local à l'intérieur d'une boucle ou d'une macro. Ce label sera invisible hors de son contexte (hors de la macro, ou à chaque répétition de boucle).
+%  Les labels locaux sont préfixés par le caractère '\at'.
+%
+%  Exemple d'utilisation d'un label local dans une boucle:
+%\end{xfr}
+
+\begin{code}
+repeat 16
+  add hl,bc
+  jr nc,\at no\_overflow
+  dec hl
+\at no\_overflow
+rend
+\end{code}
+
+\subsubsection{\xlang{Labels de proximité}{Proximity labels}}
+
+\begin{xfr}
+Hors d'une macro ou d'une boucle, les labels locaux héritent du label global qui précède. 
+A l'interieur d'une boucle ou d'une macro, ils sont relatifs au label qui précède, qui est soit global, soit local.
+Exemple d'utilisation d'un label de proximité avec un label global:
+\end{xfr}
+
+\begin{xen}
+Proximity labels are prefixed with a dot, and are associated with the previous label. 
+They can be used 'locally' directly with their 'short' names, and anymwhere with their full name:
+\end{xen}
+
+\begin{code}
+routine1:
+\ add hl,bc
+\ jr nc,.no\_overflow
+\ dec hl
+.no\_overflow
+\medskip
+routine2:
+\ add hl,bc
+\ jr nc,.no\_overflow
+\ dec hl
+.no\_overflow
+\medskip
+routine3:
+\ xor a
+\ ld hl,routine1.no\_overflow ; retrieve proximity label of routine1
+\ ld de,routine2.no\_overflow ; of routine2
+\ sbc hl,de
+\end{code}
+
+\subsubsection{\xlang{Combinaison de différents types de labels}{Mixing different kinds of labels}}
+
+\begin{xfr}
+L'exemple suivant permet de montrer les différentes combinaisons possibles, quand on mélange label global, local et de proximité. 
+Le code n'a pas grande utilité, si ce n'est à illustrer le principe:
+\end{xfr}
+
+\begin{code}
+  global: nop
+  .prox:  nop ; (1)
+  \medskip
+  repeat 2
+  \           jp .prox ;  (=> 1)
+  @label:   nop  ; (2)
+  .prox :   nop  ; (3)
+  @label2:  nop  ; (4)
+  .prox :   nop  ; (5) 
+  \           jp global.prox  ; (=> 1)
+  \           jp @label       ; (=> 2)
+  \           jp @label.prox  ; (=> 3)
+  \           jp @label2.prox ; (=> 5)
+  \           jp .prox        ; (=> 6)
+  rend
+  \medskip
+  \           jp .prox        ; (=> 1) 
+  \           jp global2.prox ; (=> 8)
+  \medskip
+  global2:    nop  ; (7)
+  \           jp .prox        ; (=> 8) 
+  .prox:      nop ; (8)
+  \           jp global.prox  ; (=> 1)
+  \           jp global2.prox ; (=> 8)
+  \           jp .prox        ; (=> 8) 
+  \end{code}
+
+  
+\subsubsection{Modules}\label{MODULES}
+\index{MODULES}
+
+\begin{verbatim}
+  MODULE <namespace>
+  ...
+  [ENDMODULE]
+\end{verbatim}
+
+\begin{xfr}
+
+\texttt{MODULE} est une facon supplémentaire de cloisonner du code ou des données, en permettant de préfixer les labels globaux ou de proximité, à la manière de namespace en C
+Ceci permet en particulier d'éviter des conflits lorsque des labels identiques sont utilisés, par exemple lorsue de l'inclusion de code tiers.
+A noter que le préfixe utilisé est un underscore: \texttt{module_label}. Par exemple:
+\end{xfr}
+
+\begin{xen}
+\texttt{MODULE} is a way to declare a section in your code. It is similar to namespace in C, and allows to prefix globals and proximity labels with a name.
+It can be usefull in order to avoid conflict between portions of code using similar labels, for example when including external code.
+underscore is the symbol for prefixing a label inside: \texttt{module_label}. For exemple:
+\end{xen}
+
+\begin{code}
+  MODULE module1: 
+  start:
+    ...
+    ret
+  data: equ 1
+\medskip
+MODULE module2: 
+  start:
+    ...
+    ret
+  data: equ 2
+ENDMODULE
+\medskip
+ ld a,(module1_data)
+ call module2_start
+\end{code}
