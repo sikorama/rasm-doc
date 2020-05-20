@@ -124,20 +124,22 @@ Le code n'a pas grande utilité, si ce n'est à illustrer le principe:
 \begin{verbatim}
   MODULE <namespace>
   ...
-  [ENDMODULE]
+  [MODULE OFF]
 \end{verbatim}
 
 \begin{xfr}
 
 \texttt{MODULE} est une facon supplémentaire de cloisonner du code ou des données, en permettant de préfixer les labels globaux ou de proximité, à la manière de namespace en C
-Ceci permet en particulier d'éviter des conflits lorsque des labels identiques sont utilisés, par exemple lorsue de l'inclusion de code tiers.
+Ceci permet en particulier d'éviter des conflits lorsque des labels identiques sont utilisés, par exemple lorsque de l'inclusion de code tiers.
+Pour fermer une section module, il faut soit en déclarer une nouvelle, ou utiliser \texttt{MODULE OFF}
 A noter que le préfixe utilisé est un underscore: \texttt{module_label}. Par exemple:
 \end{xfr}
 
 \begin{xen}
 \texttt{MODULE} is a way to declare a section in your code. It is similar to namespace in C, and allows to prefix globals and proximity labels with a name.
 It can be usefull in order to avoid conflict between portions of code using similar labels, for example when including external code.
-underscore is the symbol for prefixing a label inside: \texttt{module_label}. For exemple:
+Closing a Module section can be done by declaring a new module, or using \texttt{MODULE OFF}
+In order to prefix a label inside a module, underscore symbol is used : \texttt{module_label}. For exemple:
 \end{xen}
 
 \begin{code}
@@ -152,7 +154,7 @@ MODULE module2:
     ...
     ret
   data: equ 2
-ENDMODULE
+MODULE off
 \medskip
  ld a,(module1_data)
  call module2_start
