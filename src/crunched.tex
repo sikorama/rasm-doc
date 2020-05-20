@@ -153,23 +153,28 @@ INCBIN 'sound.wav',DMA
 
 \subsection{\xlang{Compression}{Crunching}}
 
+\begin{xfr}
+RASM intègre de nombreuses méthodes de compression que l'on peut directement utiliser dans le code assembleur, soit en définissant des sections à compresser, soit en incluant des binaires qui seront compressés à la volée. 
+
+Pour l'opération inverse, la décompression on pourra utiliser les routines distribuées avec rasm
+\end{xfr}
+
 \subsubsection{\xlang{Portions compressées}{Crunched Section}}
 \index{LZEX0}\index{LZCLOSE}\index{LZ48}\index{LZ49}\index{LZ4}\index{LZX7}
 \begin{verbatim}
-LZ48 | LZ49 | LZ4 | LZX7 | LZEXO  ... LZCLOSE
+LZ48 | LZ49 | LZ4 | LZX7 | LZEXO | LZAPU ... LZCLOSE
 \end{verbatim}
 
 \begin{xfr}
-Ouvrir un segment de code compressé en LZ48,LZ49, LZ4, ZX7 ou Exomizer. Une section compressée se ferme avec \texttt{LZCLOSE}.
+Ouvrir un segment de code compressé en LZ48,LZ49, LZ4, ZX7, LZAPU ou Exomizer. Une section compressée se ferme avec \texttt{LZCLOSE}.
 Le code produit sera compressé après assemblage et l'ensemble du code situé après la zone sera relogé.
 Il n'est pas possible d'appeler un label situé après un segment compressé depuis le code compressé pour des raisons évidentes dûes aux aléas de la compression. Une erreur s'affichera expliquant pourquoi.
 Le code ou les données d'une zone LZ ne peut excéder l'espace d'adressage de 64Ko. Enfin, il n'est pas possible d'imbriquer les segments compressés.
 
-
 \end{xfr}
 
 \begin{xen}
-Open a crunched section in LZ48,LZ49, LZ4, ZX7 or Exomizer. A LZ section is closed with \texttt{LZCLOSE}.
+Open a crunched section in LZ48,LZ49, LZ4, ZX7, LZAPU or Exomizer. A LZ section is closed with \texttt{LZCLOSE}.
 
 Generated code is crunched once it is assembled. The code following such a block is then relocated (labels, ...).
 
@@ -184,35 +189,34 @@ Example:
 
 \begin{code}
   org \#1000
-  ld hl,zecrunch
+  ld hl,crunchedsection
   ld de,\#8000
   call decrunch
   call \#8000
   jp next         ; label next after crunched zone will be relocated
 \medskip
-  zecrunch
-  lz48            ; -- this section will be crunched
+  crunchedsection:
+  LZ48            ; -- this section will be crunched
     org \#8000,\$
     nop
     nop
     nop
     ret
-  lzclose   ; -- end of crunched section
+  LZCLOSE   ; -- end of crunched section
 \medskip
-  next
+  next:
     ret
 \end{code}
 
 
-
-\subsubsection{\xlang{Inclusion de fichiers compressés}{Crunched Binaries}}\index{INCL48}\index{INCL49}\index{INCLZ4}\index{INCLEXO}\index{Exomizer}\index{INCZX7}
+\subsubsection{\xlang{Inclusion de fichiers compressés}{Crunched Binaries}}\index{INCL48}\index{INCL49}\index{INCLZ4}\index{INCLEXO}\index{Exomizer}\index{INCZX7}\index{APUltra}
 
 \begin{verbatim}
-INCL48, INCL49, INCLZ4, INCZX7, INCEXO 'file to read'
+INCL48, INCL49, INCLZ4, INCZX7, INCEXO, INCAPU   'file to read'
 \end{verbatim}
 
 \begin{xfr}
-Lire un fichier binaire, le compresser en LZ48, LZ49, LZ4, Exomizer ou ZX7 et l'injecter directement dans le code.
+Lire un fichier binaire, le compresser en LZ48, LZ49, LZ4, Exomizer, LZAPU  ou ZX7 et l'injecter directement dans le code.
 \end{xfr}
 
 \begin{xen}
