@@ -235,18 +235,20 @@ Audio channels are disabled, ROMS are disabled and interrupt mode is set to 1.
 \begin{verbatim}
 BANK [ROM page number]
 BANK [RAM page number]
+BANK NEXT
 \end{verbatim}
 
 \begin{xfr}
 Sélectionner un emplacement ROM (cartouche) ou RAM (snapshot). L'usage de cette instruction active par défaut l'écriture de la cartouche en fin d'assemblage.
 Les valeurs possibles vont de 0 à 31. En mode snapshot on peut aussi utiliser cette directive, cette fois avec des valeurs de 0 à 35 (64K de base + 512K d'extension mémoire).
 
-Sans paramètre, la directive ouvre un nouvel espace mémoire de travail
+Sans paramètre, ou avec le parametre NEXT, la directive ouvre un nouvel espace mémoire de travail. 
 \end{xfr}
 
 \begin{xen}
 Selects a ROM bank (while exporting a cartridge) or a RAM slot (for snapshots) for storing code or data. 
-For a cartdridge, values range from 0 to 31. In snapshot mode the values range from 0 to 35 (64K base memory + 512K extended memory). Used without parameter, BANK directive opens a new memory workspace.
+For a cartdridge, values range from 0 to 31. In snapshot mode the values range from 0 to 35 (64K base memory + 512K extended memory). 
+Used without parameter, BANK directive opens a new memory workspace.
 
 By default, when using BANK, a cartridge will be generated, except if \texttt{BUILDSNA} directive was used previously.
 
