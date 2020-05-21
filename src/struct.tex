@@ -67,9 +67,6 @@ Example of accessing a field with an offset, by using the prototype name:
 LD A,(IX+metast1.pr2.ch1)
 \end{code}
 
-    
-
-
 \subsubsection{SIZEOF}\index{SIZEOF}
 
 \begin{xfr}
@@ -94,19 +91,31 @@ Like Vasm, you also can get the structure size using its prototype name but it i
 \end{xen}
 
 
-
 \begin{xfr}
-    \subsubsection{Tableau de STRUCT}
-
+\subsubsection{Tableau de STRUCT}
 Il est possible d'instancier plusieurs fois la meme structure, comme s'il s'agissait d'un tableau de structures, de la facon suivant:
+\end{xfr}
+
+\begin{xen}
+\subsubsection{STRUCT Array}
+It's possible to instanciate an array of structs, using this syntax:
+\end{xen}
 
 \begin{code}
     struct mystruct my_instances,10
 \end{code}
 
-Cette facon de faire est différente d'un \texttt{ds 10*SIZEOF(mystruct)}, car les données dans la structure peuvent etre préremplies (a la différence d'un remplissage avec le meme octet)
-
-De plus il est possible d'acceder aux structures via un index.
-    
+\begin{xfr}
+Cette facon de faire est différente d'un \texttt{ds 10*SIZEOF(mystruct)}, car les données sont initialisées avec les valeurs par défaut définies dans la définition de la structure (a la différence d'un remplissage avec le meme octet)
+De plus il est possible d'acceder aux structures via un index, en ajoutant l'index a la fin du nom de l'instance (la syntaxe de cette feature sera peut etre modifiée a l'avenir). Par exemple:
 \end{xfr}
+
+\begin{xen}
+Compared to \texttt{ds 10*SIZEOF(mystruct)}, data is initialized with default values as defined in structure declaration, and not filled with a zero value.
+Also it is possible to access to a specific instance, using an index, like a regular array.
+\end{xen}
+ 
+\begin{code}
+  LD HL,myinstances5 
+\end{code}
     
