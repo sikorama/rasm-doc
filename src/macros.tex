@@ -77,11 +77,11 @@ MACRO test myarg
 \ DEFB \{myarg\}
 MEND
 
-;\xlang{Identique à }{Same as }1,2:
+;\xlang{Identique à }{Same as } \texttt{defb 1 : defb 2}:
 REPEAT 2
 \ test repeat\_counter
 REND
-;\xlang{Identique à }{Same as }defb 1,1:
+;\xlang{Identique à }{Same as } \texttt{defb 1 : defb }1:
 
 REPEAT 2
 \ test \{eval\}repeat\_counter
