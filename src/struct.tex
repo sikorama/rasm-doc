@@ -102,7 +102,7 @@ It's possible to instanciate an array of structs, using this syntax:
 \end{xen}
 
 \begin{code}
-    struct mystruct my_instances,10
+    struct mystruct my\_instances,10
 \end{code}
 
 \begin{xfr}
@@ -114,8 +114,7 @@ De plus il est possible d'acceder aux structures via un index, en ajoutant l'ind
 Compared to \texttt{ds 10*SIZEOF(mystruct)}, data is initialized with default values as defined in structure declaration, and not filled with a zero value.
 Also it is possible to access to a specific instance, using an index, like a regular array.
 \end{xen}
- 
+
 \begin{code}
-  LD HL,myinstances5 
+  LD HL,myinstances5
 \end{code}
-    
