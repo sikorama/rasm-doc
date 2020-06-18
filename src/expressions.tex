@@ -8,7 +8,7 @@ Les variables au contraire peuvent être modifiées.
 \end{xfr}
 
 \begin{xen}
-EQU is a common way in assemblers to define constants in a convenient way.  
+EQU is a common way in assemblers to define constants in a convenient way.
 RASM also introduces variables, which value can be changed during the assembling process.
 There is no limit in the number of variables or alias that can be defined.
 \end{xen}
@@ -19,7 +19,7 @@ There is no limit in the number of variables or alias that can be defined.
 \end{verbatim}
 
 \begin{xfr}
-Création d'un alias. Quand l'assembleur rencontrera l'alias dans une expression, le texte sera remplacé par celui défini lors du \texttt{EQU}. 
+Création d'un alias. Quand l'assembleur rencontrera l'alias dans une expression, le texte sera remplacé par celui défini lors du \texttt{EQU}.
 Un test de récursivité infini est réalisé à la création de l'alias.
 \end{xfr}
 
@@ -42,8 +42,8 @@ Il est possible avec RASM de définir des variables, avec la syntaxe suivante:
 \end{xfr}
 
 \begin{xen}
-%You may create an unlimited number of alias with directive EQU. 
-An alias it cannot be changed, once it has been defined. 
+%You may create an unlimited number of alias with directive EQU.
+An alias it cannot be changed, once it has been defined.
 However, it is possible to use variables with RASM, with the following syntax:
 \end{xen}
 
@@ -106,17 +106,17 @@ Rasm accepts these values in expressions:
   \item Hexadecimal if the value begins with \#, \$, 0x or ends with h.
   \item ASCII value of a char, delimited by quotes.
   \item Value of a constant or a variable, referenced by its name, eventually prefixed with '\at'.
-  \item Current address symbol (\$)  
+  \item Current address symbol (\$)
 \end{itemize}
 
-All internal calculation are done with double precision floating point accumulator. 
+All internal calculation are done with double precision floating point accumulator.
 A correct rounding is done in the end for integer needs.
 If the evaluation leads to a computation error, the result will be null.
 
 Beware of the \& char, it is reserved for AND operator.
 
 \subsubsection{Allowed chars}
-Between quotes, all standard ASCII characters are allowed. 
+Between quotes, all standard ASCII characters are allowed.
 Quoted strings may contains escaped chars: \begin{ttfamily} \textbackslash t \textbackslash n  \textbackslash r \textbackslash f \textbackslash v \textbackslash b \textbackslash 0 \end{ttfamily}.
 Escaped characters are ignored when used with PRINT directive.
 
@@ -160,8 +160,9 @@ $>>$ & décalage à droite (division par $2^n$) \\
 \texttt{int()} & conversion en nombre entier &
 \texttt{frac()} & récupere la partie fractionnaire  \\
 \texttt{floor()} & conversion à l'entier entier inférieur &
-\texttt{abs()} & valeur absolue \\
-
+\texttt{ceil()} & conversion à l'entier entier supérieur \\
+\texttt{abs()} & valeur absolue &
+\texttt{rnd()} & Nombre aléatoire entre 0 et $n-1$ \\
 
 \texttt{ln()} & logarithme népérien &
 \texttt{log10()} & logarithme base 10 \\
@@ -214,7 +215,10 @@ $>>$ & Right shift (divide by $2^n$) \\
 \texttt{int()} & float to integer conversion &
 \texttt{frac()} &  keeps fractional part of a float \\
 \texttt{floor()} & rounds to the lower integer &
-\texttt{abs()} & absolute value \\
+\texttt{ceil()} & ronds to the higher integer \\
+\texttt{abs()} & absolute value &
+\texttt{rnd()} & Random number between 0 and $n-1$ \\
+
 
 \texttt{ln()} & neperian logarithm &
 \texttt{log10()} & base 10 logarithm \\
