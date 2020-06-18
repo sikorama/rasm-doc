@@ -230,7 +230,14 @@ By default, included files are searched in the local folder, paths are relative,
  \subitem Les calculs sont réalisés en entiers 32 bits avec un mauvais arrondi
  \subitem Les paramètres des macros ne sont plus protégés par les chevrons {}
  \subitem La directive MACRO s'utilise après le nom de la macro et non avant
+
+\item -dams : compatibilité DAMS:
+\subitem - Les labels commencant par un point sont ignorés
+
+\item -pasmo : compatibilité PASMO:
+\subitem Les déclarations de type DEFB,DEFW,DEFI ou DEFR multiples ont pour référence d'adresse l'adresse du premier octet produit et non l'adresse de l'octet courant. Cette spécificité d'AS80 fait que deux DEFB ne produisent pas la même chose qu'un seul DEFB avec deux valeurs quand la référence \$ est utilisée.
 \end{itemize}
+
 \end{xfr}
 
 \begin{xen}
@@ -244,7 +251,8 @@ By default, included files are searched in the local folder, paths are relative,
 
 \item -ass : AS80 compatibility:
 \subitem - 32 bits integer calculations with wrong rounding
-\subitem - DEFB,DEFW,DEFI or DEFR directives with more than one parameter use the address of the first byte, when using \$ %That's why AS80 does not generate the same thing when using two DEFB instead of one with two parameters when using \$ reference in it.
+\subitem - DEFB,DEFW,DEFI or DEFR directives with more than one parameter use the address of the first byte, when using \$
+%That's why AS80 does not generate the same thing when using two DEFB instead of one with two parameters when using \$ reference in it.
 \subitem - MACRO directive must be used after the name of the macro, and not before (see \ref{MACRO})
 \subitem - Macro parameters are not protected by \{\}
 
@@ -252,6 +260,13 @@ By default, included files are searched in the local folder, paths are relative,
 \subitem - 32 bits integer calculations with wrong rounding
 \subitem - macro parameters are not protected by {}
 \subitem - MACRO directive must be used after the name of the macro
+
+\item -dams : DAMS compatibility:
+\subitem - labels beginning by a dot are ignored
+
+\item -pasmo : PASMO compatibility:
+\subitem - DEFB,DEFW,DEFI or DEFR directives with more than one parameter use the address of the first byte, when using \$
+%That's why AS80 does not generate the same thing when using two DEFB instead of one with two parameters when using \$ reference in it.
 \end{itemize}
 
 \end{xen}
