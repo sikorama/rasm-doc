@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>RASM: Roudoudou&#8217;s Z80 Assembler V0.122</title> 
+<head><title>RASM: Roudoudou&#8217;s Z80 Assembler V0.130</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
@@ -16,12 +16,12 @@
                                                                                     
                                                                                     
 
-<h2 class="titleHead">RASM: Roudoudou&#8217;s Z80 Assembler V0.122</h2>
+<h2 class="titleHead">RASM: Roudoudou&#8217;s Z80 Assembler V0.130</h2>
  <div class="author" ><span 
 class="cmr-12">Édouard BERG</span><span 
 class="cmr-12">É (Roudoudou)</span></div><br />
 <div class="date" ><span 
-class="cmr-12">June 18, 2020</span></div>
+class="cmr-12">June 20, 2020</span></div>
 </div>
 <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -3479,11 +3479,11 @@ cc&#x00A0;rasm_vXXX.c&#x00A0;-O2&#x00A0;-lm&#x00A0;-march=native
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-57">
-ppc-morphos-gcc-5&#x00A0;-O2&#x00A0;-c&#x00A0;-o&#x00A0;rasm&#x00A0;rasm_vXXX.c
+gcc&#x00A0;-noixemul&#x00A0;-O2&#x00A0;-c&#x00A0;-o&#x00A0;rasm&#x00A0;rasm_vXXX.c
 &#x00A0;<br />strip&#x00A0;rasm
 </div>
 <!--l. 51--><p class="nopar" >
-<!--l. 54--><p class="noindent" >
+<!--l. 55--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">9.2   </span> <a 
  id="x1-1190009.2"></a>Embedding RASM</h4>
 <!--l. 1--><p class="noindent" >There are 3 steps t follow for integrating RASM into your own C/C++ application:
@@ -3544,10 +3544,10 @@ similar, but it also returns additional data, such as a list of errors and the v
 &#x00A0;<br />&#x00A0;&#x00A0;return&#x00A0;0;
 &#x00A0;<br />}
 </div>
-<!--l. 121--><p class="nopar" >
-<!--l. 123--><p class="noindent" >In order to copile rasm and our example (embed.cpp):
+<!--l. 122--><p class="nopar" >
+<!--l. 124--><p class="noindent" >In order to copile rasm and our example (embed.cpp):
 <div class="framedenv" id="leftbar-1">
-<!--l. 125--><p class="noindent" ><div class="obeylines-v">
+<!--l. 126--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">gcc -D INTEGRATED</span><span 
 class="cmtt-10">_ASSEMBLY rasm</span><span 
@@ -3559,9 +3559,9 @@ class="cmtt-10">_embedded.obj -lm</span></div>
 </div>
                                                                                     
                                                                                     
-<!--l. 130--><p class="noindent" >When executed, it produces this:
+<!--l. 131--><p class="noindent" >When executed, it produces this:
 <div class="framedenv" id="leftbar-1">
-<!--l. 132--><p class="noindent" ><div class="obeylines-v">
+<!--l. 133--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="tctt-1000">$ </span><span 
 class="cmtt-10">./a.out</span>
@@ -3578,7 +3578,7 @@ class="cmtt-10">Result=0, Generated code size=5</span>
 <br /><span 
 class="cmtt-10">06 0A 10 FE C9</span></div>
 </div>
-<!--l. 143--><p class="noindent" >
+<!--l. 144--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">9.2.1   </span> <a 
  id="x1-1200009.2.1"></a>Errors and Symbols</h5>
                                                                                     
