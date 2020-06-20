@@ -273,17 +273,30 @@ Select CRTC model when writing a v3 snapshot file. Value for CRTC model ranges f
 \subsubsection{SETSNA}\index{SETSNA}
 
 \begin{verbatim}
-SETSNA Register,Value
+SETSNA RegisterName,value
+SETSNA GA_PAL,index,value
+SETSNA CRTC_REG,index,value
+SETSNA PSG_REG,index,value
 \end{verbatim}
 
+\begin{xen}
+With first syntax (taking two parameters), these registers can be set:
+\end{xen}
+
+\begin{xfr}
+Avec la première syntaxe (qui prend 2 parametres), les registres suivants peut etre initialisés:
+\end{xfr}
+
 \begin{itemize}
-\item Z80:
+\item Z80 Main registers:
   Z80\_AF, Z80\_F, Z80\_A, Z80\_BC, Z80\_C, Z80\_B, Z80\_DE, Z80\_E, Z80\_D, Z80\_HL, Z80\_L, Z80\_H,
+\item Z80 Mirror registers:
   Z80\_AFX, Z80\_FX, Z80\_AX, Z80\_BCX, Z80\_CX, Z80\_BX, Z80\_DEX, Z80\_EX, Z80\_DX, Z80\_HLX, Z80\_LX, Z80\_HX
+\item Z80 Internal registers:
   Z80\_R, Z80\_I, Z80\_IFF0, Z80\_IFF1, Z80\_IX, Z80\_IXL, Z80\_IXH, Z80\_IY, Z80\_IYL, Z80\_IYH, Z80\_SP, Z80\_PC, Z80\_IM,
 \item Gate Array:
   GA\_PEN, GA\_ROMCFG, GA\_RAMCFG, GA\_VSC, GA\_ISC
-\item CRTC:
+\item CRTC internal registers:
   CRTC\_SEL, CRTC\_TYPE, CRTC\_HCC, CRTC\_CLC, CRTC\_RLC, CRTC\_VAC, CRTC\_VSWC, CRTC\_HSWC, CRTC\_STATE,
 \item PPI:
   PPI\_A, PPI\_B, PPI\_C, PPI\_CTL, PSG\_SEL, CPC\_TYPE, INT\_NUM,
@@ -293,6 +306,19 @@ SETSNA Register,Value
   PRNT\_DATA
 \item INTERRUPTS : INT\_REQ
 \end{itemize}
+
+\begin{xen}
+  With the 3 other syntaxes, \texttt{SETSNA} takes an additional parameter, in order to specify the index of the register
+\end{xen}
+
+\begin{xfr}
+Avec les 3 autres syntaxes, \texttt{SETSNA} prend un parametre supplémentaire, qui est l'index du registre:
+\end{xfr}
+
+%=> valeur hardware %(qu'on pourra convertir avec une nouvelle fonction mathématique SOFT2HARD_INK et au passage j'ajouterai HARD2SOFT_INK tant que j'y suis
+%SETSNA GA_PAL,index,value
+%SETSNA CRTC_REG,index,value
+%SETSNA PSG_REG,index,value
 
 
 
