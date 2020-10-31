@@ -173,19 +173,22 @@ RASM also allows to generate cartridge (.crt) and snapshot (.sna) files. These f
 Pour générer une cartouche, il suffit que le source débute par les deux lignes suivantes:
 \end{xfr}
 
-\begin{code}
-BUILDCPR
+\begin{code}\index{Cartridge}\index{CPR}\index{XPR}
+BUILDCPR [EXTENDED]
 BANK 0
 \end{code}
 
 \begin{xfr}
-La directive \texttt{BUILDCPR} n'a pas vraiment d'utilité, car par défaut, en cas d'utilisation de le directive \texttt{BANK}, c'est une cartouche qui est générée. Mais pour des raisons de lisibilité débuter le source par cette directive permet d'enlever toute ambiguité.
+La directive \texttt{BUILDCPR} sans parametre n'a pas vraiment d'utilité, car par défaut, en cas d'utilisation de le directive \texttt{BANK}, c'est une cartouche qui est générée. Mais pour des raisons de lisibilité débuter le source par cette directive permet d'enlever toute ambiguité.
 Il n'est pas nécessaire de préciser le point d'entrée, car il est forcément à l'adresse 0.
+Si on ajouter le paramètre \texttt{EXTENDED} c'est une cartouche étendue (un fichier xpr) qui sera généré.
+Peut etre utilisé en conjonction avec l'option \texttt{-xpr} pour générer des fichiers supplémentaires de 512KB pour tous les slots de la cartouche étendue.
 \end{xfr}
 
 \begin{xen}
-This directive is optional, as by default, when a BANK directive is used, a cardridge file is generated. However, it is recommended to explicitly use this directive to indicate that a cardridge will be generated.
-%%deprecated directive was supposed to force cartridge generation when using multiple kind of binaries.
+Without parameter, this directive is optional, as by default, when a BANK directive is used, a cardridge file is generated. However, it is recommended to explicitly use this directive to indicate that a cardridge will be generated.
+If \texttt{EXTENDED} parameter is added, then an extended cartdridge (.xpr) will be generated.
+It can be used in cunjunction with \texttt{-xpr} option, for generating additional file for each 512KB slot.
 \end{xen}
 
 \paragraph{\xlang{Génération d'un Snapshot}{Snapshot Generation}}

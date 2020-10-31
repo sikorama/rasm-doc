@@ -103,18 +103,18 @@ Le code n'a pas grande utilité, si ce n'est à illustrer le principe:
   \           jp @label       ; (=> 2)
   \           jp @label.prox  ; (=> 3)
   \           jp @label2.prox ; (=> 5)
-  \           jp .prox        ; (=> 6)
+  \           jp .prox        ; (=> 5)
   rend
   \medskip
   \           jp .prox        ; (=> 1)
-  \           jp global2.prox ; (=> 8)
+  \           jp global2.prox ; (=> 7)
   \medskip
-  global2:    nop  ; (7)
-  \           jp .prox        ; (=> 8)
-  .prox:      nop ; (8)
+  global2:    nop  ; (6)
+  \           jp .prox        ; (=> 7)
+  .prox:      nop ; (7)
   \           jp global.prox  ; (=> 1)
-  \           jp global2.prox ; (=> 8)
-  \           jp .prox        ; (=> 8)
+  \           jp global2.prox ; (=> 7)
+  \           jp .prox        ; (=> 7)
   \end{code}
 
 

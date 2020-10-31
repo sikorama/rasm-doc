@@ -75,6 +75,24 @@ Arrêter l'assemblage. Aucun fichier ne sera écrit.
 Stop assembling an do not generate any file.
 \end{xen}
 
+\subsubsection{NOEXPORT}\index{NOEXPORT}
+
+\begin{verbatim}
+NOEXPORT [Symbols]
+ENOEXPORT [Symbols]
+\end{verbatim}
+
+\begin{xfr}
+La directive \texttt{NOEXPORT} inhibe l'export de symboles.
+Par défaut tous les symboles (labels,variables,constantes) ne sont plus exportés, mais il est possible de spécifier les symboles à ne plus exporter.
+Il est possible de réactiver (partiellement ou completement) l'export avec \texttt{ENOEXPORT}.
+\end{xfr}
+
+\begin{xen}
+\texttt{NOEXPORT} directive disables symbol export.
+By default, it applies to all symbols (labels,variables,constants), but it is possible to specify a subset of symbols.
+Symbol export can be re enabled (fully or partially) with \texttt{ENOEXPORT}.
+\end{xen}
 
 
 \subsection{\xlang{Directives conditionnelles}{Conditionnal code directives}}

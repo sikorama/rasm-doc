@@ -154,7 +154,7 @@ INCBIN 'sound.wav',DMA
 \subsection{\xlang{Compression}{Crunching}}
 
 \begin{xfr}
-RASM intègre de nombreuses méthodes de compression que l'on peut directement utiliser dans le code assembleur, soit en définissant des sections à compresser, soit en incluant des binaires qui seront compressés à la volée. 
+RASM intègre de nombreuses méthodes de compression que l'on peut directement utiliser dans le code assembleur, soit en définissant des sections à compresser, soit en incluant des binaires qui seront compressés à la volée.
 
 Pour l'opération inverse, la décompression on pourra utiliser les routines distribuées avec rasm
 \end{xfr}
@@ -222,3 +222,59 @@ Lire un fichier binaire, le compresser en LZ48, LZ49, LZ4, Exomizer, LZAPU  ou Z
 \begin{xen}
 Read a binary file, crunch it in LZ48, LZ49, LZ4, Exomizer or ZX7 on the fly.
 \end{xen}
+
+
+\subsubsection{SUMMEM}
+\begin{verbatim}
+SUMMEM start_address,end_address
+\end{verbatim}
+\begin{xfr}
+  Calcule la somme des octets compris dans la zone définie par les 2 paramètres
+  \texttt{start\_address} et \texttt{end\_address},
+  et écrit le résultat à l'endroit où se situe la directive.
+  Le calcul est fait sur la banque courante.
+\end{xfr}
+
+\begin{xen}
+This directive sums all bytes beween \texttt{start\_address} and \texttt{end\_address} in the current bank
+and store the result at the address where the directive is located.
+\end{xen}
+
+
+\subsubsection{XORMEM}
+\begin{verbatim}
+XORMEM start_address,end_address
+\end{verbatim}
+
+\begin{xfr}
+  Identique a \texttt{SUMMEM} mais applique l'opérateur XOR sur chaque octet de la zone mémoire.
+  Un exemple d'utilisation est le calcul d'un checksum d'une zone mémoire (ROM par exemple).
+\end{xfr}
+
+\begin{xen}
+Same as \texttt{XORMEM}, but computes a XOR operation instead of a sum.
+It can be used for computing a checksum, for example:
+\end{xen}
+
+
+\begin{code}
+checkrom:
+  xor a
+  ld hl,0
+  ld bc,\#1000
+.computexor:
+  xor (hl)
+  inc hl
+  ld d,a
+  dec bc
+  ld a,b
+  or c
+  ld a,d
+  jr nz,.computexor
+  ld hl,checksum
+  cp (hl)
+  jr nz,romKO
+  jr romOK
+checksum:
+   xormem 0,\#1000
+\end{code}
