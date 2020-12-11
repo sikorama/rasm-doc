@@ -118,6 +118,11 @@ REMAP VTILES and ITILES variants are used for importing sprites.
 
 \subsubsection{\xlang{Fichiers Audio}{Audio Files}}\index{Audio}\index{WAV}
 
+\begin{verbatim}
+  INCBIN Filename,SMP|SM2|SM4
+  INCBIN Filename,DMA,preamp,[Option1[,Option2[,...]]]
+\end{verbatim}
+
 \begin{xfr}
 Les fichiers WAV sont à priori tous supportés quel que soit leur format, mono-canal ou multi-canal. Une fusion des voix sera réalisée en cas de fichier multi-canal. Il faut préciser l'un des quatre formats parmis SMP,SM2, SM4 et DMA pour réaliser l'import du wav (sinon le fichier sera importé tel quel). La fréquence d'échantillonage n'est pas prise en compte.
 
@@ -125,8 +130,15 @@ Les fichiers WAV sont à priori tous supportés quel que soit leur format, mono-
 \item Le format SMP contient une valeur par octet.
 \item Le format SM2 contient deux valeurs sur un seul octet, le premier échantillon correspond aux bits de poids fort.
 \item Le format SM4 contient quatre valeurs sur un seul octet, le premier échantillon est encodé dans les bits de poids fort. Le système retenu est le suivant. Les valeurs codées sont les valeurs 0,13,14,15. Ainsi on peut coder sur seulement 2 bits avec toute l'amplitude 4 bits du PSG. Il suffit de copier les deux bits en position 2 et 3. Le zéro reste zéro de facto.
-\item Avec le format DMA,chaque échantillon sera converti en une liste de commandes DMA. Le sample devra au préalable avoir été converti à 15600Hz.
+\item Avec le format DMA,chaque échantillon sera converti en une liste de commandes DMA, pour le CPC+, donc.
+Le sample devra au préalable avoir été converti à 15600Hz. Avec ce format, on pourra préciser une préamplification, ainsi que des options supplémentaires, aprmi les quelles:
+  \begin{itemize}
+    \item \texttt{DMA\_INT} : pour déclencer  une Interruption à la fin du sample
+    \item \texttt{DMA\_CHANNEL\_A} , \texttt{DMA\_CHANNEL\_B}, \texttt{DMA\_CHANNEL\_C} : Pour choisir le Canal PSG utilisé (par défaut c'est le C)
+    \item \texttt{DMA\_REPEAT,repetition} : pour répéter le sample de 1 à 4095 fois
+  \end{itemize}
 \end{itemize}
+
 \end{xfr}
 
 % FIXME: traduire en en
@@ -138,8 +150,13 @@ All WAV formats -single channel or multi channel- are supported . Voices will be
 \item With SMP format, a sample corresponds to a byte.
 \item SM2 format groups two values in a single byte (two nibbles), the first sample corresponding to the 4 most significant bits.
 \item SM4 format four samples are stored in a single byte, the first sample being stored in the 2 most significant bits. 2 bits values are converted to 4 bits as follow: 00b $\rightarrow$ 0 ,01b $\rightarrow$ 13, 10b $\rightarrow$ 14, 11b $\rightarrow$ 15
-\item DMA format, which prepares data as DMA list, ready to be executed by the PSG. Your audio file for DMA list must be converted to 15600Hz.
-
+\item DMA format, which prepares data as DMA list, so it is specific to the CPC+ architecture family. DMA lists are ready to be executed by the PSG. Your audio file for DMA list must first be converted to 15600Hz.
+It is possible to specify a preamp factor, and also additional options:
+  \begin{itemize}
+    \item \texttt{DMA\_INT} : for triggering an interruption once the sample has been played
+    \item \texttt{DMA\_CHANNEL\_A} , \texttt{DMA\_CHANNEL\_B}, \texttt{DMA\_CHANNEL\_C} : For choosing which PSG channel to use
+    \item \texttt{DMA\_REPEAT,repetition} : For repeating the sample Up to 4095 times.
+  \end{itemize}
 \end{itemize}
 
 \end{xen}
@@ -149,7 +166,6 @@ ORG \#4000
 INCBIN 'sound.wav',SMP
 INCBIN 'sound.wav',DMA
 \end{code}
-%  FIXME DMA = ?
 
 \subsection{\xlang{Compression}{Crunching}}
 
@@ -170,7 +186,6 @@ Ouvrir un segment de code compressé en LZ48,LZ49, LZ4, ZX7, LZAPU ou Exomizer. 
 Le code produit sera compressé après assemblage et l'ensemble du code situé après la zone sera relogé.
 Il n'est pas possible d'appeler un label situé après un segment compressé depuis le code compressé pour des raisons évidentes dûes aux aléas de la compression. Une erreur s'affichera expliquant pourquoi.
 Le code ou les données d'une zone LZ ne peut excéder l'espace d'adressage de 64Ko. Enfin, il n'est pas possible d'imbriquer les segments compressés.
-
 \end{xfr}
 
 \begin{xen}
