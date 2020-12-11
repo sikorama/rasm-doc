@@ -155,7 +155,7 @@ It is possible to specify a preamp factor, and also additional options:
   \begin{itemize}
     \item \texttt{DMA\_INT} : for triggering an interruption once the sample has been played
     \item \texttt{DMA\_CHANNEL\_A} , \texttt{DMA\_CHANNEL\_B}, \texttt{DMA\_CHANNEL\_C} : For choosing which PSG channel to use
-    \item \texttt{DMA\_REPEAT,repetition} : For repeating the sample Up to 4095 times.
+    \item \texttt{DMA\_REPEAT,count} : For repeating the sample up to 4095 times.
   \end{itemize}
 \end{itemize}
 
@@ -164,7 +164,7 @@ It is possible to specify a preamp factor, and also additional options:
 \begin{code}
 ORG \#4000
 INCBIN 'sound.wav',SMP
-INCBIN 'sound.wav',DMA
+INCBIN 'sound.wav',DMA,1,DMA_CHANNEL_A,DMA_INT,DMA_REPEAT,4
 \end{code}
 
 \subsection{\xlang{Compression}{Crunching}}

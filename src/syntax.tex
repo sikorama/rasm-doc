@@ -328,7 +328,7 @@ DEFM <value1>[,<value2>,...]
 
 \begin{xfr}
 Cette directive prend un ou plusieurs paramètres et génère une suite d'octets représentative des paramètres en entrée. La valeur peut être une valeur litérale, une formule dont le résultat sera éventuellement arrondi et tronqué ou même une chaine de caractères dont chaque caractère produira un octet en sortie égale à sa valeur ASCII, sauf si la directive CHARSET a été utilisée pour redéfinir ces valeurs. On pourra indifferemment utiliser DB, DM, DEFB ou DEFM.
-Par exemple le code suivant produira la chaine 'Roudoudou': (le 'u' correspond au code ASCII \#75)
+Par exemple le code suivant produira la chaine 'Roudoudou': (le 'u' correspond au code ASCII \#75).
 \end{xfr}
 
 \begin{xen}
@@ -343,6 +343,14 @@ org \#7500
 label:
 defb 'r'-'a'+'A','oudoud',\#6F,hi(label)
 \end{code}
+
+\begin{xfr}
+Dans les chaines de caractere, il est possible d'utiliser le caractere d'échappement \\ pour envoyer des caracteres de controle, comme en C: \texttt{\\n\\t\\r}
+\end{xfr}
+
+\begin{xen}
+With character strings, it's possible to use control characters, with \\,  just like in C syntax: \texttt{\\n\\t\\r}
+\end{xen}
 
 
 See CHARSET directive for altering the way strings are interpreted.
