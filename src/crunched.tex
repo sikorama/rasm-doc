@@ -178,18 +178,30 @@ Pour l'opération inverse, la décompression on pourra utiliser les routines dis
 \subsubsection{\xlang{Portions compressées}{Crunched Section}}
 \index{LZEX0}\index{LZCLOSE}\index{LZ48}\index{LZ49}\index{LZ4}\index{LZX7}
 \begin{verbatim}
-LZ48 | LZ49 | LZ4 | LZX7 | LZEXO | LZAPU ... LZCLOSE
+LZ48 | LZ49 | LZ4 | LZX7 | LZEXO | LZAPU |LZSA1 [minmatchsize] | LZSA2 [minmatchsize]
+...
+LZCLOSE
 \end{verbatim}
 
 \begin{xfr}
-Ouvrir un segment de code compressé en LZ48,LZ49, LZ4, ZX7, LZAPU ou Exomizer. Une section compressée se ferme avec \texttt{LZCLOSE}.
+Ouvrir un segment de code compressé en LZ48,LZ49, LZ4, ZX7, LZAPU, LZSA ou Exomizer. Une section compressée se ferme avec \texttt{LZCLOSE}.
 Le code produit sera compressé après assemblage et l'ensemble du code situé après la zone sera relogé.
 Il n'est pas possible d'appeler un label situé après un segment compressé depuis le code compressé pour des raisons évidentes dûes aux aléas de la compression. Une erreur s'affichera expliquant pourquoi.
 Le code ou les données d'une zone LZ ne peut excéder l'espace d'adressage de 64Ko. Enfin, il n'est pas possible d'imbriquer les segments compressés.
+
+A noter que LZSA peut prendre un parametre supplémentaire, pour indiquer le niveau de compression et la vitesse de décompression.
+Par exemple pour LZSA1, on mettra le paramètre minmatch à 5 pour décompresser rapidement.
+Pour LZSA2, mettre 2 pour compresser fortement. Pour plus de détail, on pourra consulter les comparatifs réalisés par Emmanuel Marty, l'auteur du compresseur.
 \end{xfr}
 
 \begin{xen}
-Open a crunched section in LZ48,LZ49, LZ4, ZX7, LZAPU or Exomizer. A LZ section is closed with \texttt{LZCLOSE}.
+Open a crunched section in LZ48,LZ49, LZ4, ZX7, LZAPU,LZSA or Exomizer. A LZ section is closed with \texttt{LZCLOSE}.
+
+LZSA takes an optional parameter, for controlling how strong data will be crunched, and how fast it will uncompress.
+For example, for LZSA1, with minmatch=5, it will uncrunch quickly
+For LZSA2, with minmatch=2, it will crunch strongly.
+For more information, check the documentation by Emmanuel Marty, who created LZSA cruncher.
+
 
 Generated code is crunched once it is assembled. The code following such a block is then relocated (labels, ...).
 
@@ -224,18 +236,20 @@ Example:
 \end{code}
 
 
+
+
 \subsubsection{\xlang{Inclusion de fichiers compressés}{Crunched Binaries}}\index{INCL48}\index{INCL49}\index{INCLZ4}\index{INCLEXO}\index{Exomizer}\index{INCZX7}\index{APUltra}
 
 \begin{verbatim}
-INCL48, INCL49, INCLZ4, INCZX7, INCEXO, INCAPU   'file to read'
+INCL48, INCL49, INCLZ4, INCZX7, INCEXO, INCAPU, INCLZSA1, INCLZSA2  'file to read'
 \end{verbatim}
 
 \begin{xfr}
-Lire un fichier binaire, le compresser en LZ48, LZ49, LZ4, Exomizer, LZAPU  ou ZX7 et l'injecter directement dans le code.
+Lire un fichier binaire, le compresser en LZ48, LZ49, LZ4, Exomizer, LZAPU, LZSA ou ZX7 et l'injecter directement dans le code.
 \end{xfr}
 
 \begin{xen}
-Read a binary file, crunch it in LZ48, LZ49, LZ4, Exomizer or ZX7 on the fly.
+Read a binary file, crunch it in LZ48, LZ49, LZ4, Exomizer, LZSA or ZX7 on the fly.
 \end{xen}
 
 
