@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html xml:lang="fr" > 
-<head><title>RASM: Roudoudou&#8217;s Z80 Assembler V0.130</title> 
+<head><title>RASM: Roudoudou&#8217;s Z80 Assembler V1.3</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
@@ -16,12 +16,13 @@
                                                                                     
                                                                                     
 
-<h2 class="titleHead">RASM: Roudoudou&#8217;s Z80 Assembler V0.130</h2>
+<h2 class="titleHead">RASM: Roudoudou&#8217;s Z80 Assembler V1.3</h2>
  <div class="author" ><span 
 class="cmr-12">Édouard BERG</span><span 
 class="cmr-12">É (Roudoudou)</span></div><br />
 <div class="date" ><span 
-class="cmr-12">31 octobre 2020</span></div>
+class="cmr-12">12 d</span><span 
+class="cmr-12">écembre 2020</span></div>
 </div>
 <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Table des matières</h3>
@@ -146,155 +147,155 @@ href="#x1-580005.3.2" id="QQ2-1-58">WHILE, WEND</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >5.3.3 <a 
 href="#x1-590005.3.3" id="QQ2-1-59">Définition d&#8217;une MACRO</a></span>
 <br />&#x00A0;<span class="subsectionToc" >5.4 <a 
-href="#x1-620005.4" id="QQ2-1-62">Labels et modules</a></span>
+href="#x1-630005.4" id="QQ2-1-63">Labels et modules</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >5.4.1 <a 
-href="#x1-630005.4.1" id="QQ2-1-63">Labels Locaux</a></span>
+href="#x1-640005.4.1" id="QQ2-1-64">Labels Locaux</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >5.4.2 <a 
-href="#x1-640005.4.2" id="QQ2-1-64">Labels de proximité</a></span>
+href="#x1-650005.4.2" id="QQ2-1-65">Labels de proximité</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >5.4.3 <a 
-href="#x1-650005.4.3" id="QQ2-1-65">Combinaison de différents types de labels</a></span>
+href="#x1-660005.4.3" id="QQ2-1-66">Combinaison de différents types de labels</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >5.4.4 <a 
-href="#x1-660005.4.4" id="QQ2-1-66">Modules</a></span>
+href="#x1-670005.4.4" id="QQ2-1-67">Modules</a></span>
 <br />&#x00A0;<span class="subsectionToc" >5.5 <a 
-href="#x1-670005.5" id="QQ2-1-67">Structures de données</a></span>
+href="#x1-680005.5" id="QQ2-1-68">Structures de données</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >5.5.1 <a 
-href="#x1-680005.5.1" id="QQ2-1-68">STRUCT</a></span>
+href="#x1-690005.5.1" id="QQ2-1-69">STRUCT</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >5.5.2 <a 
-href="#x1-700005.5.2" id="QQ2-1-70">SIZEOF</a></span>
+href="#x1-710005.5.2" id="QQ2-1-71">SIZEOF</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >5.5.3 <a 
-href="#x1-710005.5.3" id="QQ2-1-71">Tableau de STRUCT</a></span>
+href="#x1-720005.5.3" id="QQ2-1-72">Tableau de STRUCT</a></span>
 <br />&#x00A0;<span class="subsectionToc" >5.6 <a 
-href="#x1-720005.6" id="QQ2-1-72">Durée d&#8217;un bloc</a></span>
+href="#x1-730005.6" id="QQ2-1-73">Durée d&#8217;un bloc</a></span>
 <br /><span class="sectionToc" >6 <a 
-href="#x1-730006" id="QQ2-1-73">Importation et compression</a></span>
+href="#x1-740006" id="QQ2-1-74">Importation et compression</a></span>
 <br />&#x00A0;<span class="subsectionToc" >6.1 <a 
-href="#x1-740006.1" id="QQ2-1-74">Importation de fichiers</a></span>
+href="#x1-750006.1" id="QQ2-1-75">Importation de fichiers</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >6.1.1 <a 
-href="#x1-750006.1.1" id="QQ2-1-75">INCLUDE</a></span>
+href="#x1-760006.1.1" id="QQ2-1-76">INCLUDE</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >6.1.2 <a 
-href="#x1-760006.1.2" id="QQ2-1-76">INCBIN</a></span>
+href="#x1-770006.1.2" id="QQ2-1-77">INCBIN</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >6.1.3 <a 
-href="#x1-770006.1.3" id="QQ2-1-77">Importation de fichiers multipes</a></span>
+href="#x1-780006.1.3" id="QQ2-1-78">Importation de fichiers multipes</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >6.1.4 <a 
-href="#x1-780006.1.4" id="QQ2-1-78">Variantes</a></span>
+href="#x1-790006.1.4" id="QQ2-1-79">Variantes</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >6.1.5 <a 
-href="#x1-790006.1.5" id="QQ2-1-79">Fichiers Audio</a></span>
+href="#x1-800006.1.5" id="QQ2-1-80">Fichiers Audio</a></span>
 <br />&#x00A0;<span class="subsectionToc" >6.2 <a 
-href="#x1-800006.2" id="QQ2-1-80">Compression</a></span>
+href="#x1-810006.2" id="QQ2-1-81">Compression</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >6.2.1 <a 
-href="#x1-810006.2.1" id="QQ2-1-81">Portions compressées</a></span>
+href="#x1-820006.2.1" id="QQ2-1-82">Portions compressées</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >6.2.2 <a 
-href="#x1-820006.2.2" id="QQ2-1-82">Inclusion de fichiers compressés</a></span>
+href="#x1-830006.2.2" id="QQ2-1-83">Inclusion de fichiers compressés</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >6.2.3 <a 
-href="#x1-830006.2.3" id="QQ2-1-83">SUMMEM</a></span>
+href="#x1-840006.2.3" id="QQ2-1-84">SUMMEM</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >6.2.4 <a 
-href="#x1-840006.2.4" id="QQ2-1-84">XORMEM</a></span>
+href="#x1-850006.2.4" id="QQ2-1-85">XORMEM</a></span>
 <br /><span class="sectionToc" >7 <a 
-href="#x1-850007" id="QQ2-1-85">Directives et options spécifique à l&#8217;Amstrad CPC</a></span>
+href="#x1-860007" id="QQ2-1-86">Directives et options spécifique à l&#8217;Amstrad CPC</a></span>
 <br />&#x00A0;<span class="subsectionToc" >7.1 <a 
-href="#x1-860007.1" id="QQ2-1-86">Manipulation des Banques</a></span>
+href="#x1-870007.1" id="QQ2-1-87">Manipulation des Banques</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.1.1 <a 
-href="#x1-870007.1.1" id="QQ2-1-87">Préfixe BANK</a></span>
+href="#x1-880007.1.1" id="QQ2-1-88">Préfixe BANK</a></span>
                                                                                     
                                                                                     
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.1.2 <a 
-href="#x1-880007.1.2" id="QQ2-1-88">Préfixe PAGE</a></span>
+href="#x1-890007.1.2" id="QQ2-1-89">Préfixe PAGE</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.1.3 <a 
-href="#x1-890007.1.3" id="QQ2-1-89">Préfixe PAGESET</a></span>
+href="#x1-900007.1.3" id="QQ2-1-90">Préfixe PAGESET</a></span>
 <br />&#x00A0;<span class="subsectionToc" >7.2 <a 
-href="#x1-900007.2" id="QQ2-1-90">Export de fichiers DSK et entêtes AMSDOS</a></span>
+href="#x1-910007.2" id="QQ2-1-91">Export de fichiers DSK et entêtes AMSDOS</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.2.1 <a 
-href="#x1-910007.2.1" id="QQ2-1-91">Entête AMSDOS</a></span>
+href="#x1-920007.2.1" id="QQ2-1-92">Entête AMSDOS</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.2.2 <a 
-href="#x1-920007.2.2" id="QQ2-1-92">Directive SAVE</a></span>
+href="#x1-930007.2.2" id="QQ2-1-93">Directive SAVE</a></span>
 <br />&#x00A0;<span class="subsectionToc" >7.3 <a 
-href="#x1-930007.3" id="QQ2-1-93">Cartouches et Snapshots</a></span>
+href="#x1-940007.3" id="QQ2-1-94">Cartouches et Snapshots</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.3.1 <a 
-href="#x1-960007.3.1" id="QQ2-1-96">BUILDSNA</a></span>
+href="#x1-970007.3.1" id="QQ2-1-97">BUILDSNA</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.3.2 <a 
-href="#x1-970007.3.2" id="QQ2-1-97">SETCPC</a></span>
+href="#x1-980007.3.2" id="QQ2-1-98">SETCPC</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.3.3 <a 
-href="#x1-980007.3.3" id="QQ2-1-98">SETCRTC</a></span>
+href="#x1-990007.3.3" id="QQ2-1-99">SETCRTC</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.3.4 <a 
-href="#x1-990007.3.4" id="QQ2-1-99">SETSNA</a></span>
+href="#x1-1000007.3.4" id="QQ2-1-100">SETSNA</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.3.5 <a 
-href="#x1-1000007.3.5" id="QQ2-1-100">BANK</a></span>
+href="#x1-1010007.3.5" id="QQ2-1-101">BANK</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.3.6 <a 
-href="#x1-1010007.3.6" id="QQ2-1-101">RUN</a></span>
+href="#x1-1020007.3.6" id="QQ2-1-102">RUN</a></span>
 <br />&#x00A0;<span class="subsectionToc" >7.4 <a 
-href="#x1-1020007.4" id="QQ2-1-102">Directives spécifiques aux snapshots</a></span>
+href="#x1-1030007.4" id="QQ2-1-103">Directives spécifiques aux snapshots</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.4.1 <a 
-href="#x1-1030007.4.1" id="QQ2-1-103">BANKSET</a></span>
+href="#x1-1040007.4.1" id="QQ2-1-104">BANKSET</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.4.2 <a 
-href="#x1-1040007.4.2" id="QQ2-1-104">BREAKPOINT</a></span>
+href="#x1-1050007.4.2" id="QQ2-1-105">BREAKPOINT</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.4.3 <a 
-href="#x1-1050007.4.3" id="QQ2-1-105">Options d&#8217;export</a></span>
+href="#x1-1060007.4.3" id="QQ2-1-106">Options d&#8217;export</a></span>
 <br />&#x00A0;<span class="subsectionToc" >7.5 <a 
-href="#x1-1060007.5" id="QQ2-1-106">Gestion des couleurs du CPC+</a></span>
+href="#x1-1070007.5" id="QQ2-1-107">Gestion des couleurs du CPC+</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.5.1 <a 
-href="#x1-1070007.5.1" id="QQ2-1-107">GET_R, GET_G, GET_B</a></span>
+href="#x1-1080007.5.1" id="QQ2-1-108">GET_R, GET_G, GET_B</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.5.2 <a 
-href="#x1-1080007.5.2" id="QQ2-1-108">SET_R, SET_G, SET_B</a></span>
+href="#x1-1090007.5.2" id="QQ2-1-109">SET_R, SET_G, SET_B</a></span>
 <br />&#x00A0;<span class="subsectionToc" >7.6 <a 
-href="#x1-1090007.6" id="QQ2-1-109">Directives obsolètes</a></span>
+href="#x1-1100007.6" id="QQ2-1-110">Directives obsolètes</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.6.1 <a 
-href="#x1-1100007.6.1" id="QQ2-1-110">NOCODE</a></span>
+href="#x1-1110007.6.1" id="QQ2-1-111">NOCODE</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.6.2 <a 
-href="#x1-1110007.6.2" id="QQ2-1-111">WRITE DIRECT</a></span>
+href="#x1-1120007.6.2" id="QQ2-1-112">WRITE DIRECT</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >7.6.3 <a 
-href="#x1-1120007.6.3" id="QQ2-1-112">LIST, NOLIST, LET</a></span>
+href="#x1-1130007.6.3" id="QQ2-1-113">LIST, NOLIST, LET</a></span>
 <br /><span class="sectionToc" >8 <a 
-href="#x1-1130008" id="QQ2-1-113">Directives et options spécifique au ZX</a></span>
+href="#x1-1140008" id="QQ2-1-114">Directives et options spécifique au ZX</a></span>
 <br />&#x00A0;<span class="subsectionToc" >8.1 <a 
-href="#x1-1140008.1" id="QQ2-1-114">Directive HOBETA</a></span>
+href="#x1-1150008.1" id="QQ2-1-115">Directive HOBETA</a></span>
 <br />&#x00A0;<span class="subsectionToc" >8.2 <a 
-href="#x1-1150008.2" id="QQ2-1-115">Selection des Banques</a></span>
+href="#x1-1160008.2" id="QQ2-1-116">Selection des Banques</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >8.2.1 <a 
-href="#x1-1160008.2.1" id="QQ2-1-116">Directive BUILDZX</a></span>
+href="#x1-1170008.2.1" id="QQ2-1-117">Directive BUILDZX</a></span>
 <br />&#x00A0;<span class="subsectionToc" >8.3 <a 
-href="#x1-1170008.3" id="QQ2-1-117">Options spécifiques</a></span>
+href="#x1-1180008.3" id="QQ2-1-118">Options spécifiques</a></span>
 <br /><span class="sectionToc" >9 <a 
-href="#x1-1180009" id="QQ2-1-118">Compilation</a></span>
+href="#x1-1190009" id="QQ2-1-119">Compilation</a></span>
 <br />&#x00A0;<span class="subsectionToc" >9.1 <a 
-href="#x1-1190009.1" id="QQ2-1-119">Compiler RASM</a></span>
+href="#x1-1200009.1" id="QQ2-1-120">Compiler RASM</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >9.1.1 <a 
-href="#x1-1200009.1.1" id="QQ2-1-120">Linux</a></span>
+href="#x1-1210009.1.1" id="QQ2-1-121">Linux</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >9.1.2 <a 
-href="#x1-1210009.1.2" id="QQ2-1-121">Windows (Visual Studio)</a></span>
+href="#x1-1220009.1.2" id="QQ2-1-122">Windows (Visual Studio)</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >9.1.3 <a 
-href="#x1-1220009.1.3" id="QQ2-1-122">Dos/Windows 32 (Watcom)</a></span>
+href="#x1-1230009.1.3" id="QQ2-1-123">Dos/Windows 32 (Watcom)</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >9.1.4 <a 
-href="#x1-1230009.1.4" id="QQ2-1-123">MacOS</a></span>
+href="#x1-1240009.1.4" id="QQ2-1-124">MacOS</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >9.1.5 <a 
-href="#x1-1240009.1.5" id="QQ2-1-124">MorphOS</a></span>
+href="#x1-1250009.1.5" id="QQ2-1-125">MorphOS</a></span>
 <br />&#x00A0;<span class="subsectionToc" >9.2 <a 
-href="#x1-1250009.2" id="QQ2-1-125">Integrer RASM</a></span>
+href="#x1-1260009.2" id="QQ2-1-126">Integrer RASM</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >9.2.1 <a 
-href="#x1-1260009.2.1" id="QQ2-1-126">Récupération des erreurs et symboles</a></span>
+href="#x1-1270009.2.1" id="QQ2-1-127">Récupération des erreurs et symboles</a></span>
 <br /><span class="sectionToc" >A <a 
-href="#x1-127000A" id="QQ2-1-127">Coloration syntaxique</a></span>
+href="#x1-128000A" id="QQ2-1-128">Coloration syntaxique</a></span>
 <br />&#x00A0;<span class="subsectionToc" >A.1 <a 
-href="#x1-128000A.1" id="QQ2-1-128">Coloration syntaxique dans VIM</a></span>
+href="#x1-129000A.1" id="QQ2-1-129">Coloration syntaxique dans VIM</a></span>
 <br /><span class="sectionToc" >B <a 
-href="#x1-129000B" id="QQ2-1-129">Opcodes Z80</a></span>
+href="#x1-130000B" id="QQ2-1-130">Opcodes Z80</a></span>
 <br />&#x00A0;<span class="subsectionToc" >B.1 <a 
-href="#x1-130000B.1" id="QQ2-1-130">Instructions principales</a></span>
+href="#x1-131000B.1" id="QQ2-1-131">Instructions principales</a></span>
 <br />&#x00A0;<span class="subsectionToc" >B.2 <a 
-href="#x1-131000B.2" id="QQ2-1-131">Instructions étendues (ED)</a></span>
+href="#x1-132000B.2" id="QQ2-1-132">Instructions étendues (ED)</a></span>
 <br />&#x00A0;<span class="subsectionToc" >B.3 <a 
-href="#x1-132000B.3" id="QQ2-1-132">Instruction de manipulation de bits (CB)</a></span>
+href="#x1-133000B.3" id="QQ2-1-133">Instruction de manipulation de bits (CB)</a></span>
 <br />&#x00A0;<span class="subsectionToc" >B.4 <a 
-href="#x1-133000B.4" id="QQ2-1-133">Instructions IX (DD)</a></span>
+href="#x1-134000B.4" id="QQ2-1-134">Instructions IX (DD)</a></span>
 <br />&#x00A0;<span class="subsectionToc" >B.5 <a 
-href="#x1-134000B.5" id="QQ2-1-134">Instruction de manipulations de bits IX (DDCB)</a></span>
+href="#x1-135000B.5" id="QQ2-1-135">Instruction de manipulations de bits IX (DDCB)</a></span>
 <br />&#x00A0;<span class="subsectionToc" >B.6 <a 
-href="#x1-135000B.6" id="QQ2-1-135">Instructions IY (FD)</a></span>
+href="#x1-136000B.6" id="QQ2-1-136">Instructions IY (FD)</a></span>
 <br />&#x00A0;<span class="subsectionToc" >B.7 <a 
-href="#x1-136000B.7" id="QQ2-1-136">Instruction de manipulation de bits IY (FDCB)</a></span>
+href="#x1-137000B.7" id="QQ2-1-137">Instruction de manipulation de bits IY (FDCB)</a></span>
 <br /><span class="sectionToc" >C <a 
-href="#x1-137000C" id="QQ2-1-137">Durée des opcodes du Z80 sur CPC</a></span>
+href="#x1-138000C" id="QQ2-1-138">Durée des opcodes du Z80 sur CPC</a></span>
 <br /><span class="sectionToc" >D <a 
-href="#x1-138000D" id="QQ2-1-138">Licenses</a></span>
+href="#x1-139000D" id="QQ2-1-139">Licenses</a></span>
 </div>
                                                                                     
                                                                                     
@@ -353,7 +354,7 @@ même sur de gros projets.
      </li>
      <li class="itemize">calcul de la durée des instructions</li></ul>
 <!--l. 18--><p class="noindent" >Rasm est diffusé sous licence MIT (voir Annexe <a 
-href="#x1-138000D">D<!--tex4ht:ref: licenses --></a> pour l&#8217;ensemble des licenses).
+href="#x1-139000D">D<!--tex4ht:ref: licenses --></a> pour l&#8217;ensemble des licenses).
 <!--l. 20--><p class="noindent" >La présente documentation est maintenue par Stéphane Sikora, merci de faire remonter vos remarques à
 l&#8217;adresse <span 
 class="cmtt-10">sikoogle+rasm@gmail.com</span>.
@@ -552,33 +553,37 @@ dépendances.
 <h4 class="subsectionHead"><span class="titlemark">2.6   </span> <a 
  id="x1-100002.6"></a>Options de compatibilité</h4>
      <ul class="itemize1">
-     <li class="itemize">-m : compatibilité Maxam
+     <li class="itemize">texttt-m : compatibilité Maxam
      <!--l. 4--><p class="noindent" >&#x00A0;      Les calculs réalisés en entiers 16 bits non signés avec un mauvais arrondi
      <!--l. 5--><p class="noindent" >&#x00A0;      Les comparaisons se font avec l&#8217;opérateur = simple
      <!--l. 6--><p class="noindent" >&#x00A0;      La priorité des opérateurs est simplifiée (voir tableau)
      </li>
-     <li class="itemize">-ass : compatibilité AS80
-     <!--l. 9--><p class="noindent" >&#x00A0;      calculs réalisés en entiers 32 bits avec un mauvais arrondi
-     <!--l. 10--><p class="noindent" >&#x00A0;      Les  déclarations  de  type  DEFB,DEFW,DEFI  ou  DEFR  multiples  ont  pour  référence
+     <li class="itemize">texttt-amper : Utilisé en conjonction avec le mode maxam (<span 
+class="cmtt-10">-m</span>), permet de remplacer les #
+     utilisés dans le source pour représenter des nombre en hexadécilmam, par des &amp;
+     </li>
+     <li class="itemize">texttt-ass : compatibilité AS80
+     <!--l. 10--><p class="noindent" >&#x00A0;      calculs réalisés en entiers 32 bits avec un mauvais arrondi
+     <!--l. 11--><p class="noindent" >&#x00A0;      Les  déclarations  de  type  DEFB,DEFW,DEFI  ou  DEFR  multiples  ont  pour  référence
      d&#8217;adresse l&#8217;adresse du premier octet produit et non l&#8217;adresse de l&#8217;octet courant. Cette spécificité
      d&#8217;AS80 fait que deux DEFB ne produisent pas la même chose qu&#8217;un seul DEFB avec deux valeurs
      quand la référence <span 
 class="tcrm-1000">$ </span>est utilisée.
-     <!--l. 11--><p class="noindent" >&#x00A0;      Les paramètres des macros ne sont plus protégés par les chevrons
-     <!--l. 12--><p class="noindent" >&#x00A0;      La directive MACRO s&#8217;utilise après le nom de la macro et non avant
+     <!--l. 12--><p class="noindent" >&#x00A0;      Les paramètres des macros ne sont plus protégés par les chevrons
+     <!--l. 13--><p class="noindent" >&#x00A0;      La directive MACRO s&#8217;utilise après le nom de la macro et non avant
      </li>
-     <li class="itemize">-uz : compatibilité UZ80
-     <!--l. 15--><p class="noindent" >&#x00A0;      Les calculs sont réalisés en entiers 32 bits avec un mauvais arrondi
-     <!--l. 16--><p class="noindent" >&#x00A0;      Les paramètres des macros ne sont plus protégés par les chevrons
-     <!--l. 17--><p class="noindent" >&#x00A0;      La directive MACRO s&#8217;utilise après le nom de la macro et non avant
+     <li class="itemize">texttt-uz : compatibilité UZ80
+     <!--l. 16--><p class="noindent" >&#x00A0;      Les calculs sont réalisés en entiers 32 bits avec un mauvais arrondi
+     <!--l. 17--><p class="noindent" >&#x00A0;      Les paramètres des macros ne sont plus protégés par les chevrons
+     <!--l. 18--><p class="noindent" >&#x00A0;      La directive MACRO s&#8217;utilise après le nom de la macro et non avant
                                                                                     
                                                                                     
      </li>
-     <li class="itemize">-dams : compatibilité DAMS :
-     <!--l. 20--><p class="noindent" >&#x00A0;      - Les labels commencant par un point sont ignorés
+     <li class="itemize">texttt-dams : compatibilité DAMS :
+     <!--l. 21--><p class="noindent" >&#x00A0;      - Les labels commencant par un point sont ignorés
      </li>
-     <li class="itemize">-pasmo : compatibilité PASMO :
-     <!--l. 23--><p class="noindent" >&#x00A0;      Les  déclarations  de  type  DEFB,DEFW,DEFI  ou  DEFR  multiples  ont  pour  référence
+     <li class="itemize">texttt-pasmo : compatibilité PASMO :
+     <!--l. 24--><p class="noindent" >&#x00A0;      Les  déclarations  de  type  DEFB,DEFW,DEFI  ou  DEFR  multiples  ont  pour  référence
      d&#8217;adresse l&#8217;adresse du premier octet produit et non l&#8217;adresse de l&#8217;octet courant. Cette spécificité
      d&#8217;AS80 fait que deux DEFB ne produisent pas la même chose qu&#8217;un seul DEFB avec deux valeurs
      quand la référence <span 
@@ -605,11 +610,11 @@ class="cmbx-10">??</span>)
      <li class="itemize">-xpr : pour l&#8217;export de fichiers cartouche étendues, permet d&#8217;exporter des fichiers supplémentaires
      par bloc de 512KO (<span 
 class="cmbx-10">??</span>)</li></ul>
-<!--l. 319--><p class="noindent" >
+<!--l. 321--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">2.8   </span> <a 
  id="x1-120002.8"></a>Autres options</h4>
 <!--l. 1--><p class="noindent" >Il existe d&#8217;autres options, qui concernent des architectures spécifiques, en particulier le CPC. La section <a 
-href="#x1-1050007.4.3">7.4.3<!--tex4ht:ref: options_export_cpc --></a>
+href="#x1-1060007.4.3">7.4.3<!--tex4ht:ref: options_export_cpc --></a>
 en particulier. Enfin, l&#8217;option -help donne un récapitulatif de toutes les arguments qui peuvent être passés a
 RASM.
                                                                                     
@@ -651,7 +656,7 @@ class="cmtt-10">BRK </span>ou <span
 class="ectt-1000">@</span><span 
 class="cmtt-10">BRK </span>génère en outre
 un point d&#8217;arrêt (cf section <a 
-href="#x1-1040007.4.2">7.4.2<!--tex4ht:ref: BREAKPOINT --></a>). Nous verrons aussi par la suite qu&#8217;il est possible de définir des labels
+href="#x1-1050007.4.2">7.4.2<!--tex4ht:ref: BREAKPOINT --></a>). Nous verrons aussi par la suite qu&#8217;il est possible de définir des labels
 locaux à des boucles ou macros.
 <div class="framedenv" id="leftbar-1">
 <!--l. 67--><p class="noindent" ><div class="obeylines-v">
@@ -958,7 +963,7 @@ class="cmtt-10">; #8000: #C9</span></div>
 <!--l. 1--><p class="noindent" >Si vous avez besoin de générer plusieurs morceaux de code à la même adresse, vous avez deux
 possibilités. Soit vous utilisez le deuxième paramètre de la directive ORG pour écrire ce code ailleurs,
 soit vous pouvez créer à tout moment un nouvel espace mémoire avec la directive BANK <a 
-href="#x1-1000007.3.5">7.3.5<!--tex4ht:ref: BANK --></a>
+href="#x1-1010007.3.5">7.3.5<!--tex4ht:ref: BANK --></a>
 <div class="framedenv" id="leftbar-1">
 <!--l. 258--><p class="noindent" ><div class="obeylines-v">
 <span 
@@ -1045,7 +1050,7 @@ paramètres en entrée. La valeur peut être une valeur litérale, une formule dont 
 éventuellement arrondi et tronqué ou même une chaine de caractères dont chaque caractère
 produira un octet en sortie égale à sa valeur ASCII, sauf si la directive CHARSET a été utilisée
 pour redéfinir ces valeurs. On pourra indifferemment utiliser DB, DM, DEFB ou DEFM. Par
-exemple le code suivant produira la chaine &#8217;Roudoudou&#8217; : (le &#8217;u&#8217; correspond au code ASCII #75)
+exemple le code suivant produira la chaine &#8217;Roudoudou&#8217; : (le &#8217;u&#8217; correspond au code ASCII #75).
 <a 
  id="dx1-26003"></a>
 <div class="framedenv" id="leftbar-1">
@@ -1057,8 +1062,16 @@ class="cmtt-10">label:</span>
 <br /><span 
 class="cmtt-10">defb &#8217;r&#8217;-&#8217;a&#8217;+&#8217;A&#8217;,&#8217;oudoud&#8217;,#6F,hi(label)</span></div>
 </div>
-<!--l. 348--><p class="noindent" >See CHARSET directive for altering the way strings are interpreted.
-<!--l. 350--><p class="noindent" >
+<!--l. 1--><p class="noindent" >Dans les chaines de caractere, il est possible d&#8217;utiliser le caractere d&#8217;échappement <br 
+class="newline" />pour envoyer des caracteres de controle, comme en C : <br 
+class="newline" /><span 
+class="cmtt-10">n</span><br 
+class="newline" /><span 
+class="cmtt-10">t</span><br 
+class="newline" /><span 
+class="cmtt-10">r</span>
+<!--l. 356--><p class="noindent" >See CHARSET directive for altering the way strings are interpreted.
+<!--l. 358--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">3.5.2   </span> <a 
  id="x1-270003.5.2"></a>DEFW</h5>
 <a 
@@ -1068,19 +1081,19 @@ class="cmtt-10">defb &#8217;r&#8217;-&#8217;a&#8217;+&#8217;A&#8217;,&#8217;oudo
 <div class="verbatim" id="verbatim-13">
 DEFW,&#x00A0;DW&#x00A0;&#x003C;value1&#x003E;[,&#x003C;value2&#x003E;,...]
 </div>
-<!--l. 354--><p class="nopar" >
+<!--l. 362--><p class="nopar" >
 <!--l. 1--><p class="noindent" >La directive <span 
 class="cmtt-10">DEFW </span>(ou son raccourci <span 
 class="cmtt-10">DW</span>) prend un ou plusieurs paramètres et génère une suite de mots (deux
 octets, en little endian) représentative des paramètres en entrée. Les valeurs peuvent être une valeur littérale,
 une formule dont le résultat sera éventuellement arrondi et tronqué. Cette directive ne supporte pas une
 chaine de plusieurs caractères comme valeur.
-<!--l. 366--><p class="noindent" >Example :  <div class="framedenv" id="leftbar-1">
-<!--l. 367--><p class="noindent" ><div class="obeylines-v">
+<!--l. 374--><p class="noindent" >Example :  <div class="framedenv" id="leftbar-1">
+<!--l. 375--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">DEFW mylabel1,mylabel2,&#8217;a&#8217;+#100</span></div>
 </div>
-<!--l. 371--><p class="noindent" >
+<!--l. 379--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">3.5.3   </span> <a 
  id="x1-280003.5.3"></a>DEFI</h5>
 <a 
@@ -1095,7 +1108,7 @@ DEFI&#x00A0;&#x003C;valeur1&#x003E;[,&#x003C;valeur2&#x003E;,...]
 des paramètres en entrée. Les valeurs peuvent être une valeur littérale, une formule dont le résultat sera
 éventuellement arrondi et tronqué. Cette directive ne supporte pas une chaine de plusieurs caractères comme
 valeur.
-<!--l. 389--><p class="noindent" >
+<!--l. 397--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">3.5.4   </span> <a 
  id="x1-290003.5.4"></a>DEFR</h5>
 <a 
@@ -1108,12 +1121,12 @@ DEFR&#x00A0;&#x003C;reel1&#x003E;[,&#x003C;reel2&#x003E;,...]
 <!--l. 3--><p class="nopar" >
 <!--l. 5--><p class="noindent" >La directive DEFR (ou DR) prend un ou plusieurs paramètres et génère une suite de nombre réels (5 octets
 chaque) compatibles avec le firmware des Amstrad CPC.
-<!--l. 408--><p class="noindent" >Example :  <div class="framedenv" id="leftbar-1">
-<!--l. 409--><p class="noindent" ><div class="obeylines-v">
+<!--l. 416--><p class="noindent" >Example :  <div class="framedenv" id="leftbar-1">
+<!--l. 417--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">defr 5/12, 0.5, sin(90)</span></div>
 </div>
-<!--l. 413--><p class="noindent" >
+<!--l. 421--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">3.5.5   </span> <a 
  id="x1-300003.5.5"></a>DEFS</h5>
 <a 
@@ -1123,13 +1136,13 @@ class="cmtt-10">defr 5/12, 0.5, sin(90)</span></div>
 <div class="verbatim" id="verbatim-16">
 DEFS,&#x00A0;DS&#x00A0;&#x003C;repetition&#x003E;[,&#x003C;value&#x003E;,[&#x003C;repetition&#x003E;,...]
 </div>
-<!--l. 417--><p class="nopar" >
+<!--l. 425--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Cette directive génère une suite d&#8217;octets répétitive. Si la valeur de remplissage est omise alors zéro sera
 utilisé par défaut. Si la valeur de répétition est nulle alors aucun octet ne sera produit. Il est possible de
 déclarer plusieurs suites de répétition avec le même DEFS mais les premières répétitions sera toujours
 interprétées comme ayant une valeur à répéter.
-<!--l. 430--><p class="noindent" >Examples :  <div class="framedenv" id="leftbar-1">
-<!--l. 431--><p class="noindent" ><div class="obeylines-v">
+<!--l. 438--><p class="noindent" >Examples :  <div class="framedenv" id="leftbar-1">
+<!--l. 439--><p class="noindent" ><div class="obeylines-v">
 <div class="tabular"> <table id="TBL-8" class="tabular" 
 cellspacing="0" cellpadding="0"  
 ><colgroup id="TBL-8-1g"><col 
@@ -1154,7 +1167,7 @@ class="td11"> <span
 class="cmtt-10">; #00,#00,#00,#00,#00                 </span></td></tr></table>
 </div></div>
 </div>
-<!--l. 440--><p class="noindent" >
+<!--l. 448--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">3.5.6   </span> <a 
  id="x1-310003.5.6"></a>STR</h5>
 <a 
@@ -1164,18 +1177,18 @@ class="cmtt-10">; #00,#00,#00,#00,#00                 </span></td></tr></table>
 <div class="verbatim" id="verbatim-17">
 STR&#x00A0;&#8217;string1&#8217;[,&#8217;string2&#8217;...]
 </div>
-<!--l. 444--><p class="nopar" >
+<!--l. 452--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Directive similaire à <span 
 class="cmtt-10">DEFB</span>, sauf que le dernier caractère de chaque chaine aura son bit 7 forcé à 1
 (opération OR #80 sur le dernier octet).Les deux lignes suivantes produiront les mêmes octets :
 <div class="framedenv" id="leftbar-1">
-<!--l. 455--><p class="noindent" ><div class="obeylines-v">
+<!--l. 463--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">str &#8217;roudoudou&#8217;</span>
 <br /><span 
 class="cmtt-10">defb &#8217;roudoudo&#8217;,&#8217;u&#8217;+128</span></div>
 </div>
-<!--l. 460--><p class="noindent" >
+<!--l. 468--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">3.5.7   </span> <a 
  id="x1-320003.5.7"></a>CHARSET</h5>
 <a 
@@ -1188,7 +1201,7 @@ CHARSET
 &#x00A0;<br />CHARSET&#x00A0;&#x003C;code&#x003E;,&#x003C;value&#x003E;
 &#x00A0;<br />CHARSET&#x00A0;&#x003C;start&#x003E;,&#x003C;end&#x003E;,&#x003C;value&#x003E;
 </div>
-<!--l. 467--><p class="nopar" >
+<!--l. 475--><p class="nopar" >
 <!--l. 1--><p class="noindent" >La directive permet de redéfinir des valeurs aux caractères assemblés entre quotes selon quatre
 formats :
      <ul class="itemize1">
@@ -1228,25 +1241,25 @@ class="cmmi-10">&#x003E;</span>.
      </li>
      <li class="itemize">aucun paramètre : réassigne à tous les caractères leur valeur ASCII par défaut.</li></ul>
 <!--l. 9--><p class="noindent" >Cette fonction est compatible Winape.
-<!--l. 494--><p class="noindent" >Par exemple, une simple redéfinition :
+<!--l. 502--><p class="noindent" >Par exemple, une simple redéfinition :
 <div class="framedenv" id="leftbar-1">
-<!--l. 496--><p class="noindent" ><div class="obeylines-v">
+<!--l. 504--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">CHARSET &#8217;T&#8217;,&#8217;t&#8217; ; &#8217;T&#8217; chars will be translated as &#8217;t&#8217;</span>
 <br /><span 
 class="cmtt-10">DEFB &#8217;tT&#8217; ; #74 #74</span></div>
 </div>
-<!--l. 501--><p class="noindent" >Ou encore de redéfinir par intervalle :
+<!--l. 509--><p class="noindent" >Ou encore de redéfinir par intervalle :
 <div class="framedenv" id="leftbar-1">
-<!--l. 503--><p class="noindent" ><div class="obeylines-v">
+<!--l. 511--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">CHARSET &#8217;A&#8217;,&#8217;Z&#8217;,&#8217;a&#8217; ; Change all uppercases to their respective lowercases</span>
 <br /><span 
 class="cmtt-10">DEFB &#8217;abcdeABCDE&#8217; ; #61,#62,#63,#64,#65,#61,#62,#63,#64,#65</span></div>
 </div>
-<!--l. 508--><p class="noindent" >Il est possible de redéfinir des caractères non consécutifs :
+<!--l. 516--><p class="noindent" >Il est possible de redéfinir des caractères non consécutifs :
 <div class="framedenv" id="leftbar-1">
-<!--l. 510--><p class="noindent" ><div class="obeylines-v">
+<!--l. 518--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">CHARSET &#8217;turndiskheo &#8217;,0</span>
 <br /><span 
@@ -1256,12 +1269,12 @@ class="cmtt-10">;#00,#08,#09,#02,#0B,#05,#06,#0B,#03,#0A,#0B,#00,#01,#02,#03,#04
 </div>
                                                                                     
                                                                                     
-<!--l. 516--><p class="noindent" >
+<!--l. 524--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">3.5.8   </span> <a 
  id="x1-330003.5.8"></a>Opérateur <span 
 class="tcrm-1000">$</span></h5>
 <div class="framedenv" id="leftbar-1">
-<!--l. 522--><p class="noindent" ><div class="obeylines-v">
+<!--l. 530--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">org #8000</span>
 <br /><span 
@@ -1270,23 +1283,23 @@ class="tctt-1000">$</span><span
 class="cmtt-10">,</span><span 
 class="tctt-1000">$</span></div>
 </div>
-<!--l. 527--><p class="noindent" >est équivalent à :
+<!--l. 535--><p class="noindent" >est équivalent à :
 <div class="framedenv" id="leftbar-1">
-<!--l. 529--><p class="noindent" ><div class="obeylines-v">
+<!--l. 537--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">defw #8000,#8002</span></div>
 </div>
-<!--l. 533--><p class="noindent" >En mode de compatibilité AS80, le même code serait équivalent à
+<!--l. 541--><p class="noindent" >En mode de compatibilité AS80, le même code serait équivalent à
 <div class="framedenv" id="leftbar-1">
-<!--l. 535--><p class="noindent" ><div class="obeylines-v">
+<!--l. 543--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">defw #8000,#8000</span></div>
 </div>
-<!--l. 539--><p class="noindent" >Cependant, lorsque <span 
+<!--l. 547--><p class="noindent" >Cependant, lorsque <span 
 class="tcrm-1000">$ </span>est utilisé avec la directive ORG, il fait référence à l&#8217;adresse physique et non l&#8217;adresse
 logique :
 <div class="framedenv" id="leftbar-1">
-<!--l. 541--><p class="noindent" ><div class="obeylines-v">
+<!--l. 549--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">ORG #8000,#1000</span>
 <br /><span 
@@ -2274,22 +2287,58 @@ class="cmtt-10">_counter</span>
 <br /><span 
 class="cmtt-10">REND</span></div>
 </div>
+<!--l. 90--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-620005.3.3"></a><span 
+class="cmbx-10">D</span><span 
+class="cmbx-10">écomposition de registres 16 bits</span></span>
+<a 
+ id="dx1-62001"></a>
+<a 
+ id="dx1-62002"></a>
+Dans une macro, il est possible d&#8217;utiliser LOW et HI pour utiliser le registre bas ou le registre d&#8217;un registre 16
+bits : par exemple <span 
+class="cmtt-10">ld A,R1.low </span>est équivalent à <span 
+class="cmtt-10">ld A,C </span>si R1=BC. Une fonction d&#8217;addition 16 bits pourra
+s&#8217;écrire ainsi :
+<div class="framedenv" id="leftbar-1">
+<!--l. 104--><p class="noindent" ><div class="obeylines-v">
+<span 
+class="cmtt-10">macro add16, R1, R2</span>
+<br /><span 
+class="cmtt-10">&#x00A0;ld A,R1.low</span>
+<br /><span 
+class="cmtt-10">&#x00A0;add R2.low</span>
+<br /><span 
+class="cmtt-10">&#x00A0;ld R1.low,A</span>
+<br /><span 
+class="cmtt-10">&#x00A0;ld A,R1.high</span>
+<br /><span 
+class="cmtt-10">&#x00A0;adc R2.high</span>
+<br /><span 
+class="cmtt-10">&#x00A0;ld R1.high,A</span>
+<br /><span 
+class="cmtt-10">mend</span>
+<br /><span 
+class="cmtt-10">add16 bc,hl</span></div>
+</div>
+                                                                                    
+                                                                                    
 <!--l. 242--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">5.4   </span> <a 
- id="x1-620005.4"></a>Labels et modules</h4>
+ id="x1-630005.4"></a>Labels et modules</h4>
 <!--l. 4--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">5.4.1   </span> <a 
- id="x1-630005.4.1"></a>Labels Locaux</h5>
+ id="x1-640005.4.1"></a>Labels Locaux</h5>
 <a 
- id="dx1-63001"></a>
+ id="dx1-64001"></a>
 <a 
- id="dx1-63002"></a>
+ id="dx1-64002"></a>
 <a 
- id="dx1-63003"></a>
+ id="dx1-64003"></a>
 <a 
- id="dx1-63004"></a>
+ id="dx1-64004"></a>
 <a 
- id="dx1-63005"></a>
+ id="dx1-64005"></a>
 <!--l. 1--><p class="noindent" >À l&#8217;intérieur d&#8217;une boucle (<span 
 class="cmtt-10">REPEAT/WHILE/UNTIL</span>) ou d&#8217;une macro, il est possible d&#8217;utiliser des labels locaux de
 la même façon qu&#8217;avec l&#8217;assembleur intégré de Winape en préfixant le label par le caractère &#8217;<span 
@@ -2302,10 +2351,8 @@ local à une répétition en dehors de la boucle, mais cet usage n&#8217;est pas co
 <!--l. 5--><p class="noindent" >Il est possible d&#8217;utiliser la valeur d&#8217;un label dans une commande (<span 
 class="cmtt-10">ORG </span>par exemple) si et seulement si le label
 précède la directive.
-                                                                                    
-                                                                                    
 <!--l. 7--><p class="noindent" >En mode DAMS<a 
- id="dx1-63006"></a>, il est possible d&#8217;utiliser la déclaration désuète d&#8217;un label en le préfixant d&#8217;un
+ id="dx1-64006"></a>, il est possible d&#8217;utiliser la déclaration désuète d&#8217;un label en le préfixant d&#8217;un
 point. L&#8217;appel à ce label se fera sans le point du début. L&#8217;usage des labels de proximité est alors
 désactivé.
 <div class="framedenv" id="leftbar-1">
@@ -2330,7 +2377,7 @@ class="cmtt-10">rend</span></div>
 </div>
 <!--l. 52--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">5.4.2   </span> <a 
- id="x1-640005.4.2"></a>Labels de proximité</h5>
+ id="x1-650005.4.2"></a>Labels de proximité</h5>
 <!--l. 1--><p class="noindent" >Hors d&#8217;une macro ou d&#8217;une boucle, les labels locaux héritent du label global qui précède. A l&#8217;interieur d&#8217;une
 boucle ou d&#8217;une macro, ils sont relatifs au label qui précède, qui est soit global, soit local. Exemple
 d&#8217;utilisation d&#8217;un label de proximité avec un label global :
@@ -2352,6 +2399,8 @@ class="cmtt-10">_overflow</span>
 class="cmtt-10">routine2:</span>
 <br /><span 
 class="cmtt-10">&#x00A0;add hl,bc</span>
+                                                                                    
+                                                                                    
 <br /><span 
 class="cmtt-10">&#x00A0;jr nc,.no</span><span 
 class="cmtt-10">_overflow</span>
@@ -2375,11 +2424,9 @@ class="cmtt-10">&#x00A0;sbc hl,de</span></div>
 </div>
 <!--l. 85--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">5.4.3   </span> <a 
- id="x1-650005.4.3"></a>Combinaison de différents types de labels</h5>
+ id="x1-660005.4.3"></a>Combinaison de différents types de labels</h5>
 <!--l. 1--><p class="noindent" >L&#8217;exemple suivant permet de montrer les différentes combinaisons possibles, quand on mélange label
 global, local et de proximité. Le code n&#8217;a pas grande utilité, si ce n&#8217;est à illustrer le principe :
-                                                                                    
-                                                                                    
 <div class="framedenv" id="leftbar-1">
 <!--l. 92--><p class="noindent" ><div class="obeylines-v">
 <span 
@@ -2427,11 +2474,13 @@ class="cmtt-10">&#x00A0;jp global2.prox ; (=&#x003E; 7)</span>
 <br /><span 
 class="cmtt-10">&#x00A0;jp .prox ; (=&#x003E; 7)</span></div>
 </div>
+                                                                                    
+                                                                                    
 <!--l. 121--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">5.4.4   </span> <a 
- id="x1-660005.4.4"></a>Modules</h5>
+ id="x1-670005.4.4"></a>Modules</h5>
 <a 
- id="dx1-66001"></a>
+ id="dx1-67001"></a>
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-32">
@@ -2482,14 +2531,14 @@ class="cmtt-10">_start</span></div>
 </div>
 <!--l. 245--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">5.5   </span> <a 
- id="x1-670005.5"></a>Structures de données</h4>
+ id="x1-680005.5"></a>Structures de données</h4>
 <!--l. 2--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">5.5.1   </span> <a 
- id="x1-680005.5.1"></a>STRUCT</h5>
+ id="x1-690005.5.1"></a>STRUCT</h5>
 <a 
- id="dx1-68001"></a>
+ id="dx1-69001"></a>
 <a 
- id="dx1-68002"></a>
+ id="dx1-69002"></a>
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-33">
@@ -2524,7 +2573,7 @@ class="cmtt-10">struct st1 pr2</span>
 class="cmtt-10">endstruct</span></div>
 </div>
 <!--l. 1--><p class="noindent" ><span class="paragraphHead"><a 
- id="x1-690005.5.1"></a><span 
+ id="x1-700005.5.1"></a><span 
 class="cmbx-10">Instanciation</span></span>
 Quand <span 
 class="cmsy-10">{</span><span 
@@ -2555,9 +2604,9 @@ class="cmtt-10">LD A,(IX+metast1.pr2.ch1)</span></div>
 </div>
 <!--l. 70--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">5.5.2   </span> <a 
- id="x1-700005.5.2"></a>SIZEOF</h5>
+ id="x1-710005.5.2"></a>SIZEOF</h5>
 <a 
- id="dx1-70001"></a>
+ id="dx1-71001"></a>
 <!--l. 1--><p class="noindent" >Le préfixe <span 
 class="cmsy-10">{</span><span 
 class="cmtt-10">SIZEOF</span><span 
@@ -2586,7 +2635,7 @@ class="cmtt-10">metast1.pr2.ch1 ; LD A, 2</span></div>
 </div>
 <!--l. 1--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">5.5.3   </span> <a 
- id="x1-710005.5.3"></a>Tableau de STRUCT</h5>
+ id="x1-720005.5.3"></a>Tableau de STRUCT</h5>
 <!--l. 2--><p class="noindent" >Il est possible d&#8217;instancier plusieurs fois la meme structure, comme s&#8217;il s&#8217;agissait d&#8217;un tableau de structures,
 de la facon suivant :
 <div class="framedenv" id="leftbar-1">
@@ -2607,23 +2656,33 @@ class="cmtt-10">LD HL,myinstances5</span></div>
 </div>
 <!--l. 248--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">5.6   </span> <a 
- id="x1-720005.6"></a>Durée d&#8217;un bloc</h4>
+ id="x1-730005.6"></a>Durée d&#8217;un bloc</h4>
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-34">
 TICKER&#x00A0;START,&#x003C;var&#x003E;
 &#x00A0;<br />...
-&#x00A0;<br />TICKER&#x00A0;STOP,&#x003C;var&#x003E;
+&#x00A0;<br />TICKER&#x00A0;STOP|STOPZX,&#x003C;var&#x003E;
 </div>
 <!--l. 256--><p class="nopar" >
-<!--l. 1--><p class="noindent" >Cette directive calcule la durée d&#8217;un bloc d&#8217;instructions (délimité par TICKER START et TICKER STOP)
-et stocke le résultat dans une variable. Elle n&#8217;est pour le moment valable que pour CPC, la durée calculée est
-exprimée en &#8221;nombre de NOPs équivalents&#8221; (cf Annexe C), ce qui correpond à peu pres à la durée en micro
-secondes. Cette directive est très pratique pour écrire et maintenir du code à durée fixe. Par exemple, si on
-veut faire un effet &#8217;raster&#8217;, il faut il faut s&#8217;assurer que l&#8217;on change de couleur à chaque ligne écran, soit toutes
-les 64 microsecondes :
+<!--l. 1--><p class="noindent" >Cette directive calcule la durée d&#8217;un bloc d&#8217;instructions (délimité par <span 
+class="cmtt-10">TICKER START </span>et <span 
+class="cmtt-10">TICKER STOP</span>) et
+stocke le résultat dans une variable. Le nom de la variable doit etre identique pour le <span 
+class="cmtt-10">START </span>et
+le <span 
+class="cmtt-10">STOP</span>. Elle peut etre utilisée pour calculer la durée pour CPC (<span 
+class="cmtt-10">TICKER STOP</span>) ou pour ZX
+(<span 
+class="cmtt-10">TICKER STOPZX</span>). Sur CPC, la durée calculée est exprimée en &#8221;nombre de NOPs équivalents&#8221; (cf
+Annexe C), ce qui correpond à peu pres à la durée en micro secondes. Cette directive est très
+pratique pour écrire et maintenir du code à durée fixe. A noter que pour les instructions de saut
+conditionnel, c&#8217;est la durée en réalisant le saut qui est prise en compte, a l&#8217;exception de l&#8217;opcode RET
+conditionnel.
+<!--l. 7--><p class="noindent" >Par exemple, si on veut faire un effet &#8217;raster&#8217;, il faut il faut s&#8217;assurer que l&#8217;on change de couleur à chaque ligne
+écran, soit toutes les 64 microsecondes :
 <div class="framedenv" id="leftbar-1">
-<!--l. 265--><p class="noindent" ><div class="obeylines-v">
+<!--l. 276--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">ld hl,col</span><span 
 class="cmtt-10">_tab</span>
@@ -2660,15 +2719,15 @@ boucle de 60-cntline NOPs.
                                                                                     
                                                                                     
 <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
- id="x1-730006"></a>Importation et compression</h3>
+ id="x1-740006"></a>Importation et compression</h3>
 <!--l. 4--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">6.1   </span> <a 
- id="x1-740006.1"></a>Importation de fichiers</h4>
+ id="x1-750006.1"></a>Importation de fichiers</h4>
 <!--l. 8--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">6.1.1   </span> <a 
- id="x1-750006.1.1"></a>INCLUDE</h5>
+ id="x1-760006.1.1"></a>INCLUDE</h5>
 <a 
- id="dx1-75001"></a>
+ id="dx1-76001"></a>
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-35">
@@ -2682,9 +2741,9 @@ s&#8217;affranchit de ce répertoire racine. Il n&#8217;y a pas de limite de récu
 vous faites.
 <!--l. 26--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">6.1.2   </span> <a 
- id="x1-760006.1.2"></a>INCBIN</h5>
+ id="x1-770006.1.2"></a>INCBIN</h5>
 <a 
- id="dx1-76001"></a>
+ id="dx1-77001"></a>
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-36">
@@ -2726,7 +2785,7 @@ class="cmtt-10">DEFB #BB ; overwrite 2nd byte (in #4001) without error</span></d
 </div>
 <!--l. 1--><p class="noindent" >Un autre exemple, dans lequel un fichier de 32K est lu en deux fois, par exemple dans deux banques de 16
 différentes (cf <a 
-href="#x1-1000007.3.5">7.3.5<!--tex4ht:ref: BANK --></a>)
+href="#x1-1010007.3.5">7.3.5<!--tex4ht:ref: BANK --></a>)
 <div class="framedenv" id="leftbar-1">
 <!--l. 77--><p class="noindent" ><div class="obeylines-v">
 <span 
@@ -2742,7 +2801,7 @@ class="cmtt-10">incbin &#8217;my32Kbfile.bin&#8217;,16384,16384</span></div>
 </div>
 <!--l. 84--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">6.1.3   </span> <a 
- id="x1-770006.1.3"></a>Importation de fichiers multipes</h5>
+ id="x1-780006.1.3"></a>Importation de fichiers multipes</h5>
 <!--l. 1--><p class="noindent" >Il est possible d&#8217;utiliser <span 
 class="cmtt-10">INCBIN </span>dans un bloc <span 
 class="cmtt-10">REPEAT</span>, par exemple si l&#8217;on veut importer plusieurs fichiers, ici
@@ -2762,7 +2821,7 @@ class="cmtt-10">REND</span></div>
 </div>
 <!--l. 1--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">6.1.4   </span> <a 
- id="x1-780006.1.4"></a>Variantes</h5>
+ id="x1-790006.1.4"></a>Variantes</h5>
 <!--l. 3--><p class="noindent" >La forme avec <span 
 class="cmtt-10">REVERT </span>permet d&#8217;importer un fichier binaire, mais dans le sens inverse.
 <!--l. 5--><p class="noindent" >Les variantes utilisant <span 
@@ -2776,11 +2835,18 @@ correspond aux pixels de gauche à droite, et de droite à gauche sur les lignes i
 correspond à la largeur (en octet) des tiles.
 <!--l. 119--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">6.1.5   </span> <a 
- id="x1-790006.1.5"></a>Fichiers Audio</h5>
+ id="x1-800006.1.5"></a>Fichiers Audio</h5>
 <a 
- id="dx1-79001"></a>
+ id="dx1-80001"></a>
 <a 
- id="dx1-79002"></a>
+ id="dx1-80002"></a>
+                                                                                    
+                                                                                    
+<div class="verbatim" id="verbatim-37">
+&#x00A0;&#x00A0;INCBIN&#x00A0;Filename,SMP|SM2|SM4
+&#x00A0;<br />&#x00A0;&#x00A0;INCBIN&#x00A0;Filename,DMA,preamp,[Option1[,Option2[,...]]]
+</div>
+<!--l. 124--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Les fichiers WAV sont à priori tous supportés quel que soit leur format, mono-canal ou multi-canal. Une
 fusion des voix sera réalisée en cas de fichier multi-canal. Il faut préciser l&#8217;un des quatre formats parmis
 SMP,SM2, SM4 et DMA pour réaliser l&#8217;import du wav (sinon le fichier sera importé tel quel). La fréquence
@@ -2795,49 +2861,78 @@ d&#8217;échantillonage n&#8217;est pas prise en compte.
      dans les bits de poids fort. Le système retenu est le suivant. Les valeurs codées sont les valeurs
      0,13,14,15. Ainsi on peut coder sur seulement 2 bits avec toute l&#8217;amplitude 4 bits du PSG. Il
      suffit de copier les deux bits en position 2 et 3. Le zéro reste zéro de facto.
-                                                                                    
-                                                                                    
      </li>
-     <li class="itemize">Avec le format DMA,chaque échantillon sera converti en une liste de commandes DMA. Le
-     sample devra au préalable avoir été converti à 15600Hz.</li></ul>
+     <li class="itemize">Avec le format DMA,chaque échantillon sera converti en une liste de commandes DMA, pour le
+     CPC+, donc. Le sample devra au préalable avoir été converti à 15600Hz. Avec ce format, on
+     pourra préciser une préamplification, ainsi que des options supplémentaires, aprmi les
+     quelles :
+         <ul class="itemize2">
+         <li class="itemize"><span 
+class="cmtt-10">DMA</span><span 
+class="cmtt-10">_INT </span>: pour déclencer une Interruption à la fin du sample
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">DMA</span><span 
+class="cmtt-10">_CHANNEL</span><span 
+class="cmtt-10">_A </span>, <span 
+class="cmtt-10">DMA</span><span 
+class="cmtt-10">_CHANNEL</span><span 
+class="cmtt-10">_B</span>, <span 
+class="cmtt-10">DMA</span><span 
+class="cmtt-10">_CHANNEL</span><span 
+class="cmtt-10">_C </span>: Pour choisir le Canal PSG utilisé (par
+         défaut c&#8217;est le C)
+         </li>
+         <li class="itemize"><span 
+class="cmtt-10">DMA</span><span 
+class="cmtt-10">_REPEAT,repetition </span>: pour répéter le sample de 1 à 4095 fois</li></ul>
+     </li></ul>
 <div class="framedenv" id="leftbar-1">
-<!--l. 147--><p class="noindent" ><div class="obeylines-v">
+<!--l. 164--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">ORG #4000</span>
 <br /><span 
 class="cmtt-10">INCBIN &#8217;sound.wav&#8217;,SMP</span>
 <br /><span 
-class="cmtt-10">INCBIN &#8217;sound.wav&#8217;,DMA</span></div>
+class="cmtt-10">INCBIN &#8217;sound.wav&#8217;,DMA,1,DMA</span><span 
+class="cmtt-10">_CHANNEL</span><span 
+class="cmtt-10">_A,DMA</span><span 
+class="cmtt-10">_INT,DMA</span><span 
+class="cmtt-10">_REPEAT,4</span></div>
 </div>
-<!--l. 154--><p class="noindent" >
+<!--l. 170--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">6.2   </span> <a 
- id="x1-800006.2"></a>Compression</h4>
+ id="x1-810006.2"></a>Compression</h4>
 <!--l. 1--><p class="noindent" >RASM intègre de nombreuses méthodes de compression que l&#8217;on peut directement utiliser dans le code
 assembleur, soit en définissant des sections à compresser, soit en incluant des binaires qui seront compressés à
 la volée.
+                                                                                    
+                                                                                    
 <!--l. 3--><p class="noindent" >Pour l&#8217;opération inverse, la décompression on pourra utiliser les routines distribuées avec rasm
-<!--l. 162--><p class="noindent" >
+<!--l. 178--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">6.2.1   </span> <a 
- id="x1-810006.2.1"></a>Portions compressées</h5>
+ id="x1-820006.2.1"></a>Portions compressées</h5>
 <a 
- id="dx1-81001"></a>
+ id="dx1-82001"></a>
 <a 
- id="dx1-81002"></a>
+ id="dx1-82002"></a>
 <a 
- id="dx1-81003"></a>
+ id="dx1-82003"></a>
 <a 
- id="dx1-81004"></a>
+ id="dx1-82004"></a>
 <a 
- id="dx1-81005"></a>
+ id="dx1-82005"></a>
 <a 
- id="dx1-81006"></a>
+ id="dx1-82006"></a>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-37">
-LZ48&#x00A0;|&#x00A0;LZ49&#x00A0;|&#x00A0;LZ4&#x00A0;|&#x00A0;LZX7&#x00A0;|&#x00A0;LZEXO&#x00A0;|&#x00A0;LZAPU&#x00A0;...&#x00A0;LZCLOSE
+<div class="verbatim" id="verbatim-38">
+LZ48&#x00A0;|&#x00A0;LZ49&#x00A0;|&#x00A0;LZ4&#x00A0;|&#x00A0;LZX7&#x00A0;|&#x00A0;LZEXO&#x00A0;|&#x00A0;LZAPU&#x00A0;|LZSA1&#x00A0;[minmatchsize]&#x00A0;|&#x00A0;LZSA2&#x00A0;[minmatchsize]
+&#x00A0;<br />...
+&#x00A0;<br />LZCLOSE
 </div>
-<!--l. 166--><p class="nopar" >
-<!--l. 1--><p class="noindent" >Ouvrir un segment de code compressé en LZ48,LZ49, LZ4, ZX7, LZAPU ou Exomizer. Une section
+<!--l. 184--><p class="nopar" >
+<!--l. 1--><p class="noindent" >Ouvrir un segment de code compressé en LZ48,LZ49, LZ4, ZX7, LZAPU, LZSA ou Exomizer. Une section
 compressée se ferme avec <span 
 class="cmtt-10">LZCLOSE</span>. Le code produit sera compressé après assemblage et l&#8217;ensemble
 du code situé après la zone sera relogé. Il n&#8217;est pas possible d&#8217;appeler un label situé après un
@@ -2845,8 +2940,12 @@ segment compressé depuis le code compressé pour des raisons évidentes dûes aux a
 compression. Une erreur s&#8217;affichera expliquant pourquoi. Le code ou les données d&#8217;une zone LZ ne
 peut excéder l&#8217;espace d&#8217;adressage de 64Ko. Enfin, il n&#8217;est pas possible d&#8217;imbriquer les segments
 compressés.
+<!--l. 6--><p class="noindent" >A noter que LZSA peut prendre un parametre supplémentaire, pour indiquer le niveau de compression et
+la vitesse de décompression. Par exemple pour LZSA1, on mettra le paramètre minmatch à 5
+pour décompresser rapidement. Pour LZSA2, mettre 2 pour compresser fortement. Pour plus de
+détail, on pourra consulter les comparatifs réalisés par Emmanuel Marty, l&#8217;auteur du compresseur.
 <div class="framedenv" id="leftbar-1">
-<!--l. 190--><p class="noindent" ><div class="obeylines-v">
+<!--l. 217--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">org #1000</span>
 <br /><span 
@@ -2881,59 +2980,61 @@ class="cmtt-10">next:</span>
 <br /><span 
 class="cmtt-10">ret</span></div>
 </div>
-<!--l. 212--><p class="noindent" >
+<!--l. 241--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">6.2.2   </span> <a 
- id="x1-820006.2.2"></a>Inclusion de fichiers compressés</h5>
-<a 
- id="dx1-82001"></a>
-<a 
- id="dx1-82002"></a>
-<a 
- id="dx1-82003"></a>
-<a 
- id="dx1-82004"></a>
-<a 
- id="dx1-82005"></a>
-<a 
- id="dx1-82006"></a>
-<a 
- id="dx1-82007"></a>
+ id="x1-830006.2.2"></a>Inclusion de fichiers compressés</h5>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-38">
-INCL48,&#x00A0;INCL49,&#x00A0;INCLZ4,&#x00A0;INCZX7,&#x00A0;INCEXO,&#x00A0;INCAPU&#x00A0;&#x00A0;&#x00A0;&#8217;file&#x00A0;to&#x00A0;read&#8217;
-</div>
-<!--l. 216--><p class="nopar" >
-<!--l. 1--><p class="noindent" >Lire un fichier binaire, le compresser en LZ48, LZ49, LZ4, Exomizer, LZAPU ou ZX7 et l&#8217;injecter directement
-dans le code.
-<!--l. 227--><p class="noindent" >
-<h5 class="subsubsectionHead"><span class="titlemark">6.2.3   </span> <a 
- id="x1-830006.2.3"></a>SUMMEM</h5>
+<a 
+ id="dx1-83001"></a>
+<a 
+ id="dx1-83002"></a>
+<a 
+ id="dx1-83003"></a>
+<a 
+ id="dx1-83004"></a>
+<a 
+ id="dx1-83005"></a>
+<a 
+ id="dx1-83006"></a>
+<a 
+ id="dx1-83007"></a>
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-39">
+INCL48,&#x00A0;INCL49,&#x00A0;INCLZ4,&#x00A0;INCZX7,&#x00A0;INCEXO,&#x00A0;INCAPU,&#x00A0;INCLZSA1,&#x00A0;INCLZSA2&#x00A0;&#x00A0;&#8217;file&#x00A0;to&#x00A0;read&#8217;
+</div>
+<!--l. 245--><p class="nopar" >
+<!--l. 1--><p class="noindent" >Lire un fichier binaire, le compresser en LZ48, LZ49, LZ4, Exomizer, LZAPU, LZSA ou ZX7 et l&#8217;injecter
+directement dans le code.
+<!--l. 256--><p class="noindent" >
+<h5 class="subsubsectionHead"><span class="titlemark">6.2.3   </span> <a 
+ id="x1-840006.2.3"></a>SUMMEM</h5>
+                                                                                    
+                                                                                    
+<div class="verbatim" id="verbatim-40">
 SUMMEM&#x00A0;start_address,end_address
 </div>
-<!--l. 230--><p class="nopar" > Calcule la somme des octets compris dans la zone définie par les 2 paramètres <span 
+<!--l. 259--><p class="nopar" > Calcule la somme des octets compris dans la zone définie par les 2 paramètres <span 
 class="cmtt-10">start</span><span 
 class="cmtt-10">_address </span>et
 <span 
 class="cmtt-10">end</span><span 
 class="cmtt-10">_address</span>, et écrit le résultat à l&#8217;endroit où se situe la directive. Le calcul est fait sur la banque courante.
-<!--l. 244--><p class="noindent" >
+<!--l. 273--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">6.2.4   </span> <a 
- id="x1-840006.2.4"></a>XORMEM</h5>
+ id="x1-850006.2.4"></a>XORMEM</h5>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-40">
+<div class="verbatim" id="verbatim-41">
 XORMEM&#x00A0;start_address,end_address
 </div>
-<!--l. 247--><p class="nopar" >
+<!--l. 276--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Identique a <span 
 class="cmtt-10">SUMMEM </span>mais applique l&#8217;opérateur XOR sur chaque octet de la zone mémoire. Un exemple
 d&#8217;utilisation est le calcul d&#8217;un checksum d&#8217;une zone mémoire (ROM par exemple).
 <div class="framedenv" id="leftbar-1">
-<!--l. 260--><p class="noindent" ><div class="obeylines-v">
+<!--l. 289--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">checkrom:</span>
 <br /><span 
@@ -2978,22 +3079,22 @@ class="cmtt-10">xormem 0,#1000</span></div>
                                                                                     
                                                                                     
 <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
- id="x1-850007"></a>Directives et options spécifique à l&#8217;Amstrad CPC</h3>
+ id="x1-860007"></a>Directives et options spécifique à l&#8217;Amstrad CPC</h3>
 <!--l. 1--><p class="noindent" >RASM intègre des options et des directives qui ne concernent que l&#8217;architecture spécifique de l&#8217;Amstrad CPC,
 comme l&#8217;accès aux banques mémoire, et de ses émulateurs (export DSK, snapshots). Il offre en outre le
 support du format cartouche.
 <!--l. 7--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">7.1   </span> <a 
- id="x1-860007.1"></a>Manipulation des Banques</h4>
+ id="x1-870007.1"></a>Manipulation des Banques</h4>
 <!--l. 1--><p class="noindent" >Les banques mémoires du 6128 peuvent être manipulées en envoyant des données sur le port #7F (le
 composant gate array), ce qui permet de les échanger par page de 16K. Pour simplifier l&#8217;écriture du code,
 RASM introduit des préfixes qui permettent de récuperer non pas l&#8217;adresse d&#8217;un label, mais la valeur utilisée
 pour sélectionner les banques.
 <!--l. 13--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.1.1   </span> <a 
- id="x1-870007.1.1"></a>Préfixe BANK</h5>
+ id="x1-880007.1.1"></a>Préfixe BANK</h5>
 <a 
- id="dx1-87001"></a>
+ id="dx1-88001"></a>
 <!--l. 1--><p class="noindent" >Le préfixe <span 
 class="cmsy-10">{</span><span 
 class="cmtt-10">BANK</span><span 
@@ -3031,9 +3132,9 @@ class="tctt-1000">$</span></div>
 </div>
 <!--l. 36--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.1.2   </span> <a 
- id="x1-880007.1.2"></a>Préfixe PAGE</h5>
+ id="x1-890007.1.2"></a>Préfixe PAGE</h5>
 <a 
- id="dx1-88001"></a>
+ id="dx1-89001"></a>
 <!--l. 1--><p class="noindent" >Le préfixe <span 
 class="cmsy-10">{</span><span 
 class="cmtt-10">PAGE</span><span 
@@ -3076,9 +3177,9 @@ class="tctt-1000">$</span></div>
 </div>
 <!--l. 64--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.1.3   </span> <a 
- id="x1-890007.1.3"></a>Préfixe PAGESET</h5>
+ id="x1-900007.1.3"></a>Préfixe PAGESET</h5>
 <a 
- id="dx1-89001"></a>
+ id="dx1-90001"></a>
 <!--l. 1--><p class="noindent" >Le préfixe <span 
 class="cmsy-10">{</span><span 
 class="cmtt-10">PAGESET</span><span 
@@ -3124,14 +3225,14 @@ class="tctt-1000">$</span></div>
 </div>
 <!--l. 86--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">7.2   </span> <a 
- id="x1-900007.2"></a>Export de fichiers DSK et entêtes AMSDOS</h4>
+ id="x1-910007.2"></a>Export de fichiers DSK et entêtes AMSDOS</h4>
 <a 
- id="dx1-90001"></a>
+ id="dx1-91001"></a>
 <a 
- id="dx1-90002"></a>
+ id="dx1-91002"></a>
 <!--l. 88--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.2.1   </span> <a 
- id="x1-910007.2.1"></a>Entête AMSDOS</h5>
+ id="x1-920007.2.1"></a>Entête AMSDOS</h5>
 <!--l. 1--><p class="noindent" >L&#8217;utilisation de cette directive ajoute un entête Amsdos au fichier binaire produit automatiquement par
 Rasm. Cet entête est sans effet sur la directive <span 
 class="cmtt-10">SAVE </span>que nous allons voir au prochain paragraphe (elle dispose
@@ -3140,13 +3241,13 @@ de sa propre option pour ajouter cet entête à la demande).
                                                                                     
 <!--l. 99--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.2.2   </span> <a 
- id="x1-920007.2.2"></a>Directive SAVE</h5>
+ id="x1-930007.2.2"></a>Directive SAVE</h5>
 <a 
- id="dx1-92001"></a>
+ id="dx1-93001"></a>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-41">
-SAVE&#x00A0;&#8217;filename&#8217;,&#x003C;address&#x003E;,&#x003C;size&#x003E;[,AMSDOS|DSK[,&#8217;dsk&#x00A0;filename&#8217;[,&#x003C;side&#x003E;]]]
+<div class="verbatim" id="verbatim-42">
+SAVE&#x00A0;&#8217;filename&#8217;,&#x003C;address&#x003E;,&#x003C;size&#x003E;[,AMSDOS|DSK|TAPE[,&#8217;filename&#8217;[,&#x003C;side&#x003E;]]]
 </div>
 <!--l. 103--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Enregistre un fichier binaire à partir de la mémoire adresse jusqu&#8217;à adresse+taille de l&#8217;espace mémoire en
@@ -3160,9 +3261,10 @@ fichier DSK existe déja, RASM va vérifier si le fichier binaire généré existe dé
 refusera de mettre à jour le DSK, sauf si on passe l&#8217;option <span 
 class="cmtt-10">-eo</span>. Si le DSK n&#8217;existe pas, il sera
 automatiquement créé.
-<!--l. 7--><p class="noindent" >Exemples :
+<!--l. 6--><p class="noindent" >Avec le format TAPE, c&#8217;est un fichier au format CDT qui sera produit.
+<!--l. 8--><p class="noindent" >Exemples :
 <div class="framedenv" id="leftbar-1">
-<!--l. 125--><p class="noindent" ><div class="obeylines-v">
+<!--l. 128--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">;Sauve un fichier binaire</span>
 <br /><span 
@@ -3176,8 +3278,8 @@ class="cmtt-10">;Sauve un binaire AMSDOS dans un fichier DSK</span>
 <br /><span 
 class="cmtt-10">SAVE &#8217;myfile.bin&#8217;,start,size,DSK,&#8217;fichierdsk.dsk&#8217;</span></div>
 </div>
-<!--l. 136--><p class="noindent" >Combiné avec RUN :  <div class="framedenv" id="leftbar-1">
-<!--l. 137--><p class="noindent" ><div class="obeylines-v">
+<!--l. 139--><p class="noindent" >Combiné avec RUN :  <div class="framedenv" id="leftbar-1">
+<!--l. 140--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">ORG #9000</span>
 <br /><span 
@@ -3193,34 +3295,34 @@ class="cmtt-10">RUN start</span>
 <br /><span 
 class="cmtt-10">SAVE &#8217;main.bin&#8217;,start,end-start,DSK,&#8217;main.dsk&#8217;</span></div>
 </div>
-<!--l. 154--><p class="noindent" >
+<!--l. 157--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">7.3   </span> <a 
- id="x1-930007.3"></a>Cartouches et Snapshots</h4>
+ id="x1-940007.3"></a>Cartouches et Snapshots</h4>
 <a 
- id="dx1-93001"></a>
+ id="dx1-94001"></a>
 <a 
- id="dx1-93002"></a>
+ id="dx1-94002"></a>
 <!--l. 1--><p class="noindent" >En plus du format DSK, RASM permet l&#8217;exportation de fichiers au format cartridge et snapshot. Ils peuvent
 etre utilisés par certains émulateurs (Winape, Ace, etc.). La methode pour produire les deux formats est très
+                                                                                    
+                                                                                    
 similaire. En début de programme, il faut utiliser les directives <span 
 class="cmtt-10">BUILDCPR </span>ou <span 
 class="cmtt-10">BUILDSNA</span>, <span 
 class="cmtt-10">BANK </span>et
-                                                                                    
-                                                                                    
 <span 
 class="cmtt-10">RUN</span>. C&#8217;est la directive BANK qui va provoquer la génération d&#8217;une cartouche ou d&#8217;un snapshot.
-<!--l. 170--><p class="noindent" ><span class="paragraphHead"><a 
- id="x1-940007.3"></a><span 
+<!--l. 173--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-950007.3"></a><span 
 class="cmbx-10">G</span><span 
 class="cmbx-10">én</span><span 
 class="cmbx-10">ération d&#8217;une Cartouche</span></span>
 Pour générer une cartouche, il suffit que le source débute par les deux lignes suivantes :
 <div class="framedenv" id="leftbar-1">
-<!--l. 176--><p class="noindent" ><div class="obeylines-v"><a 
- id="dx1-94001"></a><a 
- id="dx1-94002"></a><a 
- id="dx1-94003"></a>
+<!--l. 179--><p class="noindent" ><div class="obeylines-v"><a 
+ id="dx1-95001"></a><a 
+ id="dx1-95002"></a><a 
+ id="dx1-95003"></a>
 <br /><span 
 class="cmtt-10">BUILDCPR [EXTENDED]</span>
 <br /><span 
@@ -3236,15 +3338,15 @@ class="cmtt-10">EXTENDED </span>c&#8217;est une cartouche
 étendue (un fichier xpr) qui sera généré. Peut etre utilisé en conjonction avec l&#8217;option <span 
 class="cmtt-10">-xpr</span>
 pour générer des fichiers supplémentaires de 512KB pour tous les slots de la cartouche étendue.
-<!--l. 194--><p class="noindent" ><span class="paragraphHead"><a 
- id="x1-950007.3"></a><span 
+<!--l. 197--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-960007.3"></a><span 
 class="cmbx-10">G</span><span 
 class="cmbx-10">én</span><span 
 class="cmbx-10">ération d&#8217;un Snapshot</span></span>
 La génération d&#8217;un snapshot necessite aussi quelques lignes,très similaires à la cartouche. Ici avec un
 programme dont le point d&#8217;entrée à l&#8217;adresse #A000 :
 <div class="framedenv" id="leftbar-1">
-<!--l. 204--><p class="noindent" ><div class="obeylines-v">
+<!--l. 207--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">BUILDSNA</span>
 <br /><span 
@@ -3253,19 +3355,19 @@ class="cmtt-10">BANK 0</span>
 class="cmtt-10">RUN #A000</span></div>
 </div>
 Il est aussi possible d&#8217;utiliser la directive BANKSET pour generer un fichier snapshot.
-<!--l. 214--><p class="noindent" >
+<!--l. 217--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.3.1   </span> <a 
- id="x1-960007.3.1"></a>BUILDSNA</h5>
+ id="x1-970007.3.1"></a>BUILDSNA</h5>
 <a 
- id="dx1-96001"></a>
+ id="dx1-97001"></a>
 <a 
- id="dx1-96002"></a>
+ id="dx1-97002"></a>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-42">
+<div class="verbatim" id="verbatim-43">
 BUILDSNA&#x00A0;[V2]
 </div>
-<!--l. 217--><p class="nopar" >
+<!--l. 220--><p class="nopar" >
 <!--l. 1--><p class="noindent" >L&#8217;usage de la directive <span 
 class="cmtt-10">BUILDSNA </span>indique à Rasm que l&#8217;on veut générer un snapshot et non une
 cartouche. De plus, à la différence d&#8217;une cartouche, il faut préciser le point d&#8217;entreé (0 n&#8217;étant pas
@@ -3278,17 +3380,17 @@ désactivées et le mode d&#8217;interruption est 1. Par défaut le snapshot est in
 class="cmtt-10">SETCRTC </span>et <span 
 class="cmtt-10">SETCPC </span>de choisir un autre type de CPC et de CRTC.
 De plus, il est possible de spécifier la valeur des registres des dfférents circuits avec SNASET :
-<!--l. 239--><p class="noindent" >
+<!--l. 242--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.3.2   </span> <a 
- id="x1-970007.3.2"></a>SETCPC</h5>
+ id="x1-980007.3.2"></a>SETCPC</h5>
 <a 
- id="dx1-97001"></a>
+ id="dx1-98001"></a>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-43">
+<div class="verbatim" id="verbatim-44">
 SETCPC&#x00A0;&#x003C;model&#x003E;
 </div>
-<!--l. 243--><p class="nopar" >
+<!--l. 246--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Choisir le modèle de CPC quand on enregistre un snapshot. Les valeurs autorisées sont :
 <div class="tabular"> <table id="TBL-11" class="tabular" 
 cellspacing="0" cellpadding="0"  
@@ -3320,33 +3422,33 @@ class="td11"> GX-4000    </td>
 </tr><tr  
  style="vertical-align:baseline;" id="TBL-11-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-11-7-1"  
 class="td11">     </td></tr></table></div>
-<!--l. 262--><p class="noindent" >
+<!--l. 265--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.3.3   </span> <a 
- id="x1-980007.3.3"></a>SETCRTC</h5>
-<a 
- id="dx1-98001"></a>
-                                                                                    
-                                                                                    
-<div class="verbatim" id="verbatim-44">
-SETCRTC&#x00A0;&#x003C;CRTC&#x00A0;model&#x003E;
-</div>
-<!--l. 266--><p class="nopar" >
-<!--l. 1--><p class="noindent" >Choisir le modèle de CRTC quand on enregistre un snapshot. Les valeurs autorisées vont de 0 à 4.
-Pour rappel, les CPC ont des CRTC 0,1,2 ou 4 et les Plus ou GX-4000 ont tous le CRTC 3.
-<!--l. 276--><p class="noindent" >
-<h5 class="subsubsectionHead"><span class="titlemark">7.3.4   </span> <a 
- id="x1-990007.3.4"></a>SETSNA</h5>
+ id="x1-990007.3.3"></a>SETCRTC</h5>
 <a 
  id="dx1-99001"></a>
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-45">
+SETCRTC&#x00A0;&#x003C;CRTC&#x00A0;model&#x003E;
+</div>
+<!--l. 269--><p class="nopar" >
+<!--l. 1--><p class="noindent" >Choisir le modèle de CRTC quand on enregistre un snapshot. Les valeurs autorisées vont de 0 à 4.
+Pour rappel, les CPC ont des CRTC 0,1,2 ou 4 et les Plus ou GX-4000 ont tous le CRTC 3.
+<!--l. 279--><p class="noindent" >
+<h5 class="subsubsectionHead"><span class="titlemark">7.3.4   </span> <a 
+ id="x1-1000007.3.4"></a>SETSNA</h5>
+<a 
+ id="dx1-100001"></a>
+                                                                                    
+                                                                                    
+<div class="verbatim" id="verbatim-46">
 SETSNA&#x00A0;RegisterName,value
 &#x00A0;<br />SETSNA&#x00A0;GA_PAL,index,value
 &#x00A0;<br />SETSNA&#x00A0;CRTC_REG,index,value
 &#x00A0;<br />SETSNA&#x00A0;PSG_REG,index,value
 </div>
-<!--l. 283--><p class="nopar" >
+<!--l. 286--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Avec la première syntaxe (qui prend 2 parametres), les registres suivants peut etre initialisés :
      <ul class="itemize1">
      <li class="itemize">Z80 Main registers : Z80_AF, Z80_F, Z80_A, Z80_BC, Z80_C, Z80_B, Z80_DE, Z80_E, Z80_D,
@@ -3372,26 +3474,26 @@ SETSNA&#x00A0;RegisterName,value
      <li class="itemize">INTERRUPTS : INT_REQ</li></ul>
 <!--l. 1--><p class="noindent" >Avec les 3 autres syntaxes, <span 
 class="cmtt-10">SETSNA </span>prend un parametre supplémentaire, qui est l&#8217;index du registre :
-<!--l. 346--><p class="noindent" >
+<!--l. 349--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.3.5   </span> <a 
- id="x1-1000007.3.5"></a>BANK</h5>
+ id="x1-1010007.3.5"></a>BANK</h5>
 <a 
- id="dx1-100001"></a>
+ id="dx1-101001"></a>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-46">
+<div class="verbatim" id="verbatim-47">
 BANK&#x00A0;[ROM&#x00A0;page&#x00A0;number]
 &#x00A0;<br />BANK&#x00A0;[RAM&#x00A0;page&#x00A0;number]
 &#x00A0;<br />BANK&#x00A0;NEXT
 </div>
-<!--l. 351--><p class="nopar" >
+<!--l. 354--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Sélectionner un emplacement ROM (cartouche) ou RAM (snapshot). L&#8217;usage de cette instruction active par
 défaut l&#8217;écriture de la cartouche en fin d&#8217;assemblage. Les valeurs possibles vont de 0 à 31. En mode snapshot
 on peut aussi utiliser cette directive, cette fois avec des valeurs de 0 à 35 (64K de base + 512K d&#8217;extension
 mémoire).
 <!--l. 4--><p class="noindent" >Sans paramètre, ou avec le parametre NEXT, la directive ouvre un nouvel espace mémoire de travail.
 <div class="framedenv" id="leftbar-1">
-<!--l. 369--><p class="noindent" ><div class="obeylines-v">
+<!--l. 372--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">BUILDSNA ; recommanded usage when using snapshot is to set it first</span>
 <br /><span 
@@ -3445,34 +3547,34 @@ class="cmtt-10">&#x00A0;SAVE"another",pouet,camion-pouet</span></div>
 hardware ne gèrent pas encore le format v3. Pour rétrograder les snapshots en format v2 (128K maximum,
 non compressés), il suffit d&#8217;ajouter le paramètre V2 après la directive ou de passer le parametre -v2 au
 lancement de RASM.
-<!--l. 411--><p class="noindent" >
+<!--l. 414--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.3.6   </span> <a 
- id="x1-1010007.3.6"></a>RUN</h5>
+ id="x1-1020007.3.6"></a>RUN</h5>
 <a 
- id="dx1-101001"></a>
-                                                                                    
-                                                                                    
-<div class="verbatim" id="verbatim-47">
-RUN&#x00A0;&#x003C;address&#x003E;[,&#x003C;gate&#x00A0;array&#x00A0;configuration&#x003E;]
-</div>
-<!--l. 414--><p class="nopar" >
-<!--l. 1--><p class="noindent" >Cette directive n&#8217;est prise en compte que si on génère un snapshot. Alors l&#8217;adresse de démarrage du code sera
-injectée dans le snapshot. En option on peut spécifier la configuration du gate array, typiquement pour
-exécuter un programme depuis les 64K de mémoire étendue.
-<!--l. 426--><p class="noindent" >
-<h4 class="subsectionHead"><span class="titlemark">7.4   </span> <a 
- id="x1-1020007.4"></a>Directives spécifiques aux snapshots</h4>
-<!--l. 428--><p class="noindent" >
-<h5 class="subsubsectionHead"><span class="titlemark">7.4.1   </span> <a 
- id="x1-1030007.4.1"></a>BANKSET</h5>
-<a 
- id="dx1-103001"></a>
+ id="dx1-102001"></a>
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-48">
+RUN&#x00A0;&#x003C;address&#x003E;[,&#x003C;gate&#x00A0;array&#x00A0;configuration&#x003E;]
+</div>
+<!--l. 417--><p class="nopar" >
+<!--l. 1--><p class="noindent" >Cette directive n&#8217;est prise en compte que si on génère un snapshot. Alors l&#8217;adresse de démarrage du code sera
+injectée dans le snapshot. En option on peut spécifier la configuration du gate array, typiquement pour
+exécuter un programme depuis les 64K de mémoire étendue.
+<!--l. 429--><p class="noindent" >
+<h4 class="subsectionHead"><span class="titlemark">7.4   </span> <a 
+ id="x1-1030007.4"></a>Directives spécifiques aux snapshots</h4>
+<!--l. 431--><p class="noindent" >
+<h5 class="subsubsectionHead"><span class="titlemark">7.4.1   </span> <a 
+ id="x1-1040007.4.1"></a>BANKSET</h5>
+<a 
+ id="dx1-104001"></a>
+                                                                                    
+                                                                                    
+<div class="verbatim" id="verbatim-49">
 BANKSET&#x00A0;&#x003C;64K&#x00A0;bloc&#x00A0;number&#x003E;
 </div>
-<!--l. 431--><p class="nopar" >
+<!--l. 434--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Sert à sélectionner un emplacement mémoire pour les snapshots, en groupant les pages 4 à 4. Le format
 snapshot v3 supportant au maximum une extension de 512K, il y a 9 sets mémoire indexés de 0 à
 8.
@@ -3484,20 +3586,20 @@ class="cmtt-10">BANK </span>et <span
 class="cmtt-10">BANKSET</span>. Un contrôle déclenchera une erreur si vous tentez de le
 faire.
 <!--l. 5--><p class="noindent" >L&#8217;appel de cette directive force automatiquement la génération de snapshot.
-<!--l. 450--><p class="noindent" >
+<!--l. 453--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.4.2   </span> <a 
- id="x1-1040007.4.2"></a>BREAKPOINT</h5>
+ id="x1-1050007.4.2"></a>BREAKPOINT</h5>
 <a 
- id="dx1-104001"></a>
+ id="dx1-105001"></a>
 <a 
- id="dx1-104002"></a>
+ id="dx1-105002"></a>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-49">
+<div class="verbatim" id="verbatim-50">
 BREAKPOINT&#x00A0;[&#x003C;address&#x003E;]
 &#x00A0;<br />[@]BRKlabel
 </div>
-<!--l. 455--><p class="nopar" >
+<!--l. 458--><p class="nopar" >
 <!--l. 2--><p class="noindent" >Ajoute un point d&#8217;arrêt (ce n&#8217;est pas une instruction qui est assemblée) avec pour adresse de break l&#8217;adresse
 de l&#8217;instruction suivante ou celle du paramètre optionnel. Les points d&#8217;arrêt peuvent être exportés sous forme
 de fichier brut ou dans les snapshots (compatible avec les émulateurs ACE et Winape) avec l&#8217;option -sb.
@@ -3505,15 +3607,15 @@ Note : Tout label qui commence par le préfixe <span
 class="cmtt-10">BRK </span>ou <span 
 class="ectt-1000">@</span><span 
 class="cmtt-10">BRK </span>génère à la fois un label et un point d&#8217;arrêt.
-<!--l. 469--><p class="noindent" >
+<!--l. 472--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.4.3   </span> <a 
- id="x1-1050007.4.3"></a>Options d&#8217;export</h5>
+ id="x1-1060007.4.3"></a>Options d&#8217;export</h5>
 <a 
- id="dx1-105001"></a>
+ id="dx1-106001"></a>
 <a 
- id="dx1-105002"></a>
+ id="dx1-106002"></a>
 <a 
- id="dx1-105003"></a>
+ id="dx1-106003"></a>
 <!--l. 1--><p class="noindent" >Voici les options qui peuvent etre passée en ligne de commande pour specifier les noms des fichiers exportés et
 activer l&#8217;export des symboles et breakpoints pour le format SNA :
      <ul class="itemize1">
@@ -3538,37 +3640,37 @@ class="cmmi-10">&#x003E; </span>: spécifie le nom complet du fichier breakpoint.
      </li>
      <li class="itemize">-sb : Exporte les points d&#8217;arrêt (breakpoints) dans le fichier snapshot (compatible avec les formats
      Winape et ACE), uniquement avec la version 3+</li></ul>
-<!--l. 500--><p class="noindent" >
+<!--l. 503--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">7.5   </span> <a 
- id="x1-1060007.5"></a>Gestion des couleurs du CPC+</h4>
-<!--l. 502--><p class="noindent" >
+ id="x1-1070007.5"></a>Gestion des couleurs du CPC+</h4>
+<!--l. 505--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.5.1   </span> <a 
- id="x1-1070007.5.1"></a>GET_R, GET_G, GET_B</h5>
+ id="x1-1080007.5.1"></a>GET_R, GET_G, GET_B</h5>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-50">
+<div class="verbatim" id="verbatim-51">
 GET_R&#x00A0;&#x003C;16&#x00A0;bits&#x00A0;RGB&#x00A0;value&#x003E;
 &#x00A0;<br />GET_G&#x00A0;&#x003C;16&#x00A0;bits&#x00A0;RGB&#x00A0;value&#x003E;
 &#x00A0;<br />GET_B&#x00A0;&#x003C;16&#x00A0;bits&#x00A0;RGB&#x00A0;value&#x003E;
 </div>
-<!--l. 508--><p class="nopar" >
+<!--l. 511--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Permet, dans une expression, de récuperer l&#8217;une des 3 composantes (4 bits) R,G,B d&#8217;une couleur au format
 utilisé par l&#8217;ASIC
-<!--l. 518--><p class="noindent" >
+<!--l. 521--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.5.2   </span> <a 
- id="x1-1080007.5.2"></a>SET_R, SET_G, SET_B</h5>
+ id="x1-1090007.5.2"></a>SET_R, SET_G, SET_B</h5>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-51">
+<div class="verbatim" id="verbatim-52">
 SET_R&#x00A0;&#x003C;4&#x00A0;bits&#x00A0;value&#x003E;
 &#x00A0;<br />SET_G&#x00A0;&#x003C;4&#x00A0;bits&#x00A0;value&#x003E;
 &#x00A0;<br />SET_B&#x00A0;&#x003C;4&#x00A0;bits&#x00A0;value&#x003E;
 </div>
-<!--l. 523--><p class="nopar" >
+<!--l. 526--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Renvoie une valeur 16 bit compatible avec le format de l&#8217;ASIC, dont la composante R,G ou B est fixée selon
 le parametre passé.
 <div class="framedenv" id="leftbar-1">
-<!--l. 533--><p class="noindent" ><div class="obeylines-v">
+<!--l. 536--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">dw (SET</span><span 
 class="cmtt-10">_R 4) | (SET</span><span 
@@ -3576,7 +3678,7 @@ class="cmtt-10">_G 15) | (SET</span><span
 class="cmtt-10">_B 0) ; Defines RGB Color (4,15,0)</span></div>
 </div>
 ou encore  <div class="framedenv" id="leftbar-1">
-<!--l. 537--><p class="noindent" ><div class="obeylines-v">
+<!--l. 540--><p class="noindent" ><div class="obeylines-v">
 <span 
 class="cmtt-10">macro drgb dr,db,dg</span>
 <br /><span 
@@ -3587,40 +3689,40 @@ class="cmtt-10">_B db</span>
 <br /><span 
 class="cmtt-10">mend</span></div>
 </div>
-<!--l. 544--><p class="noindent" >
+<!--l. 547--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">7.6   </span> <a 
- id="x1-1090007.6"></a>Directives obsolètes</h4>
-<!--l. 546--><p class="noindent" >
+ id="x1-1100007.6"></a>Directives obsolètes</h4>
+<!--l. 549--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.6.1   </span> <a 
- id="x1-1100007.6.1"></a>NOCODE</h5>
+ id="x1-1110007.6.1"></a>NOCODE</h5>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-52">
+<div class="verbatim" id="verbatim-53">
 NOCODE
 &#x00A0;<br />...
 &#x00A0;<br />CODE
 </div>
-<!--l. 551--><p class="nopar" >
+<!--l. 554--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Cette directive sert à désactiver la génération de code pour une portion de code. Tout se passe comme si le
 code était généré, mais a la sortie de la zone définie par CODE, la suite du code sera généré la ou
 la section avait commencé. Cette directive servait à définir des structures de données, elle est
 maintenant obsolète pour cet usage. Elle peut cependant permettre de faire des calculs basés sur du
 code, de loger le résultat de ces calculs dans des variables, et pourtant ne rien produire en sortie.
-<!--l. 562--><p class="noindent" >
+<!--l. 565--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.6.2   </span> <a 
- id="x1-1110007.6.2"></a>WRITE DIRECT</h5>
+ id="x1-1120007.6.2"></a>WRITE DIRECT</h5>
 <a 
- id="dx1-111001"></a>
+ id="dx1-112001"></a>
 <a 
- id="dx1-111002"></a>
+ id="dx1-112002"></a>
 <a 
- id="dx1-111003"></a>
+ id="dx1-112003"></a>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-53">
+<div class="verbatim" id="verbatim-54">
 WRITE&#x00A0;DIRECT&#x00A0;&#x003C;lower&#x00A0;rom&#x003E;[,&#x003C;higher&#x00A0;rom&#x003E;[,&#x003C;RAM&#x00A0;gate&#x00A0;array&#x003E;]]
 </div>
-<!--l. 566--><p class="nopar" >
+<!--l. 569--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Cette directive est présente pour compatibilité avec Winape, son usage est déconseillé. Utilisez de préférence
 les directives BANK ou BANKSET. En spécifiant une rom basse (entre 0 et 7) ou une rom haute (entre 0 et
 31), cette directive a le même effet que la directive BANK. En spécifiant uniquement l&#8217;adresse RAM
@@ -3628,53 +3730,53 @@ les directives BANK ou BANKSET. En spécifiant une rom basse (entre 0 et 7) ou un
 appel un nouvel espace mémoire. On peut ainsi assembler plusieurs code au même emplacement
 mémoire, mais dans un espace différent. Cet usage est équivalent à la directive BANK sans
 paramètre.
-<!--l. 583--><p class="noindent" >
+<!--l. 586--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.6.3   </span> <a 
- id="x1-1120007.6.3"></a>LIST, NOLIST, LET</h5>
+ id="x1-1130007.6.3"></a>LIST, NOLIST, LET</h5>
 <a 
- id="dx1-112001"></a>
+ id="dx1-113001"></a>
 <a 
- id="dx1-112002"></a>
+ id="dx1-113002"></a>
 <!--l. 1--><p class="noindent" >Ces directives sont ignorées, elles n&#8217;existent que pour la compatibilité avec Maxam et Winape.
                                                                                     
                                                                                     
                                                                                     
                                                                                     
 <h3 class="sectionHead"><span class="titlemark">8   </span> <a 
- id="x1-1130008"></a>Directives et options spécifique au ZX</h3>
+ id="x1-1140008"></a>Directives et options spécifique au ZX</h3>
 <a 
- id="dx1-113001"></a>
+ id="dx1-114001"></a>
 <!--l. 1--><p class="noindent" >RASM intègre aussi quelques options et directives qui ne concernent que l&#8217;architecture spécifique du ZX.
 <!--l. 12--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">8.1   </span> <a 
- id="x1-1140008.1"></a>Directive HOBETA</h4>
+ id="x1-1150008.1"></a>Directive HOBETA</h4>
 <a 
- id="dx1-114001"></a>
+ id="dx1-115001"></a>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-54">
+<div class="verbatim" id="verbatim-55">
 HOBETA
 </div>
 <!--l. 16--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Cette directive sert a génerer un fichier au format HOBETA, en ajoutant l&#8217;entete adaptée
 <!--l. 26--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">8.2   </span> <a 
- id="x1-1150008.2"></a>Selection des Banques</h4>
+ id="x1-1160008.2"></a>Selection des Banques</h4>
 <!--l. 28--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">8.2.1   </span> <a 
- id="x1-1160008.2.1"></a>Directive BUILDZX</h5>
+ id="x1-1170008.2.1"></a>Directive BUILDZX</h5>
 <a 
- id="dx1-116001"></a>
+ id="dx1-117001"></a>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-55">
+<div class="verbatim" id="verbatim-56">
 BUILDZX&#x00A0;&#x003C;bank&#x003E;
 </div>
 <!--l. 32--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Cette directive sert a selection l&#8217;une des 8 banques (0..7)
 <!--l. 42--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">8.3   </span> <a 
- id="x1-1170008.3"></a>Options spécifiques</h4>
+ id="x1-1180008.3"></a>Options spécifiques</h4>
 <!--l. 1--><p class="noindent" >l&#8217;option <span 
 class="cmtt-10">-sx </span>permet de réaliser un export pour certaines émulateurs ZX, en précisant la banque où le symbole
 est logé (<span 
@@ -3684,20 +3786,20 @@ class="cmtt-10">(&#x003C;bank&#x003E;:&#x003C;adresse&#x003E;)</span>)
                                                                                     
                                                                                     
 <h3 class="sectionHead"><span class="titlemark">9   </span> <a 
- id="x1-1180009"></a>Compilation</h3>
+ id="x1-1190009"></a>Compilation</h3>
 <!--l. 2--><p class="noindent" >Cette section décrit la procédure pour compiler RASM sur différentes plateformes, le code source C étant
 disponible. De plus, il est possible d&#8217;integrer RASM dans vos propres applications, ce qui sera vu a la
 prochaine suivante.
 <!--l. 8--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">9.1   </span> <a 
- id="x1-1190009.1"></a>Compiler RASM</h4>
+ id="x1-1200009.1"></a>Compiler RASM</h4>
 <!--l. 1--><p class="noindent" >Pour commencer, voici les commandes à exécuter pour quelques plateformes courantes.
 <!--l. 18--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">9.1.1   </span> <a 
- id="x1-1200009.1.1"></a>Linux</h5>
+ id="x1-1210009.1.1"></a>Linux</h5>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-56">
+<div class="verbatim" id="verbatim-57">
 cc&#x00A0;rasm_vXXX.c&#x00A0;-O2&#x00A0;-lm&#x00A0;-lrt&#x00A0;-march=native
 &#x00A0;<br />mv&#x00A0;a.out&#x00A0;rasm
 &#x00A0;<br />strip&#x00A0;rasm
@@ -3705,45 +3807,45 @@ cc&#x00A0;rasm_vXXX.c&#x00A0;-O2&#x00A0;-lm&#x00A0;-lrt&#x00A0;-march=native
 <!--l. 24--><p class="nopar" >
 <!--l. 26--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">9.1.2   </span> <a 
- id="x1-1210009.1.2"></a>Windows (Visual Studio)</h5>
+ id="x1-1220009.1.2"></a>Windows (Visual Studio)</h5>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-57">
+<div class="verbatim" id="verbatim-58">
 cl.exe&#x00A0;rasm_vXXX.c&#x00A0;-O2&#x00A0;-Ob3
 </div>
 <!--l. 30--><p class="nopar" >
 <!--l. 32--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">9.1.3   </span> <a 
- id="x1-1220009.1.3"></a>Dos/Windows 32 (Watcom)</h5>
+ id="x1-1230009.1.3"></a>Dos/Windows 32 (Watcom)</h5>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-58">
+<div class="verbatim" id="verbatim-59">
 wcl386&#x00A0;rasm_vXXX.c&#x00A0;-6r&#x00A0;-6s&#x00A0;-fp6&#x00A0;-d0&#x00A0;-k4000000&#x00A0;-ox&#x00A0;/bt=DOS&#x00A0;/l=dos4g&#x00A0;-DOS_WIN=1&#x00A0;-DNOAPLIB=1
 </div>
 <!--l. 36--><p class="nopar" >
 <!--l. 38--><p class="noindent" >La compression AP6Utra n&#8217;est pas supporté pour cette architecture.
 <!--l. 40--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">9.1.4   </span> <a 
- id="x1-1230009.1.4"></a>MacOS</h5>
+ id="x1-1240009.1.4"></a>MacOS</h5>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-59">
+<div class="verbatim" id="verbatim-60">
 cc&#x00A0;rasm_vXXX.c&#x00A0;-O2&#x00A0;-lm&#x00A0;-march=native
 </div>
 <!--l. 44--><p class="nopar" >
 <!--l. 46--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">9.1.5   </span> <a 
- id="x1-1240009.1.5"></a>MorphOS</h5>
+ id="x1-1250009.1.5"></a>MorphOS</h5>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-60">
+<div class="verbatim" id="verbatim-61">
 gcc&#x00A0;-noixemul&#x00A0;-O2&#x00A0;-c&#x00A0;-o&#x00A0;rasm&#x00A0;rasm_vXXX.c
 &#x00A0;<br />strip&#x00A0;rasm
 </div>
 <!--l. 51--><p class="nopar" >
 <!--l. 55--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">9.2   </span> <a 
- id="x1-1250009.2"></a>Integrer RASM</h4>
+ id="x1-1260009.2"></a>Integrer RASM</h4>
 <!--l. 1--><p class="noindent" >Pour integrer RASM dans votre propre application C/C++, il faut procéder en trois étapes :
      <ul class="itemize1">
      <li class="itemize">Compiler RASM sous forme de binaire (obj), avec le symbole <span 
@@ -3763,7 +3865,7 @@ identique, à ceci pres qu&#8217;elle renvoie une structure de donnée contenant d
 le processus d&#8217;assemblage : les éventuelles erreurs,et la valeur associé à chacun des symboles.
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-61">
+<div class="verbatim" id="verbatim-62">
 #include&#x00A0;"rasm.h"
 &#x00A0;<br />#include&#x00A0;&#x003C;stdio.h&#x003E;
 &#x00A0;<br />#include&#x00A0;&#x003C;stdlib.h&#x003E;
@@ -3840,7 +3942,7 @@ class="cmtt-10">06 0A 10 FE C9</span></div>
 </div>
 <!--l. 144--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">9.2.1   </span> <a 
- id="x1-1260009.2.1"></a>Récupération des erreurs et symboles</h5>
+ id="x1-1270009.2.1"></a>Récupération des erreurs et symboles</h5>
 <!--l. 1--><p class="noindent" >Dans l&#8217;exemple précédent, on a vu que le résultat de la fonction RasmAssemble était -1 en cas d&#8217;erreur. Si
 l&#8217;on souhaite d&#8217;avantages d&#8217;informations, il faudra appeler <span 
 class="cmtt-10">RasmAssembleInfos </span>qui renvoie une structure
@@ -3850,16 +3952,16 @@ contenant la liste des erreurs ainsi que la liste des symboles avec leur valeur.
                                                                                     
                                                                                     
 <h3 class="sectionHead"><span class="titlemark">A   </span> <a 
- id="x1-127000A"></a>Coloration syntaxique</h3>
+ id="x1-128000A"></a>Coloration syntaxique</h3>
 <!--l. 1--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">A.1   </span> <a 
- id="x1-128000A.1"></a>Coloration syntaxique dans VIM</h4>
+ id="x1-129000A.1"></a>Coloration syntaxique dans VIM</h4>
 <!--l. 2--><p class="noindent" >Si vous avez déjà le fichier de coloration syntaxique Z80 il suffit d&#8217;ajouter les lignes suivantes au
 fichier .vim/syntax/z80.vim Ou vous pouvez télécharger le fichier complet de syntaxe <a 
 href="http://www.roudoudou.com/rasm/z80.vim" >z80.vim</a>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-62">
+<div class="verbatim" id="verbatim-63">
 "&#x00A0;rasm/winape&#x00A0;directives
 &#x00A0;<br />syn&#x00A0;keyword&#x00A0;z80PreProc&#x00A0;charset&#x00A0;bank&#x00A0;write&#x00A0;save&#x00A0;include&#x00A0;incbin&#x00A0;incl48&#x00A0;incl49
 &#x00A0;<br />syn&#x00A0;keyword&#x00A0;z80PreProc&#x00A0;macro&#x00A0;mend&#x00A0;switch&#x00A0;case&#x00A0;break&#x00A0;while&#x00A0;wend&#x00A0;repeat&#x00A0;until
@@ -3876,10 +3978,10 @@ href="http://www.roudoudou.com/rasm/z80.vim" >z80.vim</a>
                                                                                     
                                                                                     
 <h3 class="sectionHead"><span class="titlemark">B   </span> <a 
- id="x1-129000B"></a>Opcodes Z80</h3>
+ id="x1-130000B"></a>Opcodes Z80</h3>
 <!--l. 5--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">B.1   </span> <a 
- id="x1-130000B.1"></a>Instructions principales</h4>
+ id="x1-131000B.1"></a>Instructions principales</h4>
  <table id="TBL-14" class="tabular" 
 cellspacing="0" cellpadding="0"  
 ><colgroup id="TBL-14-1g"><col 
@@ -4547,7 +4649,7 @@ class="cmtt-8x-x-62">jp</span>
  <span 
 class="cmtt-8x-x-62">z,**</span>   </td><td  style="white-space:normal; text-align:left;" id="TBL-14-14-13"  
 class="td11"> <!--l. 28--><p class="noindent" ><a 
-href="#x1-132000B.3"><span 
+href="#x1-133000B.3"><span 
 class="cmtt-8x-x-62">Pr</span><span 
 class="cmtt-8x-x-62">éfixe</span>
  <span 
@@ -4616,7 +4718,7 @@ class="cmtt-8x-x-62">call</span>
  <span 
 class="cmtt-8x-x-62">c,**</span>   </td><td  style="white-space:normal; text-align:left;" id="TBL-14-15-15"  
 class="td11"> <!--l. 28--><p class="noindent" ><a 
-href="#x1-133000B.4"><span 
+href="#x1-134000B.4"><span 
 class="cmtt-8x-x-62">Pr</span><span 
 class="cmtt-8x-x-62">éfixe</span>
  <span 
@@ -4679,7 +4781,7 @@ class="cmtt-8x-x-62">call</span>
  <span 
 class="cmtt-8x-x-62">pe,**</span>  </td><td  style="white-space:normal; text-align:left;" id="TBL-14-16-15"  
 class="td11"> <!--l. 28--><p class="noindent" ><a 
-href="#x1-131000B.2"><span 
+href="#x1-132000B.2"><span 
 class="cmtt-8x-x-62">Pr</span><span 
 class="cmtt-8x-x-62">éfixe</span>
  <span 
@@ -4736,7 +4838,7 @@ class="cmtt-8x-x-62">call</span>
  <span 
 class="cmtt-8x-x-62">m,**</span>   </td><td  style="white-space:normal; text-align:left;" id="TBL-14-17-15"  
 class="td11"> <!--l. 28--><p class="noindent" ><a 
-href="#x1-135000B.6"><span 
+href="#x1-136000B.6"><span 
 class="cmtt-8x-x-62">Pr</span><span 
 class="cmtt-8x-x-62">éfixe</span>
  <span 
@@ -4753,7 +4855,7 @@ class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><
 class="td11">   </td></tr></table>
 <!--l. 33--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">B.2   </span> <a 
- id="x1-131000B.2"></a>Instructions étendues (ED)</h4>
+ id="x1-132000B.2"></a>Instructions étendues (ED)</h4>
  <table id="TBL-17" class="tabular" 
 cellspacing="0" cellpadding="0"  
 ><colgroup id="TBL-17-1g"><col 
@@ -5081,7 +5183,7 @@ class="td11">   </td></tr></table>
                                                                                     
                                                                                     
 <h4 class="subsectionHead"><span class="titlemark">B.3   </span> <a 
- id="x1-132000B.3"></a>Instruction de manipulation de bits (CB)</h4>
+ id="x1-133000B.3"></a>Instruction de manipulation de bits (CB)</h4>
  <table id="TBL-20" class="tabular" 
 cellspacing="0" cellpadding="0"  
 ><colgroup id="TBL-20-1g"><col 
@@ -6133,7 +6235,7 @@ class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><
 class="td11">   </td></tr></table>
 <!--l. 79--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">B.4   </span> <a 
- id="x1-133000B.4"></a>Instructions IX (DD)</h4>
+ id="x1-134000B.4"></a>Instructions IX (DD)</h4>
  <table id="TBL-23" class="tabular" 
 cellspacing="0" cellpadding="0"  
 ><colgroup id="TBL-23-1g"><col 
@@ -6684,7 +6786,7 @@ class="td11"> <!--l. 102--><p class="noindent" >       </td><td  style="white-sp
 class="td11"> <!--l. 102--><p class="noindent" >       </td><td  style="white-space:normal; text-align:left;" id="TBL-23-14-12"  
 class="td11"> <!--l. 102--><p class="noindent" >       </td><td  style="white-space:normal; text-align:left;" id="TBL-23-14-13"  
 class="td11"> <!--l. 102--><p class="noindent" ><a 
-href="#x1-134000B.5"><span 
+href="#x1-135000B.5"><span 
 class="cmtt-8x-x-62">Pr</span><span 
 class="cmtt-8x-x-62">éfixe</span>
  <span 
@@ -6777,7 +6879,7 @@ class="td11">   </td></tr></table>
                                                                                     
                                                                                     
 <h4 class="subsectionHead"><span class="titlemark">B.5   </span> <a 
- id="x1-134000B.5"></a>Instruction de manipulations de bits IX (DDCB)</h4>
+ id="x1-135000B.5"></a>Instruction de manipulations de bits IX (DDCB)</h4>
  <table id="TBL-26" class="tabular" 
 cellspacing="0" cellpadding="0"  
 ><colgroup id="TBL-26-1g"><col 
@@ -7941,7 +8043,7 @@ class="hline"><td><hr></td><td><hr></td><td><hr></td><td><hr></td><td><hr></td><
 class="td11">   </td></tr></table>
 <!--l. 136--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">B.6   </span> <a 
- id="x1-135000B.6"></a>Instructions IY (FD)</h4>
+ id="x1-136000B.6"></a>Instructions IY (FD)</h4>
  <table id="TBL-29" class="tabular" 
 cellspacing="0" cellpadding="0"  
 ><colgroup id="TBL-29-1g"><col 
@@ -8492,7 +8594,7 @@ class="td11"> <!--l. 160--><p class="noindent" >       </td><td  style="white-sp
 class="td11"> <!--l. 160--><p class="noindent" >       </td><td  style="white-space:normal; text-align:left;" id="TBL-29-14-12"  
 class="td11"> <!--l. 160--><p class="noindent" >       </td><td  style="white-space:normal; text-align:left;" id="TBL-29-14-13"  
 class="td11"> <!--l. 160--><p class="noindent" ><a 
-href="#x1-136000B.7"><span 
+href="#x1-137000B.7"><span 
 class="cmtt-8x-x-62">Pr</span><span 
 class="cmtt-8x-x-62">éfixe</span>
  <span 
@@ -8585,7 +8687,7 @@ class="td11">   </td></tr></table>
                                                                                     
                                                                                     
 <h4 class="subsectionHead"><span class="titlemark">B.7   </span> <a 
- id="x1-136000B.7"></a>Instruction de manipulation de bits IY (FDCB)</h4>
+ id="x1-137000B.7"></a>Instruction de manipulation de bits IY (FDCB)</h4>
  <table id="TBL-32" class="tabular" 
 cellspacing="0" cellpadding="0"  
 ><colgroup id="TBL-32-1g"><col 
@@ -9752,7 +9854,7 @@ class="td11">   </td></tr></table>
                                                                                     
                                                                                     
 <h3 class="sectionHead"><span class="titlemark">C   </span> <a 
- id="x1-137000C"></a>Durée des opcodes du Z80 sur CPC</h3>
+ id="x1-138000C"></a>Durée des opcodes du Z80 sur CPC</h3>
 <!--l. 8--><p class="noindent" >La table suivante indique la durée des instructions du Z80, exprimée en nombre de NOPs équivalents, ce qui
 est spécifique au CPC. Par exemple, ADD A,(HL) a la même durée que 2 NOPs.
      <ul class="itemize1">
@@ -9925,7 +10027,7 @@ class="cmtt-10">2  </span></td>
 class="td11"><span 
 class="cmtt-10">AND (IX+d)    </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-33-25-2"  
 class="td11">  <span 
-class="cmtt-10">3  </span></td>
+class="cmtt-10">5  </span></td>
 </tr><tr  
  style="vertical-align:baseline;" id="TBL-33-26-"><td  style="white-space:nowrap; text-align:left;" id="TBL-33-26-1"  
 class="td11"><span 
@@ -10588,7 +10690,7 @@ class="cmtt-10">2  </span></td>
 class="td11"><span 
 class="cmtt-10">OR (IX+d)     </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-36-24-2"  
 class="td11">  <span 
-class="cmtt-10">3  </span></td>
+class="cmtt-10">5  </span></td>
 </tr><tr  
  style="vertical-align:baseline;" id="TBL-36-25-"><td  style="white-space:nowrap; text-align:left;" id="TBL-36-25-1"  
 class="td11"><span 
@@ -11112,7 +11214,7 @@ class="cmtt-10">2  </span></td>
 class="td11"><span 
 class="cmtt-10">XOR (IX+d)    </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-38-34-2"  
 class="td11">  <span 
-class="cmtt-10">3  </span></td>
+class="cmtt-10">5  </span></td>
 </tr><tr  
  style="vertical-align:baseline;" id="TBL-38-35-"><td  style="white-space:nowrap; text-align:left;" id="TBL-38-35-1"  
 class="td11">               </td></tr></table></div>
@@ -11122,9 +11224,9 @@ class="td11">               </td></tr></table></div>
                                                                                     
                                                                                     
 <h3 class="sectionHead"><span class="titlemark">D   </span> <a 
- id="x1-138000D"></a>Licenses</h3>
+ id="x1-139000D"></a>Licenses</h3>
 <!--l. 3--><p class="noindent" ><span class="paragraphHead"><a 
- id="x1-139000D"></a><span 
+ id="x1-140000D"></a><span 
 class="cmbx-10">RASM</span></span>
 Ce logiciel (binaire et code source) ainsi que sa documentation utilisent la licence MIT &#8221;expat&#8221;.
 Copyright <span 
@@ -11156,11 +11258,11 @@ class="cmtt-10">liability, whether in an action of contract, tort or otherwise, 
 <span 
 class="cmtt-10">or in connection with the software or the use or other dealings in the Software.</span>
 <!--l. 35--><p class="noindent" ><span class="paragraphHead"><a 
- id="x1-140000D"></a><span 
+ id="x1-141000D"></a><span 
 class="cmbx-10">LZ4 cruncher (sources were modified)</span></span>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-63">
+<div class="verbatim" id="verbatim-64">
 BSD&#x00A0;2-Clause&#x00A0;License&#x00A0;(http://www.opensource.org/licenses/bsd-license.php)
 &#x00A0;<br />Redistribution&#x00A0;and&#x00A0;use&#x00A0;in&#x00A0;source&#x00A0;and&#x00A0;binary&#x00A0;forms,&#x00A0;with&#x00A0;or&#x00A0;without
 &#x00A0;<br />modification,&#x00A0;are&#x00A0;permitted&#x00A0;provided&#x00A0;that&#x00A0;the&#x00A0;following&#x00A0;conditions&#x00A0;are
@@ -11192,11 +11294,11 @@ BSD&#x00A0;2-Clause&#x00A0;License&#x00A0;(http://www.opensource.org/licenses/bs
                                                                                     
                                                                                     
 <!--l. 66--><p class="noindent" ><span class="paragraphHead"><a 
- id="x1-141000D"></a><span 
+ id="x1-142000D"></a><span 
 class="cmbx-10">ZX7 cruncher (sources were modified)</span></span>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-64">
+<div class="verbatim" id="verbatim-65">
 (c)&#x00A0;Copyright&#x00A0;2012&#x00A0;by&#x00A0;Einar&#x00A0;Saukas.&#x00A0;All&#x00A0;rights&#x00A0;reserved.
 &#x00A0;<br />
 &#x00A0;<br />Redistribution&#x00A0;and&#x00A0;use&#x00A0;in&#x00A0;source&#x00A0;and&#x00A0;binary&#x00A0;forms,&#x00A0;with&#x00A0;or&#x00A0;without
@@ -11222,11 +11324,11 @@ class="cmbx-10">ZX7 cruncher (sources were modified)</span></span>
 </div>
 <!--l. 91--><p class="nopar" >
 <!--l. 94--><p class="noindent" ><span class="paragraphHead"><a 
- id="x1-142000D"></a><span 
+ id="x1-143000D"></a><span 
 class="cmbx-10">Exomizer cruncher (sources were modified)</span></span>
                                                                                     
                                                                                     
-<div class="verbatim" id="verbatim-65">
+<div class="verbatim" id="verbatim-66">
 Copyright&#x00A0;(c)&#x00A0;2005&#x00A0;Magnus&#x00A0;Lind.
 &#x00A0;<br />
 &#x00A0;<br />This&#x00A0;software&#x00A0;is&#x00A0;provided&#x00A0;&#8217;as-is&#8217;,&#x00A0;without&#x00A0;any&#x00A0;express&#x00A0;or&#x00A0;implied&#x00A0;warranty.
