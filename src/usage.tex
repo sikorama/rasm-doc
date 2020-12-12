@@ -215,26 +215,27 @@ By default, included files are searched in the local folder, paths are relative,
 \begin{xfr}
 \subsection{Options de compatibilité}
 \begin{itemize}
-\item -m : compatibilité Maxam
+\item texttt{-m} : compatibilité Maxam
  \subitem Les calculs réalisés en entiers 16 bits non signés avec un mauvais arrondi
  \subitem Les comparaisons se font avec l'opérateur = simple
  \subitem La priorité des opérateurs est simplifiée (voir tableau)
+\item texttt{-amper} : Utilisé en conjonction avec le mode maxam (\texttt{-m}), permet de remplacer les \# utilisés dans le source pour représenter des nombre en hexadécilmam, par des \&
 
-\item -ass : compatibilité AS80
+\item texttt{-ass} : compatibilité AS80
  \subitem calculs réalisés en entiers 32 bits avec un mauvais arrondi
  \subitem Les déclarations de type DEFB,DEFW,DEFI ou DEFR multiples ont pour référence d'adresse l'adresse du premier octet produit et non l'adresse de l'octet courant. Cette spécificité d'AS80 fait que deux DEFB ne produisent pas la même chose qu'un seul DEFB avec deux valeurs quand la référence \$ est utilisée.
  \subitem Les paramètres des macros ne sont plus protégés par les chevrons {}
  \subitem La directive MACRO s'utilise après le nom de la macro et non avant
 
-\item -uz : compatibilité UZ80
+\item texttt{-uz} : compatibilité UZ80
  \subitem Les calculs sont réalisés en entiers 32 bits avec un mauvais arrondi
  \subitem Les paramètres des macros ne sont plus protégés par les chevrons {}
  \subitem La directive MACRO s'utilise après le nom de la macro et non avant
 
-\item -dams : compatibilité DAMS:
+\item texttt{-dams} : compatibilité DAMS:
 \subitem - Les labels commencant par un point sont ignorés
 
-\item -pasmo : compatibilité PASMO:
+\item texttt{-pasmo} : compatibilité PASMO:
 \subitem Les déclarations de type DEFB,DEFW,DEFI ou DEFR multiples ont pour référence d'adresse l'adresse du premier octet produit et non l'adresse de l'octet courant. Cette spécificité d'AS80 fait que deux DEFB ne produisent pas la même chose qu'un seul DEFB avec deux valeurs quand la référence \$ est utilisée.
 \end{itemize}
 
@@ -244,27 +245,28 @@ By default, included files are searched in the local folder, paths are relative,
 \subsection{Compatibility options}
 \begin{itemize}
 
-\item -m : Maxam compatibility:
+\item texttt{-m} : Maxam compatibility:
 \subitem - unsigned 16 bit computation, with wrong rounding
 \subitem - comparisons are done with equal (=) sign
 \subitem - Operator priorities are simplified (see charts)
+\item texttt{-amper} : Used with maxam mode (\texttt{-m}). All \# used for encoding hexa numbers will be replaced by \& symbol.
 
-\item -ass : AS80 compatibility:
+\item texttt{-ass} : AS80 compatibility:
 \subitem - 32 bits integer calculations with wrong rounding
 \subitem - DEFB,DEFW,DEFI or DEFR directives with more than one parameter use the address of the first byte, when using \$
 %That's why AS80 does not generate the same thing when using two DEFB instead of one with two parameters when using \$ reference in it.
 \subitem - MACRO directive must be used after the name of the macro, and not before (see \ref{MACRO})
 \subitem - Macro parameters are not protected by \{\}
 
-\item -uz : UZ80 compatibility:
+\item texttt{-uz} : UZ80 compatibility:
 \subitem - 32 bits integer calculations with wrong rounding
 \subitem - macro parameters are not protected by {}
 \subitem - MACRO directive must be used after the name of the macro
 
-\item -dams : DAMS compatibility:
+\item texttt{-dams} : DAMS compatibility:
 \subitem - labels beginning by a dot are ignored
 
-\item -pasmo : PASMO compatibility:
+\item texttt{-pasmo} : PASMO compatibility:
 \subitem - DEFB,DEFW,DEFI or DEFR directives with more than one parameter use the address of the first byte, when using \$
 %That's why AS80 does not generate the same thing when using two DEFB instead of one with two parameters when using \$ reference in it.
 \end{itemize}
