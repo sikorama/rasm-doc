@@ -252,14 +252,25 @@ endswitch
 \begin{verbatim}
 TICKER START,<var>
 ...
-TICKER STOP,<var>
+TICKER STOP|STOPZX,<var>
 \end{verbatim}
 
 \begin{xfr}
-Cette directive calcule la durée d'un bloc d'instructions (délimité par TICKER START et TICKER STOP) et stocke le résultat dans une variable. Elle n'est pour le moment valable que pour CPC, la durée calculée est exprimée en "nombre de NOPs équivalents" (cf Annexe C), ce qui correpond à peu pres à la durée en micro secondes. Cette directive est très pratique pour écrire et maintenir du code à durée fixe. Par exemple, si on veut faire un effet 'raster', il faut il faut s'assurer que l'on change de couleur à chaque ligne écran, soit toutes les 64 microsecondes:
+Cette directive calcule la durée d'un bloc d'instructions (délimité par \texttt{TICKER START} et \texttt{TICKER STOP})
+et stocke le résultat dans une variable. Le nom de la variable doit etre identique pour le \texttt{START} et le \texttt{STOP}.
+Elle peut etre utilisée pour calculer la durée pour CPC (\texttt{TICKER STOP}) ou pour ZX (\texttt{TICKER STOPZX}).
+Sur CPC, la durée calculée est exprimée en "nombre de NOPs équivalents" (cf Annexe C), ce qui correpond à peu pres à la durée en micro secondes. Cette directive est très pratique pour écrire et maintenir du code à durée fixe.
+A noter que pour les instructions de saut conditionnel, c'est la durée en réalisant le saut qui est prise en compte, a l'exception de l'opcode RET conditionnel.
+
+Par exemple, si on veut faire un effet 'raster', il faut il faut s'assurer que l'on change de couleur à chaque ligne écran, soit toutes les 64 microsecondes:
 \end{xfr}
+
 \begin{xen}
-TICKER directive computes the duration of an instruction bloc (delimited by TICKER START and TICKER STOP), and stores the result in a variable. Curently, this feature is only interesting for CPC architecture, as the duration is expressed in "number of NOPs", which is approximatively equivalent to micro seconds (see Annexe C). This directive is very convenient when writing video effects, such as rasters, where colors have to be changed periodically, every 64 micro seconds (the duration of a video line):
+\texttt{TICKER} directive computes the duration of an instruction bloc (delimited by TICKER START and TICKER STOP),
+and stores the result in a variable.
+It can be used for counting cycles for CPC architecture (by using \texttt{TICKER STOP}), or for ZX architectures (by using \texttt{TICKER STOPZX})
+On CPC, the duration is expressed as "number of NOPs", which is approximatively equivalent to micro seconds (see Annexe C).
+This directive is very convenient when writing video effects, such as rasters, where colors have to be changed periodically, every 64 micro seconds (the duration of a video line):
 \end{xen}
 
 \begin{code}
