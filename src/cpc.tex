@@ -99,7 +99,7 @@ This directive has no effect on \texttt{SAVE} directive, which has its own optio
 \subsubsection{\xlang{Directive SAVE}{SAVE directive}}\index{SAVE}
 
 \begin{verbatim}
-SAVE 'filename',<address>,<size>[,AMSDOS|DSK[,'dsk filename'[,<side>]]]
+SAVE 'filename',<address>,<size>[,AMSDOS|DSK|TAPE[,'filename'[,<side>]]]
 \end{verbatim}
 
 \begin{xfr}
@@ -108,6 +108,7 @@ Enregistre un fichier binaire à partir de la mémoire adresse jusqu'à adresse+
 Lorsqu'on enregistre sur une image de disquette (DSK), le nom du fichier binaire est automatiquement tronqué et mis en majuscule si il n'est pas conforme aux limitations de l'AMSDOS.
 Notez aussi que si le fichier DSK existe déja, RASM va vérifier si le fichier binaire généré existe déja dans le DSK. Si il existe, il refusera de mettre à jour le DSK, sauf si on passe l'option \texttt{-eo}. Si le DSK n'existe pas, il sera automatiquement créé.
 
+Avec le format TAPE, c'est un fichier au format CDT qui sera produit.
 
 Exemples:
 \end{xfr}
@@ -118,6 +119,8 @@ Records a binary file of the given size, starting from the specified address, fr
 
 When recording a file on a floppy image (DSK), its name will be automatically converted according to the AMSDOS format: lower cases will be replaced by upper cases, and it will be truncated.
 If the DSK file doesn't exist, il will be automatically created. If it already exists, and if the binary file produced by rasm already exists on the disk, it WON'T be updated, except if \texttt{-eo} option is used.
+
+With TAPE format, a CDT filt will be produced.
 
 Examples:
 \end{xen}
