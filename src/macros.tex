@@ -87,3 +87,30 @@ REPEAT 2
 \ test \{eval\}repeat\_counter
 REND
 \end{code}
+\paragraph{\xlang{Décomposition de registres 16 bits}{Separating Low an Hi bytes of a 16bit register}}\index{LOW}\index{HI}
+
+\begin{xfr}
+Dans une macro, il est possible d'utiliser LOW et HI pour utiliser le registre bas ou le registre d'un registre 16 bits:
+par exemple \texttt{ld A,{R1}.low}  est équivalent à \texttt{ld A,C} si R1=BC.
+Une fonction d'addition 16 bits pourra s'écrire ainsi:
+\end{xfr}
+
+\begin{xen}
+Inside a Macro, it is possible to use LOW or HI for using the lower or the higher part of a 16 bit register.
+For example, \texttt{ld A,{R1}.low} is identical to \texttt{ld A,C} if R1=BC.
+A macro for adding two 16 bits register can be written like this:
+\end{xen}
+
+\begin{code}
+macro add16, R1, R2
+\ ld A,{R1}.low
+\ add {R2}.low
+\ ld {R1}.low,A
+\ ld A,{R1}.high
+\ adc {R2}.high
+\ ld {R1}.high,A
+\medskip
+mend
+
+add16 bc,hl
+\end{code}
