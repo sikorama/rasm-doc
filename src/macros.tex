@@ -103,12 +103,12 @@ A macro for adding two 16 bits register can be written like this:
 
 \begin{code}
 macro add16, R1, R2
-\ ld A,{R1}.low
-\ add {R2}.low
-\ ld {R1}.low,A
-\ ld A,{R1}.high
-\ adc {R2}.high
-\ ld {R1}.high,A
+\ ld A,\{R1\}.low
+\ add \{R2\}.low
+\ ld \{R1\}.low,A
+\ ld A,\{R1\}.high
+\ adc \{R2\}.high
+\ ld \{R1\}.high,A
 \medskip
 mend
 
