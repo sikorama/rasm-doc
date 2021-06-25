@@ -1,13 +1,13 @@
 \subsubsection{REPEAT}\index{REPEAT}\index{REPEAT\_COUNTER}\index{REND}\index{UNTIL}
 
 \begin{verbatim}
-REPEAT <number of repetitions>[,counter] ... REND
+REPEAT <number of repetitions>[,counter[,counter_start[,counter_step]]] ... REND
 REPEAT ... UNTIL <condition>
 \end{verbatim}
 
 \begin{xfr}
 Répète un bloc d'instructions.
-On peut soit fixer un nombre de répétitions, soit utiliser le mode conditionnel avec la directive de fin de bloc \texttt{UNTIL}. Pour compatibilité avec Vasm, il est possible de finir un tel bloc par \texttt{ENDREP} ou \texttt{ENDREPEAT}
+On peut soit fixer un nombre de répétitions, soit utiliser le mode conditionnel avec la directive de fin de bloc \texttt{UNTIL}. Pour compatibilité avec Vasm, il est possible de finir un tel bloc par \texttt{ENDREP} ou \texttt{ENDREPEAT} au lieu de \texttt{REND}
 \end{xfr}
 
 \begin{xen}
@@ -22,14 +22,17 @@ repeat
 until cnt\textless 0
 \end{code}
 
+
 \begin{xfr}
+\paragraph{Répétition non conditionelle}
 Dans le cas de répétition non conditionnelle, il est possible de spécifier une variable qui contiendra le numéro d'itération.
-Cette variable (ici 'cnt') n'a pas besoin d'éxister, elle sera créée le cas echéant, au début de la boucle \texttt{REPEAT}.
+Il n'est pas nécessaire de créer cette variable au préalable.
 \end{xfr}
 
 \begin{xen}
+\paragraph{Non Conditional Repeat}
 In the case of a non conditional loop, it is possible to specify a variable which contains the iteraction counter.
-There's no need to declare this variable (here 'cnt') prior to the \texttt{REPEAT} block. It will automatically be created.
+There's no need to declare this variable (here \texttt{cnt}) prior to the \texttt{REPEAT} block. It will automatically be created.
 \end{xen}
 
 \begin{code}
@@ -39,7 +42,65 @@ repeat 10,cnt
 rend
 \end{code}
 
-% Compteur interne
+\begin{xfr}
+Par défaut le compteur de boucle est initialisé à 1 et est incrément de 1 à chaque boucle.
+Il aussi possibe de préciser la valeur de départ avec \texttt{counter\_start}, ainsi que le pas d'incrément à l'aide du paramètre \texttt{counter\_step}
+Ces valeurs peuvent aussi bien etre des entiers que des des nombres flottants.
+\end{xfr}
+
+\begin{xen}
+By default, the loop counter starts from 1 and is increased by 1 at every loop. 
+These values can be changed, respectively with \texttt{counter\_start} and \texttt{counter\_step} optional parameters.
+These values can be integer, but also floating values.
+\end{xen}
+
+\begin{code}
+repeat 26,letter,65
+\ db letter
+rend
+\end{code}
+
+\begin{xfr}
+Ces valeurs peuvent aussi bien être des entiers que des des nombres flottants.
+\end{xfr}
+
+\begin{xen}
+These values can either be integer, but also floating values.
+\end{xen}
+
+\begin{code}
+repeat 180,angle,0,3.14/180
+\ db sin(angle)*64+64
+rend
+\end{code}
+    
+
+\paragraph{\xlang{Symbole}{Symbol}REPEAT\_COUNTER}
+
+\begin{verbatim}
+REPEAT\_COUNTER [counter_start[,counter_step]]
+\end{verbatim}
+    
+\begin{xfr}
+Une alternative à l'utilisation de texttt{counter\_start} et \texttt{counter\_step}, consiste à utiliser  \texttt{REPEAT\_COUNTER}
+Ceci permet de ne pas avoir à respécifier ces valeurs pour tous les blocs \texttt{REPEAT} qui suivent.
+En l'absence de paramètres, le compteur commencera à 1 et l'incrément sera de 1.
+\end{xfr}
+
+\begin{xen}
+Another way to specify texttt{counter\_start} and \texttt{counter\_step}  consists in using \texttt{REPEAT\_COUNTER}.
+All REPEAT blocks declared after \texttt{REPEAT\_COUNTER} will use these values.
+Without parameters, the counter will start at 1, and increment will be set to 1.
+\end{xen}
+
+\begin{code}
+y=10
+repeat 3,x,10
+  assert x==y
+  y+=5
+rend
+\end{code}
+    
 \begin{xfr}
 La variable interne \texttt{REPEAT\_COUNTER} contient le numéro de l'itération courante (en commencant par 1).
 \end{xfr}
@@ -53,6 +114,8 @@ repeat 10
 \ print repeat\_counter
 rend
 \end{code}
+
+    
 
 
 \subsubsection{WHILE, WEND}\index{WHILE}\index{WEND}\index{WHILE\_COUNTER}
