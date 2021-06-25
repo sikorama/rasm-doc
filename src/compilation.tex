@@ -9,47 +9,52 @@ Cette section décrit la procédure pour compiler RASM sur différentes platefor
 
 \begin{xfr}
 Pour commencer, voici les commandes à exécuter pour quelques plateformes courantes.
+Pour simplifier la compilation, ce sont des scripts Makefile ou des scripts batch. 
+Tous ces scripts font appels à UPX, un outil de compression d'executable, disponible ici: https://upx.github.io
 \end{xfr}
 
 \begin{xen}
-There is no installation procedure for RASM, as it consists in a single executable file. As C source code is provided with RASM, it can be recompiled. Here are the commands for some platforms and compilers:
+There is no installation procedure for RASM, as it consists in a single executable file. As C source code is provided with RASM, it can be recompiled. 
+Here are the commands for some platforms and compilers - mainly calling scripts or Makefiles 
+All these scripts use UPX, a compression tool for executable binaries, available here: https://upx.github.io
 \end{xen}
 
-\subsubsection{Linux}
+\paragraph{Linux}
 
 \begin{verbatim}
-cc rasm_vXXX.c -O2 -lm -lrt -march=native
-mv a.out rasm
-strip rasm
+#Makefile invocation
+make prod
 \end{verbatim}
 
-\subsubsection{Windows (Visual Studio)}
+\paragraph{Windows (Visual Studio)}
 
 \begin{verbatim}
-cl.exe rasm_vXXX.c -O2 -Ob3
+combil.bat
 \end{verbatim}
 
-\subsubsection{Dos/Windows 32 (Watcom)}
+\paragraph{Dos/Windows 32 (Watcom)}
+
+\begin{xfr}
+Pour DOSBox, il faudra allouer au minimum 64Mb de RAM.
+\end{xfr}
+  
+\begin{xen}
+For DosBox, you need to set RAM to at least 64Mb
+\end{xen}
 
 \begin{verbatim}
-wcl386 rasm_vXXX.c -6r -6s -fp6 -d0 -k4000000 -ox /bt=DOS /l=dos4g -DOS_WIN=1 -DNOAPLIB=1
+msdos.bat
 \end{verbatim}
 
-\xlang{La compression AP6Utra n'est pas supporté pour cette architecture.}{AP-Ultra cruncher is not supported on this version. }
-
-\subsubsection{MacOS}
+\paragraph{MacOS}
 
 \begin{verbatim}
-cc rasm_vXXX.c -O2 -lm -march=native
+make makefile.MacOS
 \end{verbatim}
 
-\subsubsection{MorphOS}
 
-\begin{verbatim}
-gcc -noixemul -O2 -c -o rasm rasm_vXXX.c
-strip rasm
-\end{verbatim}
-%ppc-morphos-gcc-5 -O2 -c -o rasm rasm_vXXX.c
+
+
 
 
 \subsection{\xlang{Integrer RASM}{Embedding RASM}}
