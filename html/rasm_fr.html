@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html xml:lang="fr" > 
-<head><title>RASM: Roudoudou&#8217;s Z80 Assembler V1.3</title> 
+<head><title>RASM V1.5 : Manuel de Rfrence</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
@@ -16,12 +16,14 @@
                                                                                     
                                                                                     
 
-<h2 class="titleHead">RASM: Roudoudou&#8217;s Z80 Assembler V1.3</h2>
+<h2 class="titleHead">RASM V1.5 : Manuel de Référence</h2>
  <div class="author" ><span 
 class="cmr-12">Édouard BERG</span><span 
-class="cmr-12">É (Roudoudou)</span></div><br />
+class="cmr-12">É </span><br class="and" /><span 
+class="cmr-12">St</span><span 
+class="cmr-12">éphane SIKORA</span></div><br />
 <div class="date" ><span 
-class="cmr-12">25 juin 2021</span></div>
+class="cmr-12">12 octobre 2021</span></div>
 </div>
 <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Table des matières</h3>
@@ -1393,25 +1395,36 @@ class="cmtt-10">rend</span></div>
      <ul class="itemize1">
      <li class="itemize">En décimal si la valeur commence par un chiffre.
      </li>
-     <li class="itemize">En binaire si la valeur commence par un % ou 0b.
+     <li class="itemize">En binaire si la valeur commence par un <span 
+class="cmtt-10">% </span>ou <span 
+class="cmtt-10">0b </span>ou se termine par <span 
+class="cmtt-10">b</span>.
      </li>
      <li class="itemize">En octal si la valeur commence par un <span 
-class="ecrm-1000">@</span>.
+class="ectt-1000">@</span>.
      </li>
-     <li class="itemize">En hexadécimal si la valeur commence par un #, un <span 
-class="tcrm-1000">$</span>, 0x ou se termine par un h.
+     <li class="itemize">En hexadécimal si la valeur commence par un <span 
+class="cmtt-10">#</span>, un <span 
+class="tctt-1000">$</span>, <span 
+class="cmtt-10">0x </span>ou se termine par un <span 
+class="cmtt-10">h</span>.
      </li>
      <li class="itemize">En valeur ascii si un caractère unique est entre quotes.
      </li>
-     <li class="itemize">En valeur associée à une variable ou un label, si la littérale commence par une lettre ou un &#8217;<span 
-class="ecrm-1000">@</span>&#8217;
+     <li class="itemize">En valeur associée à une variable ou un label, si la littérale commence par une lettre ou un <span 
+class="ectt-1000">@</span>
      pour les labels locaux.
      </li>
      <li class="itemize">Le symbole <span 
-class="tcrm-1000">$ </span>utilisé seul indique l&#8217;adresse de début de l&#8217;instruction en cours. Lors d&#8217;un define
-     type DEFB, DEFW, DEFI, DEFR ou DEFS, l&#8217;adresse courante est celle de l&#8217;élément en cours.
-     Un DEF* produira les mêmes données que vous utilisiez plusieurs arguments à la suite ou bien
-     plusieurs DEF*.</li></ul>
+class="tctt-1000">$ </span>utilisé seul indique l&#8217;adresse de début de l&#8217;instruction en cours. Lors d&#8217;un define
+     type <span 
+class="cmtt-10">DEFB</span>, <span 
+class="cmtt-10">DEFW</span>, <span 
+class="cmtt-10">DEFI</span>, <span 
+class="cmtt-10">DEFR </span>ou <span 
+class="cmtt-10">DEFS</span>, l&#8217;adresse courante est celle de l&#8217;élément en cours. Un DEF*
+     produira les mêmes données que vous utilisiez plusieurs arguments à la suite ou bien plusieurs
+     DEF*.</li></ul>
 <!--l. 16--><p class="noindent" >Attention, le caractère &amp; est réservé pour l&#8217;opérateur AND.
 <!--l. 18--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">4.2.2   </span> <a 

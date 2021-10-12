@@ -81,12 +81,12 @@ Rasm interprète les valeurs numériques de la façon suivante:
 
 \begin{itemize}
   \item En décimal si la valeur commence par un chiffre.
-  \item En binaire si la valeur commence par un \% ou 0b.
-  \item En octal si la valeur commence par un \at.
-  \item En hexadécimal si la valeur commence par un \#, un \$, 0x ou se termine par un h.
+  \item En binaire si la valeur commence par un \texttt{\%} ou \texttt{0b} ou se termine par \texttt{b}.
+  \item En octal si la valeur commence par un \texttt{\at}.
+  \item En hexadécimal si la valeur commence par un \texttt{\#}, un \texttt{\$}, \texttt{0x} ou se termine par un \texttt{h}.
   \item En valeur ascii si un caractère unique est entre quotes. %ou guillemet?
-  \item En valeur associée à une variable ou un label, si la littérale commence par une lettre ou un '\at' pour les labels locaux.
-  \item Le symbole \$ utilisé seul indique l'adresse de début de l'instruction en cours. Lors d'un define type DEFB, DEFW, DEFI, DEFR ou DEFS, l'adresse courante est celle de l'élément en cours. Un DEF* produira les mêmes données que vous utilisiez plusieurs arguments à la suite ou bien plusieurs DEF*.
+  \item En valeur associée à une variable ou un label, si la littérale commence par une lettre ou un \texttt{\at} pour les labels locaux.
+  \item Le symbole \texttt{\$} utilisé seul indique l'adresse de début de l'instruction en cours. Lors d'un define type \texttt{DEFB}, \texttt{DEFW}, \texttt{DEFI}, \texttt{DEFR} ou \texttt{DEFS}, l'adresse courante est celle de l'élément en cours. Un DEF* produira les mêmes données que vous utilisiez plusieurs arguments à la suite ou bien plusieurs DEF*.
 \end{itemize}
 
 Attention, le caractère \& est réservé pour l'opérateur AND.
@@ -101,19 +101,19 @@ Ceci ne s'applique pas avec la directive PRINT. % CAD?
 Rasm accepts these values in expressions:
 \begin{itemize}
   \item Decimal if the value begins with a digit.
-  \item Binary if the value begins with %, 0b or ends with b.
-  \item Octal if the value begins with \at.
-  \item Hexadecimal if the value begins with \#, \$, 0x or ends with h.
+  \item Binary if the value begins with \texttt{\%}, \texttt{0b} or ends with \texttt{b}.
+  \item Octal if the value begins with \texttt{\at}.
+  \item Hexadecimal if the value begins with \texttt{\#}, \texttt{\$}, \texttt{0x} or ends with \texttt{h}.
   \item ASCII value of a char, delimited by quotes.
-  \item Value of a constant or a variable, referenced by its name, eventually prefixed with '\at'.
-  \item Current address symbol (\$)
+  \item Value of a constant or a variable, referenced by its name, eventually prefixed with \texttt{\at}.
+  \item Current address symbol (\texttt{\$})
 \end{itemize}
 
 All internal calculation are done with double precision floating point accumulator.
 A correct rounding is done in the end for integer needs.
 If the evaluation leads to a computation error, the result will be null.
 
-Beware of the \& char, it is reserved for AND operator.
+Beware of the \texttt{\&} char, it is reserved for AND operator.
 
 \subsubsection{Allowed chars}
 Between quotes, all standard ASCII characters are allowed.
