@@ -12,34 +12,37 @@ RASM also features a few options and directives specific for ZX architecture.
 \subsection{\xlang{Directive HOBETA}{HOBETA Directive}}\index{HOBETA}\label{HOBETA}
 
 \begin{verbatim}
-SAVE 'filename', start, length, HOBETA
+SAVE 'filename', start, size, HOBETA
 \end{verbatim}
 
 \begin{xfr}
 Cette directive est un parametre supplémentaire pour la directide \texttt{SAVE}, de facon à générer un fichier avec une entete HOBETA, en ajoutant l'entete adaptée.
-Hobeta est un format pour stocker des fichiers TR-DOS, utilisé principalement par les anciens émulateurs ZX Spectrum. 
-%Le format a maintenant reçu une nouvelle vie dans l'ordinateur ZX Evolution. 
+Hobeta est un format pour stocker des fichiers TR-DOS, utilisé principalement par les anciens émulateurs ZX Spectrum. Le fichier Hobeta est essentiellement une copie d'octet du fichier TR-DOS avec un en-tête de 17 octets:
 
+%Le format a maintenant reçu une nouvelle vie dans l'ordinateur ZX Evolution. 
 %La particularité du format est qu'un seul fichier TR-DOS est stocké dans un fichier Hobeta . 
-Le fichier Hobeta est essentiellement une copie d'octet du fichier TR-DOS avec un en-tête de 17 octets:
 %L'extension de fichier est obtenue en ajoutant le caractère "$" devant l'extension du fichier TR-DOS d'origine .
 %Le format est apparu avec le copieur Hobeta du même nom (hobeta.exe 19.11.1990 : "HoBeta V2.0, Copyright (C) 1990, InterCompex, Soviet-Swiss JV" - voir Le Hobbit ).
 %Description des formats
-\begin{tabular}{lll}
-+0  & 8 octets & nom de fichier TR-DOS \\
-+8  & 1 octet  & type de fichier (extension) TR-DOS \\
-+9  & 2 octets & Paramètre de fichier START \\
-+11 & 2 octets & paramètre LENGTH du fichier (longueur en octets) \\
-+13 & 2 octets & taille du fichier en secteurs \\
-+15 & 2 octets & somme de contrôle des 15 octets précédents (pas le fichier lui-même!) \\
+
+\medskip
+
+\begin{tabular}{l|l|l}
+\texttt{+0}  & 8 octets & nom de fichier TR-DOS \\
+\texttt{+8 } & 1 octet  & type de fichier (extension) TR-DOS \\
+\texttt{+9 } & 2 octets & paramètre de fichier START \\
+\texttt{+11} & 2 octets & paramètre LENGTH du fichier (longueur en octets) \\
+\texttt{+13} & 2 octets & taille du fichier en secteurs \\
+\texttt{+15} & 2 octets & somme de contrôle des 15 octets précédents (pas le fichier lui-même!) \\
 \end{tabular}
 
 %Données:
 %Copie d'octet de tous les secteurs du fichier
 %L'octet de poids fort de la taille du fichier en secteurs doit toujours être 0.
 
-Algorithme de calcul de la somme de contrôle:
-\[ \sum_{i=0}^{i<=14}{header[i]*257+i} \]
+
+%Algorithme de calcul de la somme de contrôle:
+%\[ \sum_{i=0}^{i<=14}{header[i]*257+i} \]
 
 %Somme de contrôle = 0 ;
 %pour (i = 0; i <= 14; CheckSum = CheckSum + (en-tête [i] * 257) + i, i ++);
@@ -48,25 +51,22 @@ Algorithme de calcul de la somme de contrôle:
 \end{xfr}
 
 \begin{xen}
-Use this directive for generating a file in \texttt{HOBETA} format
+Use this directive for generating a file in \texttt{HOBETA} format. 
 \end{xen}
 
-
-
-
-\subsubsection{\xlang{Directive BUILDZX}{BUILDZX Directive}}\index{BANK}\label{ZXBANK}
+\subsection{\xlang{Directive BUILDZX}{BUILDZX Directive}}\index{BANK}\label{ZXBANK}
 \begin{verbatim}
 BUILDZX
 \end{verbatim}
 
 \begin{xfr}
 Cette directive sert a activer la génération de snapshot.
-A noter qu'il est possible d'ajouter un second parametre à la directie \texttt{RUN}, afin de spécifier l'adresse de la pile (\texttt{SP})
+A noter qu'il faut obligatoirement ajouter un second parametre à la directive \texttt{RUN}, afin de spécifier l'adresse de la pile (\texttt{SP})
 \end{xfr}
 
 \begin{xen}
 Use this directive to enable ZX SNA file generation (Snaphsot) 
-With ZX SNA, you can add a second parameter to RUN directive
+With ZX SNA, you must specify a second parameter to \texttt{RUN} directive, in order to provide the value of Stack Pointer (\texttt{SP}) 
 \end{xen}
 
 \begin{code}

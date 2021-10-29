@@ -23,20 +23,20 @@ Using \texttt{\{BANK\}} prefix before a label (example: \texttt{\{BANK\}mylabel}
 
 \begin{code}
 BANK 0
-  ld a,\{bank\}mysub 	; \xlang{sera assemblé comme }{will be assembled as }LD A,1
+  ld a,\{bank\}mysub 	;\xlang{sera assemblé comme }{will be assembled as }LD A,1
   call connect\_bank
-  jp mysub
+  jp mysubfn
 \medskip
 BANK 1
   defb 'hello'
-mysub
+mysubfn
   jr \$
 \end{code}
 
 \subsubsection{\xlang{Préfixe PAGE}{PAGE Prefix}}\index{PAGE}
 
 \begin{xfr}
-  Le préfixe \texttt{\{PAGE\}} devant une référence à un label (exemple: \texttt{\{PAGE\}monlabel} ) permet de récupérer la valeur de type Gate array de la BANK dans laquelle est déclaré le label, plutôt que l'adresse du label. Par exemple pour un label situé dans la BANK 5 la valeur retournée sera \#7FC5.
+  Le préfixe \texttt{\{PAGE\}} devant une référence à un label (exemple: \texttt{\{PAGE\}monlabel}) permet de récupérer la valeur de type Gate array de la BANK dans laquelle est déclaré le label, plutôt que l'adresse du label. Par exemple pour un label situé dans la BANK 5 la valeur retournée sera \#7FC5.
   Si vous utilisez l'adressage mémoire par 64K avec la directive \texttt{BANKSET}, alors la valeur gate array sera déduite du set de 64K ainsi que de l'adresse du label (2 bits de poids fort).
   Exemple d'utilisation du tag:
 \end{xfr}
@@ -50,24 +50,24 @@ mysub
 \vbox{
 \begin{code}
 BANK 0
-\  ld bc,\{PAGE\}mysub    ; \xlang{sera assemblé comme }{will be assembled }LD BC,\#7FC5
+\  ld bc,\{PAGE\}mysubfn    ; \xlang{sera assemblé comme }{will be assembled }LD BC,\#7FC5
 \  out (c),a
-\  jp mysub
+\  jp mysubfn
 \medskip
 BANK 5
 \  defb 'hello'
-mysub
+mysubfn
 \  jr \$
 \end{code}
 }
 
 \subsubsection{\xlang{Préfixe PAGESET}{PAGESET Prefix}}\index{PAGESET}
 \begin{xfr}
-  Le préfixe \texttt{\{PAGESET\}} devant un label (exemple: \texttt{\{PAGESET\}monlabel} ) permet de récupérer la valeur de type "Gate Array" du \texttt{BANKSET} dans lequel est déclaré le label, plutôt que l'adresse du label. Par exemple pour un label situé dans la \texttt{BANK 5} la valeur retournée sera \#7FC2
+  Le préfixe \texttt{\{PAGESET\}} devant un label (exemple: \texttt{\{PAGESET\}monlabel}) permet de récupérer la valeur de type "Gate Array" du \texttt{BANKSET} dans lequel est déclaré le label, plutôt que l'adresse du label. Par exemple pour un label situé dans la \texttt{BANK 5} la valeur retournée sera \#7FC2
 \end{xfr}
 
 \begin{xen}
-  You can use \{PAGESET\} prefix before a label (example: \{PAGESET\}mylabel ) to program the Gate array for selecting the BANKSET where the label is located. For example, for a label stored in BANK \#5, \#7FC2 will be returned.
+  You can use \{PAGESET\} prefix before a label (example: \{PAGESET\}mylabel) to program the Gate array for selecting the BANKSET where the label is located. For example, for a label stored in BANK \#5, \#7FC2 will be returned.
 \end{xen}
 
 \begin{code}
@@ -134,6 +134,12 @@ SAVE 'myfile.bin',start,size,AMSDOS
 \medskip
 ;\xlang{Sauve un binaire AMSDOS dans un fichier DSK}{Save a binary file (AMDOS header mandatory) on a DSK file}
 SAVE 'myfile.bin',start,size,DSK,'fichierdsk.dsk'
+\medskip
+;\xlang{Sauve un binaire CDT}{Save a CDT file }
+SAVE 'myfile.bin',start,size,TAPE
+\medskip
+;\xlang{Sauve un binaire HOBETA pour ZX}{Save a binary file with HOBETA header (for ZX architecture)}
+SAVE 'myfile.bin',start,size,HOBETA
 \end{code}
 
 \xlang{Combiné avec RUN:}{Combined with RUN:}
@@ -141,7 +147,7 @@ SAVE 'myfile.bin',start,size,DSK,'fichierdsk.dsk'
 ORG \#9000
 \medskip
 start:
-\ call \#bb06
+\ nop
 \ ret
 end:
 \medskip
@@ -155,11 +161,9 @@ SAVE 'main.bin',start,end-start,DSK,'main.dsk'
 
 
 \subsection{\xlang{Cartouches et Snapshots}{Snapshot and Cartridges}}\index{Snapshots}
-\begin{xen}
-\index{Cartridges}
+\begin{xen}\index{Cartridges}
 \end{xen}
-\begin{xfr}
-\index{Cartouches}
+\begin{xfr}\index{Cartouches}
 \end{xfr}
 
 \begin{xfr}
@@ -226,7 +230,7 @@ Le snapshot généré par Rasm inclu un écran de taille classique (le même que
 Par défaut le snapshot est initialisé avec un 6128 CRTC 0.
 
 Il est possible avec les directives \texttt{SETCRTC} et \texttt{SETCPC} de choisir un autre type de CPC et de CRTC.
-De plus, il est possible de spécifier la valeur des registres des dfférents circuits avec SNASET:
+De plus, il est possible de spécifier la valeur des registres des dfférents circuits avec \texttt{SNASET}:
 \end{xfr}
 
 \begin{xen}
@@ -254,12 +258,12 @@ Select CPC model when recording a v3 snapshot:
 \end{xen}
 
 \begin{tabular}{ll}
-0 :& CPC 464 \\
-1 :& CPC 664 \\
-2 :& CPC 6128 \\
-4 :& 464 Plus \\
-5 :& 6128 Plus \\
-6 :& GX-4000 \\
+0:& CPC 464 \\
+1:& CPC 664 \\
+2:& CPC 6128 \\
+4:& 464 Plus \\
+5:& 6128 Plus \\
+6:& GX-4000 \\
 \end{tabular}
 
 \subsubsection{SETCRTC}\index{SETCRTC}
@@ -340,8 +344,20 @@ Avec les 3 autres syntaxes, \texttt{SETSNA} prend un parametre supplémentaire, 
 %PSG_REG,index,valeur
 
 
-
 %Voici un autre exemple un peu plus sophistiqué, qui utilise plusieurs banques
+
+\subsubsection{BUILDTAPE}\index{BUILDTAPE}\index{CDT}
+\begin{verbatim}
+BUILDTAPE
+\end{verbatim}
+
+\begin{xfr}
+Active la génération d'un fichier \texttt{CDT}. Comme pour \texttt{BUILDSNA}, la directive \texttt{RUN} permet de spécifier un point d'entrée.
+\end{xfr}
+
+\begin{xen}
+Generates a \texttt{CDT} file. Like \texttt{BUILDSNA} directive, it's possible to declare an entry point with  \texttt{RUN}
+\end{xen}
 
 
 
@@ -389,12 +405,12 @@ bank
 ; bank used without parameter, this is a temporary memory space
 ; that won't be saved in the snapshot
 \medskip
-pouet
+foo
 \  repeat 10
 \ \ cpi
 \ rend
-camion
-\ SAVE"another",pouet,camion-pouet
+bar
+\ SAVE "another",foo,foo-bar
 \end{code}
 
 \begin{xfr}

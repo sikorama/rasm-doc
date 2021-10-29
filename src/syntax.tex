@@ -310,11 +310,14 @@ PROTECT <start address>,<end address>
 \end{verbatim}
 
 \begin{xfr}
-Empêcher l'écriture de données dans la zone début/fin de l'espace mémoire courant.
+Cette directive permet d'empêcher l'écriture de données dans la zone délimitée par les parametres de début et de fin de l'espace mémoire courant.
+Il est possible de définir autant de zones d'exclusion que l'on souhaite pour un meme espace mémoire. Ces espaces ne doivent pas se chevaucher.
+Si des données son écrites lors l'assemblage, une erreur sera levée.
 \end{xfr}
 
 \begin{xen}
-This directive protects a memory zone, delimited by the two parameters, from writing.
+This directive protects a memory area, delimited by the two parameters, from writing. It data is written in the area while assembling, an error will be raised.
+It applies to current memory space and can be used many times, as long as the areas don't overlap.
 \end{xen}
 
 \subsection{\xlang{Données}{Data definition}}
@@ -337,23 +340,23 @@ Following code will producte 'Roudoudou' string. ('u' char corresponds to ASCII 
 %If CHARSET directive were used, the outputed bytes respect the CHARSET redefinition.
 Example:
 \end{xen}
-\index{HI()}
+
 \begin{code}
 org \#7500
 label:
-defb 'r'-'a'+'A','oudoud',\#6F,hi(label)
+\ DEFB 'r'-'a'+'A','oudoud',\#6F,hi(label)
 \end{code}
 
 \begin{xfr}
-Dans les chaines de caractere, il est possible d'utiliser le caractere d'échappement \\ pour envoyer des caracteres de controle, comme en C: \texttt{\\n\\t\\r}
+Dans les chaines de caract`ere, il est possible d'utiliser le caractere d'échappement $\backslash$, pour envoyer des caracteres de controle, comme en C: \texttt{$\backslash$n$\backslash$t$\backslash$r}
 \end{xfr}
 
 \begin{xen}
-With character strings, it's possible to use control characters, with \\,  just like in C syntax: \texttt{\\n\\t\\r}
+With character strings, it's possible to use control characters, with $\backslash$,  just like in C syntax: \texttt{$\backslash$n$\backslash$t$\backslash$r}
+See \texttt{CHARSET} directive for altering the way strings are interpreted.
 \end{xen}
 
 
-See CHARSET directive for altering the way strings are interpreted.
 
 \subsubsection{DEFW}\index{DEFW}
 

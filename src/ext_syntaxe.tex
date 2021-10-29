@@ -235,7 +235,7 @@ endswitch
 \end{code}
 
 
-\subsection{\xlang{Boucles et macros}{Loops and Macros}}
+\subsection{\xlang{Boucles et macros}{Loops and Macros}}\index{MACRO}
 \input{loops}
 \input{macros}
 
@@ -260,7 +260,9 @@ Cette directive calcule la durée d'un bloc d'instructions (délimité par \text
 et stocke le résultat dans une variable. Le nom de la variable doit etre identique pour le \texttt{START} et le \texttt{STOP}.
 Elle peut etre utilisée pour calculer la durée pour CPC (\texttt{TICKER STOP}) ou pour ZX (\texttt{TICKER STOPZX}).
 Sur CPC, la durée calculée est exprimée en "nombre de NOPs équivalents" (cf Annexe C), ce qui correpond à peu pres à la durée en micro secondes. Cette directive est très pratique pour écrire et maintenir du code à durée fixe.
-A noter que pour les instructions de saut conditionnel, c'est la durée en réalisant le saut qui est prise en compte, a l'exception de l'opcode RET conditionnel.
+
+A noter que pour les instructions de saut conditionnel, c'est la durée en ne réalisant pas le saut qui est prise en compte, a l'exception de l'opcode \texttt{DJNZ}:
+
 
 Par exemple, si on veut faire un effet 'raster', il faut il faut s'assurer que l'on change de couleur à chaque ligne écran, soit toutes les 64 microsecondes:
 \end{xfr}
@@ -271,6 +273,38 @@ and stores the result in a variable.
 It can be used for counting cycles for CPC architecture (by using \texttt{TICKER STOP}), or for ZX architectures (by using \texttt{TICKER STOPZX})
 On CPC, the duration is expressed as "number of NOPs", which is approximatively equivalent to micro seconds (see Annexe C).
 This directive is very convenient when writing video effects, such as rasters, where colors have to be changed periodically, every 64 micro seconds (the duration of a video line):
+\end{xen}
+
+\begin{itemize}
+\item DJNZ: 3us 
+\item JR Cond: 2us 
+\item JP Cond: 3us 
+\item RET Cond: 2us
+\item Call Cond: 3us
+\end{itemize}
+
+\begin{xfr}
+Par exemple avec le code suivant, la variable \texttt{cnt} vaudra 8
+\end{xfr}
+
+\begin{xen}
+For example with this code, \texttt{cnt} variable will be equal to 8
+\end{xen}
+
+\begin{code}
+TICKER START, cnt
+\ ld a,(hl)   ; 2 us
+\ out (c),a   ; 4 us
+\ inc hl      ; 2 us
+TICKER STOP, cnt
+PRINT cnt     ; cnt = 8us
+\end{code}
+
+\begin{xfr}
+Une application pratique dans une boucle, pour avoir 64us a chaque tour de boucle, et de joli rasters:
+\end{xfr}
+\begin{xen}
+It can be used this way, to obtain a loop duration of 64us:
 \end{xen}
 
 \begin{code}
@@ -290,6 +324,5 @@ TICKER STOP, cntline
 \end{code}
 
 \begin{xfr}
-Comme on sait que les deux dernieres instructions (DEC et JR) durent "4 NOPs",
-on rallonge la boucle la boucle de 60-cntline NOPs.
+Comme on sait que les deux dernieres instructions (DEC et JR) durent au total "4 NOPs", on rallonge la boucle la boucle de 60-cntline NOPs.
 \end{xfr}
