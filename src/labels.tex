@@ -147,13 +147,13 @@ In order to prefix a label inside a module, underscore symbol is used : \texttt{
   start:
     ...
     ret
-  data: equ 1
+  data: db 1
 \medskip
 MODULE module2:
   start:
     ...
     ret
-  data: equ 2
+  data:db 2
 MODULE OFF
 \medskip
  ld a,(module1\_data)
