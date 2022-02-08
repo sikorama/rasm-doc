@@ -18,7 +18,7 @@ Exemple d'utilisation du tag:
 \end{xfr}
 
 \begin{xen}
-Using \texttt{\{BANK\}} prefix before a label (example: \texttt{\{BANK\}mylabel} ) will return the BANK number where the label is located, intead of its absolute address. For example:
+Using \texttt{\{BANK\}} prefix before a label (example: \texttt{\{BANK\}mylabel} ) will return the BANK number where the label is located, instead of its absolute address. For example:
 \end{xen}
 
 \begin{code}
@@ -194,7 +194,7 @@ Peut etre utilisé en conjonction avec l'option \texttt{-xpr} pour générer des
 
 \begin{xen}
 Without parameter, this directive is optional, as by default, when a BANK directive is used, a cardridge file is generated. However, it is recommended to explicitly use this directive to indicate that a cardridge will be generated.
-If \texttt{EXTENDED} parameter is added, then an extended cartdridge (.xpr) will be generated.
+If \texttt{EXTENDED} parameter is added, then an extended cartridge (.xpr) will be generated.
 It can be used in cunjunction with \texttt{-xpr} option, for generating additional file for each 512KB slot.
 \end{xen}
 
@@ -277,7 +277,7 @@ Choisir le modèle de CRTC quand on enregistre un snapshot. Les valeurs autoris�
 \end{xfr}
 
 \begin{xen}
-Select CRTC model when writing a v3 snapshot file. Value for CRTC model ranges from 0 to 4. CRTC 3 corresponds to CPC Plus and GX-4000, othe values to classic CPCs.
+Select CRTC model when writing a v3 snapshot file. Value for CRTC model ranges from 0 to 4. CRTC 3 corresponds to CPC Plus and GX-4000, other values to classic CPCs.
 \end{xen}
 
 \subsubsection{SETSNA}\index{SETSNA}
@@ -378,7 +378,7 @@ Sans paramètre, ou avec le parametre NEXT, la directive ouvre un nouvel espace 
 
 \begin{xen}
 Selects a ROM bank (while exporting a cartridge) or a RAM slot (for snapshots) for storing code or data.
-For a cartdridge, values range from 0 to 31. In snapshot mode the values range from 0 to 35 (64K base memory + 512K extended memory).
+For a cartridge, values range from 0 to 31. In snapshot mode the values range from 0 to 35 (64K base memory + 512K extended memory).
 Used without parameter, BANK directive opens a new memory workspace.
 
 By default, when using BANK, a cartridge will be generated, except if \texttt{BUILDSNA} directive was used previously.
@@ -386,7 +386,7 @@ By default, when using BANK, a cartridge will be generated, except if \texttt{BU
 \end{xen}
 
 \begin{code}
-BUILDSNA ; recommanded usage when using snapshot is to set it first
+BUILDSNA ; recommended usage when using snapshot is to set it first
 BANKSET 0 ; assembling in first 64K
 ORG \#1000
 RUN \#1000 ; entry point is set to \#1000
@@ -446,7 +446,7 @@ The gate array can be configured with additional parameters
 
 \subsubsection{BANKSET}\index{BANKSET}
 \begin{verbatim}
-BANKSET <64K bloc number>
+BANKSET <64K block number>
 \end{verbatim}
 
 \begin{xfr}

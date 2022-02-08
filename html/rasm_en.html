@@ -23,7 +23,7 @@ class="cmr-12">É </span><br class="and" /><span
 class="cmr-12">St</span><span 
 class="cmr-12">éphane SIKORA</span></div><br />
 <div class="date" ><span 
-class="cmr-12">October 29, 2021</span></div>
+class="cmr-12">February 8, 2022</span></div>
 </div>
 <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Contents</h3>
@@ -63,7 +63,7 @@ href="#x1-170003.3.1" id="QQ2-1-17">IX, IY registers</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >3.3.2 <a 
 href="#x1-180003.3.2" id="QQ2-1-18">Undocumented opcodes syntax</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >3.3.3 <a 
-href="#x1-190003.3.3" id="QQ2-1-19">Shorcuts</a></span>
+href="#x1-190003.3.3" id="QQ2-1-19">Shortcuts</a></span>
 <br />&#x00A0;<span class="subsectionToc" >3.4 <a 
 href="#x1-200003.4" id="QQ2-1-20">Memory related directives</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >3.4.1 <a 
@@ -124,7 +124,7 @@ href="#x1-460005.1.3" id="QQ2-1-46">STOP</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >5.1.4 <a 
 href="#x1-470005.1.4" id="QQ2-1-47">NOEXPORT</a></span>
 <br />&#x00A0;<span class="subsectionToc" >5.2 <a 
-href="#x1-480005.2" id="QQ2-1-48">Conditionnal code directives</a></span>
+href="#x1-480005.2" id="QQ2-1-48">Conditional code directives</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >5.2.1 <a 
 href="#x1-490005.2.1" id="QQ2-1-49">ASSERT</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >5.2.2 <a 
@@ -164,7 +164,7 @@ href="#x1-710005.5.2" id="QQ2-1-71">SIZEOF</a></span>
 <br />&#x00A0;&#x00A0;<span class="subsubsectionToc" >5.5.3 <a 
 href="#x1-720005.5.3" id="QQ2-1-72">STRUCT Array</a></span>
 <br />&#x00A0;<span class="subsectionToc" >5.6 <a 
-href="#x1-730005.6" id="QQ2-1-73">Duration of a bloc</a></span>
+href="#x1-730005.6" id="QQ2-1-73">Duration of a block</a></span>
 <br /><span class="sectionToc" >6 <a 
 href="#x1-740006" id="QQ2-1-74">Crunch and import directives</a></span>
 <br />&#x00A0;<span class="subsectionToc" >6.1 <a 
@@ -298,47 +298,55 @@ class="cmr-7">3</span></sup>, but i&#8217;ve kept some aspects of its design, pa
 process of assembling was mono-pass.
 <!--l. 5--><p class="noindent" >RASM uses efficient algorithmic patterns, such as merkel trees, caches, and grouped memory allocation.
 Thanks to its linear conception, performances in real conditions are really high, it&#8217;s particularly fast, even
-with huge projects.
-<!--l. 8--><p class="noindent" >Nowadays RASM is used on big projects such as:
+with huge projects. Nowadays RASM is used on big projects such as:
      <ul class="itemize1">
+     <li class="itemize">Arkos Tracker II by Targhan (embedded in the software)
+     </li>
+     <li class="itemize">Bubble Quest by Roudoudou (wip)
+     </li>
      <li class="itemize">Ghost&#8217;n Goblins by Golem13 - still in development, for CPC+ architectures.
      </li>
-     <li class="itemize">Arkos Tracker II by Targhan (embedded in the software)</li></ul>
-<!--l. 39--><p class="noindent" >
+     <li class="itemize">Puzzle Bubble by Redbug
+     </li>
+     <li class="itemize">Rasmlive (https://rasmlive.amstrad.info)
+     </li>
+     <li class="itemize">Sonic GX by Condense (WIP)
+     </li>
+     <li class="itemize">Tower Defense by Roudoudou</li></ul>
+<!--l. 49--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
  id="x1-30001.1"></a>Features</h4>
      <ul class="itemize1">
      <li class="itemize">Ultra-fast compilation
      </li>
-     <li class="itemize">common compressors included
+     <li class="itemize">Common compressors included
      </li>
-     <li class="itemize">binary, snapshot, floppy, cartridge export
+     <li class="itemize">Binary, snapshot, floppy, cartridge export
      </li>
-     <li class="itemize">symbols import/export
+     <li class="itemize">Symbols import/export
      </li>
-     <li class="itemize">overwriting control
+     <li class="itemize">Overwriting control
      </li>
-     <li class="itemize">unlimited memory spaces where labels are shared
+     <li class="itemize">Unlimited memory spaces where labels are shared
      </li>
-     <li class="itemize">dedicated directives for memory/ROM management
+     <li class="itemize">Dedicated directives for memory/ROM management
      </li>
-     <li class="itemize">all Z80 instructions are supported
+     <li class="itemize">All Z80 instructions are supported
      </li>
-     <li class="itemize">macros, conditionnal code, unlimited loops, local labels, switch/case
-     </li>
-     <li class="itemize">double precision calculation with correct rounding
-     </li>
-     <li class="itemize">audio file import, with automatic conversion into DMA lists (CPC+)
-     </li>
-     <li class="itemize">optionnal compatibility with Maxam or AS80
-     </li>
-     <li class="itemize">code duration evaluation</li></ul>
+     <li class="itemize">Macros, conditional code, unlimited loops, local labels, switch/case
                                                                                     
                                                                                     
-<!--l. 17--><p class="noindent" >Rasm is licenced under MIT licence.
-<!--l. 20--><p class="noindent" >This documentation is maintained by Stephane Sikora, please send any feedback to
-<!--l. 22--><p class="noindent" ><span 
-class="cmtt-10">sikoogle+rasm@gmail.com </span>.
+     </li>
+     <li class="itemize">Double precision calculation with correct rounding
+     </li>
+     <li class="itemize">Audio file import, with automatic conversion into DMA lists (CPC+)
+     </li>
+     <li class="itemize">Optional compatibility with Maxam or AS80
+     </li>
+     <li class="itemize">Code duration evaluation</li></ul>
+<!--l. 17--><p class="noindent" >Rasm is licenced under MIT licence. This documentation is maintained by Stephane Sikora, please send any
+feedback to <span 
+class="cmtt-10">https://github.com/sikorama/rasm-doc</span>
                                                                                     
                                                                                     
                                                                                     
@@ -347,9 +355,9 @@ class="cmtt-10">sikoogle+rasm@gmail.com </span>.
  id="x1-40002"></a>Usage</h3>
 <!--l. 2--><p class="noindent" >RASM is meant to be convenient to use. It selects automatically the correct file format (plan binary, snaphost
 or cartridge file)) depending on the selected ROMs, give a consistent name to generated files, looks for files in
-relatives path, allows multiple origin (ORG) directives, but will detect overlapping code blocs, and so
+relatives path, allows multiple origin (ORG) directives, but will detect overlapping code blocks, and so
 on...
-<!--l. 5--><p class="noindent" >RASM pre-processor not only performs some checks (valid characters, strings), it also converts some operators
+<!--l. 5--><p class="noindent" >RASM preprocessor not only performs some checks (valid characters, strings), it also converts some operators
 into their C equivalent (for example <span 
 class="cmtt-10">XOR</span>, <span 
 class="cmtt-10">AND</span>,<span 
@@ -358,7 +366,7 @@ class="cmtt-10">MOD </span>which are used by Maxam), so you can indiferently use
 <span 
 class="cmtt-10">AND </span>or <span 
 class="cmtt-10">&amp; </span>in your expressions. And last, but not least, it is possible to use conditional expressions in order to
-change the way your program is assembled (like with C preprocesser), and you can even define macros and
+change the way your program is assembled (like with C preprocessor), and you can even define macros and
 data structures!
 <!--l. 1--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">2.1   </span> <a 
@@ -423,7 +431,7 @@ example, it can be useful for debugging a program with Winape.
                                                                                     
      </li>
      <li class="itemize">-sx : export for ZX emulators, where the bank is printed : <span 
-class="cmtt-10">(&#x003C;bank&#x003E;:&#x003C;adresse&#x003E;)</span>
+class="cmtt-10">(&#x003C;bank&#x003E;:&#x003C;address&#x003E;)</span>
      </li>
      <li class="itemize">-sa : export all symbols (same as -sl -sv -sq)</li></ul>
 <!--l. 13--><p class="noindent" >Example:
@@ -581,7 +589,7 @@ class="cmbx-10">??</span>)
 <!--l. 321--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">2.8   </span> <a 
  id="x1-120002.8"></a>More options</h4>
-<!--l. 1--><p class="noindent" >Additional options are useful for some architectures only. Export optios specific to the Amstrad CPC
+<!--l. 1--><p class="noindent" >Additional options are useful for some architectures only. Export options specific to the Amstrad CPC
 (Snapshot and cartridge generation) are documented in paragraph <a 
 href="#x1-1060007.4.3">7.4.3<!--tex4ht:ref: options_export_cpc --></a>. Also remember -help option, which
 will display a complete list of all available command line arguments.
@@ -617,7 +625,7 @@ class="cmtt-10">*/</span>.
 <!--l. 53--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">3.2   </span> <a 
  id="x1-150003.2"></a>Labels</h4>
-<!--l. 1--><p class="noindent" >Labels are used for naming a specific memory adress.
+<!--l. 1--><p class="noindent" >Labels are used for naming a specific memory address.
 <div class="framedenv" id="leftbar-1">
 <!--l. 67--><p class="noindent" ><div class="obeylines-v">
 <span 
@@ -693,7 +701,7 @@ class="cmtt-10">sl1 &#x003C;registre&#x003E;</span></div>
 </div>
 <!--l. 135--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">3.3.3   </span> <a 
- id="x1-190003.3.3"></a>Shorcuts</h5>
+ id="x1-190003.3.3"></a>Shortcuts</h5>
                                                                                     
                                                                                     
 <!--l. 1--><p class="noindent" >Rasm allows some shortcuts. These are not real instrctions, but a convenient way to write shorter assembly
@@ -925,7 +933,7 @@ ORG&#x00A0;&#x003C;logical&#x00A0;address&#x003E;[,&#x003C;physical&#x00A0;addre
 </div>
 <!--l. 221--><p class="nopar" >
 <!--l. 1--><p class="noindent" >ORG is used for locating assembled code to a specific address. This directive can be used multiple times in
-the same memory space, but assembled memory blocs may not overlap. In that case, RASM will produce an
+the same memory space, but assembled memory blocks may not overlap. In that case, RASM will produce an
 error message.
 <div class="framedenv" id="leftbar-1">
 <!--l. 234--><p class="noindent" ><div class="obeylines-v">
@@ -938,8 +946,8 @@ class="cmtt-10">; bytecode output:</span>
 <br /><span 
 class="cmtt-10">; #8000: #C9</span></div>
 </div>
-<!--l. 1--><p class="noindent" >Still, if you need to generate two or more pieces of code targetted for the same address, but physically stored
-in a different place, you can use the second parameter. For example, in order to generate code targetted for
+<!--l. 1--><p class="noindent" >Still, if you need to generate two or more pieces of code targeted for the same address, but physically stored
+in a different place, you can use the second parameter. For example, in order to generate code targeted for
 address #8000, but stored in #1000:
 <div class="framedenv" id="leftbar-1">
 <!--l. 258--><p class="noindent" ><div class="obeylines-v">
@@ -952,7 +960,7 @@ class="cmtt-10">; bytecode output:</span>
 <br /><span 
 class="cmtt-10">; #1000: #C3,#00,#80</span></div>
 </div>
-<!--l. 1--><p class="noindent" >On Amstrad CPC, you also can write tagetted to the same adress, by defining a new memory space, using
+<!--l. 1--><p class="noindent" >On Amstrad CPC, you also can write tagetted to the same address, by defining a new memory space, using
 BANK directive. (See section <a 
 href="#x1-1010007.3.6">7.3.6<!--tex4ht:ref: BANK --></a>)
 <!--l. 269--><p class="noindent" >
@@ -992,7 +1000,7 @@ LIMIT&#x00A0;&#x003C;address&#x00A0;boundary&#x003E;
 </div>
 <!--l. 293--><p class="nopar" >
 <!--l. 1--><p class="noindent" >By default, the upper address for locating code is set to 65535, but for some reason, you may need to reduce
-thise value. Hoever if you want to protect a memory area zone, take a look at the <span 
+this value. However if you want to protect a memory area zone, take a look at the <span 
 class="cmtt-10">PROTECT </span>directive below.
 <!--l. 307--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">3.4.4   </span> <a 
@@ -1025,8 +1033,8 @@ DEFB&#x00A0;&#x003C;value1&#x003E;[,&#x003C;value2&#x003E;,...]
 &#x00A0;<br />DEFM&#x00A0;&#x003C;value1&#x003E;[,&#x003C;value2&#x003E;,...]
 </div>
 <!--l. 330--><p class="nopar" >
-<!--l. 1--><p class="noindent" >This directive handle one or more parameters and output bytes regarding of thoses parameters. The value
-may be a literal value, a formula (the result will be rounded), or a string where each char will output a byte.
+<!--l. 1--><p class="noindent" >This directive handle one or more parameters and output bytes regarding of those parameters. The value may
+be a literal value, a formula (the result will be rounded), or a string where each char will output a byte.
 Following code will producte &#8217;Roudoudou&#8217; string. (&#8217;u&#8217; char corresponds to ASCII code #75) Example:
 <div class="framedenv" id="leftbar-1">
 <!--l. 344--><p class="noindent" ><div class="obeylines-v">
@@ -1317,7 +1325,7 @@ alias that can be defined.
 </div>
 <!--l. 19--><p class="nopar" >
 <!--l. 1--><p class="noindent" ><span 
-class="cmtt-10">EQU </span>directive allows to define aliases by associating a symbol with a value: any occurence of the symbol will
+class="cmtt-10">EQU </span>directive allows to define aliases by associating a symbol with a value: any occurrence of the symbol will
 be replaced by the value. An alias cannot be changed once it has been changed, it&#8217;s a constant value. There is
 an infinite recursivity check done for each alias declaration.
 <!--l. 31--><p class="noindent" >Example:  <div class="framedenv" id="leftbar-1">
@@ -1783,7 +1791,7 @@ but it is possible to specify a subset of symbols. Symbol export can be re enabl
 class="cmtt-10">ENOEXPORT</span>.
 <!--l. 98--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">5.2   </span> <a 
- id="x1-480005.2"></a>Conditionnal code directives</h4>
+ id="x1-480005.2"></a>Conditional code directives</h4>
 <!--l. 1--><p class="noindent" >It is possible to use conditional directives with RASM, in a way similar to C preprocessor: it
 is possible to change the assembled code, depending on some conditions. There is a basic rule
 when writing such expressions: all variables used in it must be declared prior to the expression.
@@ -1827,7 +1835,7 @@ IF&#x00A0;&#x003C;condition&#x003E;&#x00A0;...&#x00A0;[ELSE&#x00A0;...]&#x00A0;E
 &#x00A0;<br />IFNOT&#x00A0;&#x003C;condition&#x003E;&#x00A0;...&#x00A0;[ELSEIF&#x00A0;&#x003C;condition&#x003E;&#x00A0;...]&#x00A0;ENDIF
 </div>
 <!--l. 138--><p class="nopar" >
-<!--l. 1--><p class="noindent" >As with C preprocesor, this directive can be used for enabling some portions of code, depending on a
+<!--l. 1--><p class="noindent" >As with C preprocessor, this directive can be used for enabling some portions of code, depending on a
 condition. Example:
 <div class="framedenv" id="leftbar-1">
 <!--l. 149--><p class="noindent" ><div class="obeylines-v">
@@ -1990,9 +1998,9 @@ REPEAT&#x00A0;&#x003C;number&#x00A0;of&#x00A0;repetitions&#x003E;[,counter[,coun
 &#x00A0;<br />REPEAT&#x00A0;...&#x00A0;UNTIL&#x00A0;&#x003C;condition&#x003E;
 </div>
 <!--l. 6--><p class="nopar" >
-<!--l. 1--><p class="noindent" >This directive repeats a block of instructions. You may fix a number of repetition or use conditionnal mode
+<!--l. 1--><p class="noindent" >This directive repeats a block of instructions. You may fix a number of repetition or use conditional mode
 with <span 
-class="cmtt-10">UNTIL</span>. It is also possible to close such a bloc with <span 
+class="cmtt-10">UNTIL</span>. It is also possible to close such a block with <span 
 class="cmtt-10">ENDREP </span>or <span 
 class="cmtt-10">ENDREPEAT</span>, for Vasm compatibility.
 <div class="framedenv" id="leftbar-1">
@@ -2115,7 +2123,7 @@ class="cmtt-10">rend</span></div>
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-30">
-WHILE&#x00A0;&#x003C;condtion&#x003E;&#x00A0;...&#x00A0;wEND
+WHILE&#x00A0;&#x003C;condition&#x003E;&#x00A0;...&#x00A0;wEND
 </div>
 <!--l. 124--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Repeat a block as long as the condition is evaluated as true. You may use the internal variable
@@ -2180,9 +2188,9 @@ MACRO&#x00A0;&#x003C;macro_name&#x003E;&#x00A0;[param1[,param2[,...]]]
 <!--l. 1--><p class="noindent" >A macro is a way to extend the language, by defining a block of instructions, delimited by MACRO and <span 
 class="cmtt-10">MEND</span>
 (or ENDM) directives, that can later be inserted in your code. Macros can take parameters, so you can make
-conditionnal assembling with it: a macro is barely a copy/paste with arguments replacement. Arguments
-inside the macro are referenced using curly brackets. Here is an example of a long distance indexing, working
-for any 16 bit register (except B or C):
+conditional assembling with it: a macro is barely a copy/paste with arguments replacement. Arguments inside
+the macro are referenced using curly brackets. Here is an example of a long distance indexing, working for any
+16 bit register (except B or C):
 <div class="framedenv" id="leftbar-1">
 <!--l. 21--><p class="noindent" ><div class="obeylines-v">
 <span 
@@ -2247,7 +2255,7 @@ class="cmtt-10">LDIXREG H,200</span>
 <br /><span 
 class="cmtt-10">LDIXREG L,32</span></div>
 </div>
-Beware that RASM will understand any misspeled macro as a label declaration! A recommanded usage for
+Beware that RASM will understand any misspeled macro as a label declaration! A recommended usage for
 macros without parameters, is to systematicaly use an empty parameter &#8221;<span 
 class="cmtt-10">(void)</span>&#8221; . A misspeled macro call
 will then trigger an error. If you want to enforce usage of this syntax, you can use <span 
@@ -2515,13 +2523,13 @@ class="cmtt-10">&#x00A0;jp .prox ; (=&#x003E; 7)</span></div>
 <!--l. 128--><p class="nopar" >
 <!--l. 1--><p class="noindent" ><span 
 class="cmtt-10">MODULE </span>is a way to declare a section in your code. It is similar to namespace in C, and allows to prefix globals
-and proximity labels with a name. It can be usefull in order to avoid conflict between portions of code using
+and proximity labels with a name. It can be useful in order to avoid conflict between portions of code using
 similar labels, for example when including external code. Closing a Module section can be done by declaring a
 new module, or using <span 
 class="cmtt-10">MODULE OFF </span>In order to prefix a label inside a module, underscore symbol is used :
 <span 
 class="cmtt-10">module</span><span 
-class="cmtt-10">_label</span>. For exemple:
+class="cmtt-10">_label</span>. For example:
 <div class="framedenv" id="leftbar-1">
 <!--l. 145--><p class="noindent" ><div class="obeylines-v">
 <span 
@@ -2533,7 +2541,7 @@ class="cmtt-10">...</span>
 <br /><span 
 class="cmtt-10">ret</span>
 <br /><span 
-class="cmtt-10">data: equ 1</span>
+class="cmtt-10">data: db 1</span>
 <br /><span 
 class="cmtt-10">MODULE module2:</span>
 <br /><span 
@@ -2543,7 +2551,7 @@ class="cmtt-10">...</span>
 <br /><span 
 class="cmtt-10">ret</span>
 <br /><span 
-class="cmtt-10">data: equ 2</span>
+class="cmtt-10">data:db 2</span>
 <br /><span 
 class="cmtt-10">MODULE OFF</span>
 <br /><span 
@@ -2572,7 +2580,7 @@ STRUCT&#x00A0;&#x003C;prototype&#x00A0;name&#x003E;&#x00A0;[,&#x003C;variable&#x
 </div>
 <!--l. 7--><p class="nopar" >
 <!--l. 1--><p class="noindent" >As Z80 processor is able to manage structured data thanks to its IX and IY registers, RASM
-introduces STRUCT directive, wich is used for defining a structure, in a similar way to C syntax
+introduces STRUCT directive, which is used for defining a structure, in a similar way to C syntax
 <div class="framedenv" id="leftbar-1">
 <!--l. 13--><p class="noindent" ><div class="obeylines-v">
 <span 
@@ -2658,7 +2666,7 @@ class="cmtt-10">metast1.pr2.ch1 ; LD A, 2</span></div>
 <!--l. 1--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">5.5.3   </span> <a 
  id="x1-720005.5.3"></a>STRUCT Array</h5>
-<!--l. 2--><p class="noindent" >It&#8217;s possible to instanciate an array of structs, using this syntax:
+<!--l. 2--><p class="noindent" >It&#8217;s possible to instantiate an array of structs, using this syntax:
 <div class="framedenv" id="leftbar-1">
 <!--l. 104--><p class="noindent" ><div class="obeylines-v">
 <span 
@@ -2676,7 +2684,7 @@ class="cmtt-10">LD HL,myinstances5</span></div>
 </div>
 <!--l. 248--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">5.6   </span> <a 
- id="x1-730005.6"></a>Duration of a bloc</h4>
+ id="x1-730005.6"></a>Duration of a block</h4>
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-35">
@@ -2686,12 +2694,12 @@ TICKER&#x00A0;START,&#x003C;var&#x003E;
 </div>
 <!--l. 256--><p class="nopar" >
 <!--l. 1--><p class="noindent" ><span 
-class="cmtt-10">TICKER </span>directive computes the duration of an instruction bloc (delimited by TICKER START and TICKER
+class="cmtt-10">TICKER </span>directive computes the duration of an instruction block (delimited by TICKER START and TICKER
 STOP), and stores the result in a variable. It can be used for counting cycles for CPC architecture (by
 using <span 
 class="cmtt-10">TICKER STOP</span>), or for ZX architectures (by using <span 
 class="cmtt-10">TICKER STOPZX</span>) On CPC, the duration
-is expressed as &#8221;number of NOPs&#8221;, which is approximatively equivalent to micro seconds (see
+is expressed as &#8221;number of NOPs&#8221;, which is approximately equivalent to micro seconds (see
 Annexe C). This directive is very convenient when writing video effects, such as rasters, where
 colors have to be changed periodically, every 64 micro seconds (the duration of a video line):
      <ul class="itemize1">
@@ -2871,7 +2879,7 @@ class="cmtt-10">REND</span></div>
 </div>
 <!--l. 124--><p class="nopar" >
 <!--l. 2--><p class="noindent" >All WAV formats -single channel or multi channel- are supported . Voices will be merged in latter case. The
-sampling frequency is not taken into account. To import a WAV file, you must specify one fo the 4 formats
+sampling frequency is not taken into account. To import a WAV file, you must specify one of the 4 formats
 among SMP, SM2, SM4 and DMA:
      <ul class="itemize1">
      <li class="itemize">With SMP format, a sample corresponds to a byte.
@@ -2959,7 +2967,7 @@ class="cmtt-10">LZCLOSE</span>.
 uncompress. For example, for LZSA1, with minmatch=5, it will uncrunch quickly For LZSA2, with
 minmatch=2, it will crunch strongly. For more information, check the documentation by Emmanuel Marty,
 who created LZSA cruncher.
-<!--l. 8--><p class="noindent" >LZX0 is a new recent addition to RASM, and offers a good compression ratio, and uncrunches realy quickly.
+<!--l. 8--><p class="noindent" >LZX0 is a new recent addition to RASM, and offers a good compression ratio, and uncrunches really quickly.
 LZX0b is a variant for decrunching backwards.
 <!--l. 11--><p class="noindent" >Generated code is crunched once it is assembled. The code following such a block is then relocated (labels,
 ...).
@@ -3038,7 +3046,7 @@ INCL48,&#x00A0;INCL49,&#x00A0;INCLZ4,&#x00A0;INCZX7,&#x00A0;INCEXO,&#x00A0;INCAP
 SUMMEM&#x00A0;start_address,end_address
 </div>
 <!--l. 262--><p class="nopar" >
-<!--l. 1--><p class="noindent" >This directive sums all bytes beween <span 
+<!--l. 1--><p class="noindent" >This directive sums all bytes between <span 
 class="cmtt-10">start</span><span 
 class="cmtt-10">_address </span>and <span 
 class="cmtt-10">end</span><span 
@@ -3119,7 +3127,7 @@ class="cmsy-10">{</span><span
 class="cmtt-10">BANK</span><span 
 class="cmsy-10">}</span><span 
 class="cmtt-10">mylabel </span>) will return the BANK number where the label
-is located, intead of its absolute address. For example:
+is located, instead of its absolute address. For example:
 <div class="framedenv" id="leftbar-1">
 <!--l. 24--><p class="noindent" ><div class="obeylines-v">
 <span 
@@ -3323,7 +3331,7 @@ class="cmtt-10">BANK 0</span></div>
 Without parameter, this directive is optional, as by default, when a BANK directive is used, a cardridge file is
 generated. However, it is recommended to explicitly use this directive to indicate that a cardridge will be
 generated. If <span 
-class="cmtt-10">EXTENDED </span>parameter is added, then an extended cartdridge (.xpr) will be generated. It
+class="cmtt-10">EXTENDED </span>parameter is added, then an extended cartridge (.xpr) will be generated. It
 can be used in cunjunction with <span 
 class="cmtt-10">-xpr </span>option, for generating additional file for each 512KB slot.
 <!--l. 201--><p class="noindent" ><span class="paragraphHead"><a 
@@ -3412,7 +3420,7 @@ SETCRTC&#x00A0;&#x003C;CRTC&#x00A0;model&#x003E;
 </div>
 <!--l. 273--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Select CRTC model when writing a v3 snapshot file. Value for CRTC model ranges from 0 to 4. CRTC 3
-corresponds to CPC Plus and GX-4000, othe values to classic CPCs.
+corresponds to CPC Plus and GX-4000, other values to classic CPCs.
 <!--l. 283--><p class="noindent" >
 <h5 class="subsubsectionHead"><span class="titlemark">7.3.4   </span> <a 
  id="x1-990007.3.4"></a>SETSNA</h5>
@@ -3483,7 +3491,7 @@ BANK&#x00A0;[ROM&#x00A0;page&#x00A0;number]
 </div>
 <!--l. 370--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Selects a ROM bank (while exporting a cartridge) or a RAM slot (for snapshots) for storing code or data. For
-a cartdridge, values range from 0 to 31. In snapshot mode the values range from 0 to 35 (64K base memory
+a cartridge, values range from 0 to 31. In snapshot mode the values range from 0 to 35 (64K base memory
 + 512K extended memory). Used without parameter, BANK directive opens a new memory
 workspace.
 <!--l. 5--><p class="noindent" >By default, when using BANK, a cartridge will be generated, except if <span 
@@ -3492,7 +3500,7 @@ previously.
 <div class="framedenv" id="leftbar-1">
 <!--l. 388--><p class="noindent" ><div class="obeylines-v">
 <span 
-class="cmtt-10">BUILDSNA ; recommanded usage when using snapshot is to set it first</span>
+class="cmtt-10">BUILDSNA ; recommended usage when using snapshot is to set it first</span>
 <br /><span 
 class="cmtt-10">BANKSET 0 ; assembling in first 64K</span>
 <br /><span 
@@ -3568,7 +3576,7 @@ gate array can be configured with additional parameters
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-51">
-BANKSET&#x00A0;&#x003C;64K&#x00A0;bloc&#x00A0;number&#x003E;
+BANKSET&#x00A0;&#x003C;64K&#x00A0;block&#x00A0;number&#x003E;
 </div>
 <!--l. 450--><p class="nopar" >
 <!--l. 1--><p class="noindent" >BANKSET directive select a set of 4 pages in a row. With snapshot v3, there are 9 memory sets, indexed
@@ -3748,7 +3756,7 @@ class="cmtt-10">HOBETA </span>format.
 BUILDZX
 </div>
 <!--l. 60--><p class="nopar" >
-<!--l. 1--><p class="noindent" >Use this directive to enable ZX SNA file generation (Snaphsot) With ZX SNA, you must specify a second
+<!--l. 1--><p class="noindent" >Use this directive to enable ZX SNA file generation (Snapshot) With ZX SNA, you must specify a second
 parameter to <span 
 class="cmtt-10">RUN </span>directive, in order to provide the value of Stack Pointer (<span 
 class="cmtt-10">SP</span>)
@@ -3767,7 +3775,7 @@ class="cmtt-10">RUN #8000,#6000 ; Entry point=#8000, SP=#6000</span></div>
 <!--l. 1--><p class="noindent" ><span 
 class="cmtt-10">-sx </span>option can be used for exporting symbols for ZX emulators, where the selected bank is output.
 <span 
-class="cmtt-10">(&#x003C;bank&#x003E;:&#x003C;adresse&#x003E;)</span>
+class="cmtt-10">(&#x003C;bank&#x003E;:&#x003C;address&#x003E;)</span>
                                                                                     
                                                                                     
                                                                                     
@@ -3845,7 +3853,7 @@ similar, but it also returns additional data, such as a list of errors and the v
 &#x00A0;<br />#include&#x00A0;&#x003C;stdlib.h&#x003E;
 &#x00A0;<br />#include&#x00A0;&#x003C;string.h&#x003E;
 &#x00A0;<br />
-&#x00A0;<br />//&#x00A0;Prgram&#x00A0;to&#x00A0;assemble
+&#x00A0;<br />//&#x00A0;Program&#x00A0;to&#x00A0;assemble
 &#x00A0;<br />const&#x00A0;char*&#x00A0;prog="org&#x00A0;#9000&#x00A0;\n\
 &#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;ld&#x00A0;b,10&#x00A0;\n\
 &#x00A0;<br />lp:&#x00A0;djnz&#x00A0;lp&#x00A0;\n\

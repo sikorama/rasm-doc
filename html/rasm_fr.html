@@ -23,7 +23,8 @@ class="cmr-12">É </span><br class="and" /><span
 class="cmr-12">St</span><span 
 class="cmr-12">éphane SIKORA</span></div><br />
 <div class="date" ><span 
-class="cmr-12">29 octobre 2021</span></div>
+class="cmr-12">8 f</span><span 
+class="cmr-12">évrier 2022</span></div>
 </div>
 <h3 class="likesectionHead"><a 
  id="x1-1000"></a>Table des matières</h3>
@@ -298,55 +299,63 @@ assembleur qui soit rapide et lui ajouter au minimum des fonctionnalités que n&#
 natif des cartouches, disquettes ou snapshot Amstrad, espaces mémoires multiples, calculs flottants,
 compressions les plus courantes intégrées, afin de s&#8217;éviter par exemple de fastidieux export/imports de
 symboles, etc.
-<!--l. 6--><p class="noindent" >C&#8217;est ainsi qu&#8217;est né RASM. Ce n&#8217;était pas mon premier assembleur, j&#8217;en avais déja concu un 18 ans
+<!--l. 6--><p class="noindent" >C&#8217;est ainsi qu&#8217;est né RASM. Ce n&#8217;était pas mon premier assembleur, j&#8217;en avais déja conçu un 18 ans
 auparavant, mais il était trop limité. J&#8217;en ai néanmoins repris certains principes, comme l&#8217;assemblage en une
 seule passe. Rasm utilise des concepts éprouvés (arbres de Merkel, nombreux caches, allocations groupées) et
 surtout une conception linéaire, la récursivité tuant les performances.
-<!--l. 8--><p class="noindent" >Résultat : RASM présente des performances d&#8217;assemblage très élevées en conditions réelles, il est tres rapide,
+<!--l. 8--><p class="noindent" >Résultat : RASM présente des performances d&#8217;assemblage très élevées en conditions réelles, il est très rapide,
 même sur de gros projets.
 <!--l. 11--><p class="noindent" >Aujourd&#8217;hui Rasm est utilisé dans de nombreux projets d&#8217;envergure :
      <ul class="itemize1">
+     <li class="itemize">Arkos Tracker II par Targhan (de façon intégrée au logiciel)
+     </li>
+     <li class="itemize">Bubble Quest par Roudoudou (wip)
+     </li>
      <li class="itemize">Ghost&#8217;n Goblins par Golem13
      </li>
-     <li class="itemize">Arkos Tracker II par Targhan de façon intégrée au logiciel</li></ul>
-<!--l. 39--><p class="noindent" >
+     <li class="itemize">Puzzle Bubble par Redbug
+     </li>
+     <li class="itemize">Rasmlive (https ://rasmlive.amstrad.info)
+     </li>
+     <li class="itemize">Sonic GX par Condense
+     </li>
+     <li class="itemize">Tower Defense par Roudoudou</li></ul>
+<!--l. 49--><p class="noindent" >
 <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
  id="x1-30001.1"></a>Fonctionnalités</h4>
      <ul class="itemize1">
-     <li class="itemize">compilation ultra-rapide
+     <li class="itemize">Compilation ultra-rapide
      </li>
-     <li class="itemize">export au format binaire, cartouche, disquettes, snapshot...
+     <li class="itemize">Export au format binaire, cartouche, disquettes, snapshot...
      </li>
-     <li class="itemize">export/import des symboles
+     <li class="itemize">Export/import des symboles
      </li>
-     <li class="itemize">intégration des compresseurs les plus courants
+     <li class="itemize">Intégration des compresseurs les plus courants
      </li>
-     <li class="itemize">contrôle automatique des zones mémoires contre l&#8217;écrasement
+     <li class="itemize">Contrôle automatique des zones mémoires contre l&#8217;écrasement
      </li>
-     <li class="itemize">possibilité d&#8217;utiliser des variables en plus des constantes traditionelles
+     <li class="itemize">Possibilité d&#8217;utiliser des variables en plus des constantes traditionelles
      </li>
-     <li class="itemize">espaces mémoires illimités où les labels/variables sont partagées
-     </li>
-     <li class="itemize">absolument toutes les instructions Z80 sont supportées
-     </li>
-     <li class="itemize">macros, code conditionnel, boucles illimités, labels locaux, switch/case
-     </li>
-     <li class="itemize">calculs internes en double précision et arrondi correct
-     </li>
-     <li class="itemize">compatibilité optionnelle avec Maxam ou AS80
-     </li>
-     <li class="itemize">gestion dédiée des ROM et extensions mémoires
+     <li class="itemize">Espaces mémoires illimités où les labels/variables sont partagées
                                                                                     
                                                                                     
      </li>
-     <li class="itemize">importation de fichiers audio, avec conversion en DMA list (CPC+)
+     <li class="itemize">Absolument toutes les instructions Z80 sont supportées
      </li>
-     <li class="itemize">calcul de la durée des instructions</li></ul>
-<!--l. 18--><p class="noindent" >Rasm est diffusé sous licence MIT (voir Annexe <span 
-class="cmbx-10">??</span> pour l&#8217;ensemble des licenses).
-<!--l. 20--><p class="noindent" >La présente documentation est maintenue par Stéphane Sikora, merci de faire remonter vos remarques à
-l&#8217;adresse <span 
-class="cmtt-10">sikoogle+rasm@gmail.com</span>.
+     <li class="itemize">Macros, code conditionnel, boucles illimités, labels locaux, switch/case
+     </li>
+     <li class="itemize">Calculs internes en double précision et arrondi correct
+     </li>
+     <li class="itemize">Compatibilité optionnelle avec Maxam ou AS80
+     </li>
+     <li class="itemize">Gestion dédiée des ROM et extensions mémoires
+     </li>
+     <li class="itemize">Importation de fichiers audio, avec conversion en DMA list (CPC+)
+     </li>
+     <li class="itemize">Calcul de la durée des instructions</li></ul>
+<!--l. 18--><p class="noindent" >Rasm est diffusé sous licence MIT. La présente documentation est maintenue par Stéphane Sikora, merci de
+faire remonter vos remarques et corrections ici : <span 
+class="cmtt-10">https://github.com/sikorama/rasm-doc </span>.
                                                                                     
                                                                                     
                                                                                     
@@ -2152,7 +2161,7 @@ class="cmtt-10">rend</span></div>
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-30">
-WHILE&#x00A0;&#x003C;condtion&#x003E;&#x00A0;...&#x00A0;wEND
+WHILE&#x00A0;&#x003C;condition&#x003E;&#x00A0;...&#x00A0;wEND
 </div>
 <!--l. 124--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Répete un bloc tant que la condition est évaluée a vrai. A tout moment, il est possible d&#8217;utiliser la variable
@@ -2595,7 +2604,7 @@ class="cmtt-10">...</span>
 <br /><span 
 class="cmtt-10">ret</span>
 <br /><span 
-class="cmtt-10">data: equ 1</span>
+class="cmtt-10">data: db 1</span>
 <br /><span 
 class="cmtt-10">MODULE module2:</span>
 <br /><span 
@@ -2605,7 +2614,7 @@ class="cmtt-10">...</span>
 <br /><span 
 class="cmtt-10">ret</span>
 <br /><span 
-class="cmtt-10">data: equ 2</span>
+class="cmtt-10">data:db 2</span>
 <br /><span 
 class="cmtt-10">MODULE OFF</span>
 <br /><span 
@@ -3640,7 +3649,7 @@ mémoire).
 <div class="framedenv" id="leftbar-1">
 <!--l. 388--><p class="noindent" ><div class="obeylines-v">
 <span 
-class="cmtt-10">BUILDSNA ; recommanded usage when using snapshot is to set it first</span>
+class="cmtt-10">BUILDSNA ; recommended usage when using snapshot is to set it first</span>
 <br /><span 
 class="cmtt-10">BANKSET 0 ; assembling in first 64K</span>
 <br /><span 
@@ -3717,7 +3726,7 @@ exécuter un programme depuis les 64K de mémoire étendue.
                                                                                     
                                                                                     
 <div class="verbatim" id="verbatim-51">
-BANKSET&#x00A0;&#x003C;64K&#x00A0;bloc&#x00A0;number&#x003E;
+BANKSET&#x00A0;&#x003C;64K&#x00A0;block&#x00A0;number&#x003E;
 </div>
 <!--l. 450--><p class="nopar" >
 <!--l. 1--><p class="noindent" >Sert à sélectionner un emplacement mémoire pour les snapshots, en groupant les pages 4 à 4. Le format
@@ -4064,7 +4073,7 @@ le processus d&#8217;assemblage : les éventuelles erreurs,et la valeur associé à
 &#x00A0;<br />#include&#x00A0;&#x003C;stdlib.h&#x003E;
 &#x00A0;<br />#include&#x00A0;&#x003C;string.h&#x003E;
 &#x00A0;<br />
-&#x00A0;<br />//&#x00A0;Prgram&#x00A0;to&#x00A0;assemble
+&#x00A0;<br />//&#x00A0;Program&#x00A0;to&#x00A0;assemble
 &#x00A0;<br />const&#x00A0;char*&#x00A0;prog="org&#x00A0;#9000&#x00A0;\n\
 &#x00A0;<br />&#x00A0;&#x00A0;&#x00A0;&#x00A0;ld&#x00A0;b,10&#x00A0;\n\
 &#x00A0;<br />lp:&#x00A0;djnz&#x00A0;lp&#x00A0;\n\

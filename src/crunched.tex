@@ -145,7 +145,7 @@ Le sample devra au préalable avoir été converti à 15600Hz. Avec ce format, o
 
 \begin{xen}
 
-All WAV formats -single channel or multi channel- are supported . Voices will be merged in latter case. The sampling frequency is not taken into account.  To import a WAV file, you must specify one fo the 4 formats among SMP, SM2, SM4 and DMA:
+All WAV formats -single channel or multi channel- are supported . Voices will be merged in latter case. The sampling frequency is not taken into account.  To import a WAV file, you must specify one of the 4 formats among SMP, SM2, SM4 and DMA:
 \begin{itemize}
 \item With SMP format, a sample corresponds to a byte.
 \item SM2 format groups two values in a single byte (two nibbles), the first sample corresponding to the 4 most significant bits.
@@ -206,7 +206,7 @@ For example, for LZSA1, with minmatch=5, it will uncrunch quickly
 For LZSA2, with minmatch=2, it will crunch strongly.
 For more information, check the documentation by Emmanuel Marty, who created LZSA cruncher.
 
-LZX0 is a new recent addition to RASM, and offers a good compression ratio, and uncrunches realy quickly.
+LZX0 is a new recent addition to RASM, and offers a good compression ratio, and uncrunches really quickly.
 LZX0b is a variant for decrunching backwards.
 
 Generated code is crunched once it is assembled. The code following such a block is then relocated (labels, ...).
@@ -268,7 +268,7 @@ SUMMEM start_address,end_address
 \end{xfr}
 
 \begin{xen}
-This directive sums all bytes beween \texttt{start\_address} and \texttt{end\_address} in the current bank
+This directive sums all bytes between \texttt{start\_address} and \texttt{end\_address} in the current bank
 and store the result at the address where the directive is located.
 \end{xen}
 

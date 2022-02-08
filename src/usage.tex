@@ -17,11 +17,11 @@ Enfin, il est a noter que RASM n'intègre pas d'éditeur, ce n'est pas un IDE, m
 
 \begin{xen}
   \section {Usage}
-  RASM is meant to be convenient to use. It selects automatically the correct file format (plan binary, snaphost or cartridge file)) depending on the selected ROMs, give a consistent name to generated files, looks for files in relatives path, allows multiple origin (ORG) directives, but will detect overlapping code blocs, and so on...
+  RASM is meant to be convenient to use. It selects automatically the correct file format (plan binary, snaphost or cartridge file)) depending on the selected ROMs, give a consistent name to generated files, looks for files in relatives path, allows multiple origin (ORG) directives, but will detect overlapping code blocks, and so on...
 
 
-  RASM pre-processor not only performs some checks (valid characters, strings), it also converts some operators into their C equivalent (for example \texttt{XOR}, \texttt{AND},\texttt{OR},\texttt{MOD} which are used by Maxam), so you can indiferently use \texttt{AND} or \texttt{\&} in your expressions.
-  And last, but not least, it is possible to use conditional expressions in order to change the way your program is assembled (like with C preprocesser), and you can even define macros and data structures!
+  RASM preprocessor not only performs some checks (valid characters, strings), it also converts some operators into their C equivalent (for example \texttt{XOR}, \texttt{AND},\texttt{OR},\texttt{MOD} which are used by Maxam), so you can indiferently use \texttt{AND} or \texttt{\&} in your expressions.
+  And last, but not least, it is possible to use conditional expressions in order to change the way your program is assembled (like with C preprocessor), and you can even define macros and data structures!
 \end{xen}
 
 \begin{xfr}
@@ -100,7 +100,7 @@ For example, it can be useful for debugging a program with Winape.
     \item -sl :	also export local labels.
     \item -sv :	also export variables.
     \item -sq :	also export EQU aliases.
-    \item -sx : export for ZX emulators, where the bank is printed :  \texttt{(<bank>:<adresse>)}
+    \item -sx : export for ZX emulators, where the bank is printed :  \texttt{(<bank>:<address>)}
     \item -sa :	export all symbols (same as -sl -sv -sq)
   \end{itemize}
   Example:
@@ -326,6 +326,6 @@ These options are useful in rare occasions, it can sometime help for tracking bu
 \end{xfr}
 
 \begin{xen}
-  Additional options are useful for some architectures only. Export optios specific to the Amstrad CPC (Snapshot and cartridge generation) are documented in paragraph \ref{options_export_cpc}.
+  Additional options are useful for some architectures only. Export options specific to the Amstrad CPC (Snapshot and cartridge generation) are documented in paragraph \ref{options_export_cpc}.
   Also remember -help option, which will display a complete list of all available command line arguments.
 \end{xen}

@@ -15,7 +15,7 @@ Voici un exemple pour une écriture longue distance générique (sauf pour B ou 
 
 \begin{xen}
 A macro is a way to extend the language, by defining a block of instructions, delimited by MACRO and \texttt{MEND} (or ENDM) directives, that can later be inserted in your code.
-Macros can take parameters, so you can make conditionnal assembling with it: a macro is barely a copy/paste with arguments replacement. Arguments inside the macro are referenced using curly brackets. Here is an example of a long distance indexing, working for any 16 bit register (except B or C):
+Macros can take parameters, so you can make conditional assembling with it: a macro is barely a copy/paste with arguments replacement. Arguments inside the macro are referenced using curly brackets. Here is an example of a long distance indexing, working for any 16 bit register (except B or C):
 \end{xen}
 
 \begin{code}
@@ -49,7 +49,7 @@ L'utilisation d'une macro sans parametre provoquera une erreur.
 
 \begin{xen}
 Beware that RASM will understand any misspeled macro as a label declaration!
-A recommanded usage for macros without parameters, is to systematicaly use an empty parameter "\texttt{(void)}" .
+A recommended usage for macros without parameters, is to systematicaly use an empty parameter "\texttt{(void)}" .
 A misspeled macro call will then trigger an error.
 If you want to enforce usage of this syntax, you can use \texttt{-void} option. Using a macro without any parameter will raise an error.
 

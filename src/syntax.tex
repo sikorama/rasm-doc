@@ -59,7 +59,7 @@ Il existe des labels speciaux. Par exemple tout label qui commence par le préfi
 \end{xfr}
 
 \begin{xen}
-Labels are used for naming a specific memory adress.
+Labels are used for naming a specific memory address.
 %Some asemblers
 \end{xen}
 
@@ -132,7 +132,7 @@ Also, complex instructions with IX and IY are written with this syntax:
   sl1 <registre>
 \end{code}
 
-\subsubsection{\xlang{Syntaxes spéciales}{Shorcuts}}
+\subsubsection{\xlang{Syntaxes spéciales}{Shortcuts}}
 
 \begin{xfr}
 Il existe des raccourcis qui permettent de rendre le code plus compact et plus lisible.
@@ -227,7 +227,7 @@ La directive ORG permet d'indiquer l'adresse de départ du code et des données 
 
 \begin{xen}
 ORG is used for locating assembled code to a specific address.
-This directive can be used multiple times in the same memory space, but assembled memory blocs may not overlap.
+This directive can be used multiple times in the same memory space, but assembled memory blocks may not overlap.
 In that case, RASM will produce an error message.
 \end{xen}
 
@@ -243,8 +243,8 @@ RET
 \end{xfr}
 
 \begin{xen}
-Still, if you need to generate two or more pieces of code targetted for the same address, but physically stored in a different place, you can use the second parameter.
-For example, in order to generate code targetted for address \#8000, but stored in \#1000:
+Still, if you need to generate two or more pieces of code targeted for the same address, but physically stored in a different place, you can use the second parameter.
+For example, in order to generate code targeted for address \#8000, but stored in \#1000:
 \end{xen}
 
 %\begin{xfr}
@@ -263,7 +263,7 @@ label: JP label
 \end{code}
 
 \begin{xen}
-On Amstrad CPC, you also can write tagetted to the same adress, by defining a new memory space, using BANK directive. (See section \ref{BANK})
+On Amstrad CPC, you also can write tagetted to the same address, by defining a new memory space, using BANK directive. (See section \ref{BANK})
 \end{xen}
 
 \subsubsection{ALIGN}\index{ALIGN}
@@ -300,8 +300,8 @@ Pour protéger une zone définie, il vaut mieux utiliser la fonction \texttt{PRO
 
 \begin{xen}
 By default, the upper address for locating code is set to 65535, but for some reason, you may need to
-reduce thise value.
-Hoever if you want to protect a memory area zone, take a look at the \texttt{PROTECT} directive below.
+reduce this value.
+However if you want to protect a memory area zone, take a look at the \texttt{PROTECT} directive below.
 \end{xen}
 
 \subsubsection{PROTECT}\index{PROTECT}
@@ -335,7 +335,7 @@ Par exemple le code suivant produira la chaine 'Roudoudou': (le 'u' correspond a
 \end{xfr}
 
 \begin{xen}
-This directive handle one or more parameters and output bytes regarding of thoses parameters. The value may be a literal value, a formula (the result will be rounded), or a string where each char will output a byte.
+This directive handle one or more parameters and output bytes regarding of those parameters. The value may be a literal value, a formula (the result will be rounded), or a string where each char will output a byte.
 Following code will producte 'Roudoudou' string. ('u' char corresponds to ASCII code \#75)
 %If CHARSET directive were used, the outputed bytes respect the CHARSET redefinition.
 Example:
